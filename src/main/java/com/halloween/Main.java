@@ -10,7 +10,6 @@ public class Main {
     game.showTitle();
     game.showBackstory();
     game.showInstructions();
-
   }
 
 }
