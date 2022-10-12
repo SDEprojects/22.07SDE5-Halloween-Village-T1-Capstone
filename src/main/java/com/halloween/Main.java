@@ -1,48 +1,16 @@
 package com.halloween;
 
+import com.halloween.controller.Game;
+
 public class Main {
 
   public static void main(String[] args) {
-    titleDisplay();
-    backstory();
-  }
-  private static void backstory() {
-    System.out.println(
-        "Welcome to Halloween Village! A community of ghosts, ghouls, goblins, \n"
-            + "and terrifying beasts from all over.\n"
-    );
-    System.out.println(
-        "It’s Halloween night. You must go trick or treating house-to-house \n"
-            + "collecting candy and useful items. Most citizens of Halloween Village \n"
-            + "are friendly, but beware, lurking somewhere in the shadows is the scariest \n"
-            + "(and for sure rudest) villain of all time waiting for you! Should you \n"
-            + "manage to defeat this great evil, peace and prosperity will be restored to \n"
-            + "Halloween Village!"
-    );
-    System.out.println("\n\tGood Luck, you'll definitely need it...\n");
-  }
+    Game game = new Game();
 
-  public static void titleDisplay() {
-    // source: https://www.asciiart.eu/holiday-and-events/halloween
-    System.out.println("\n"
-        + "                                              ,           ^'^  _\n"
-        + "                                              )               (_) ^'^\n"
-        + "         _/\\_                    .---------. ((        ^'^\n"
-        + "         (('>                    )`'`'`'`'`( ||                 ^'^\n"
-        + "    _    /^|                    /`'`'`'`'`'`\\||           ^'^\n"
-        + "    =>--/__|m---               /`'`'`'`'`'`'`\\|\n"
-        + "         ^^           ,,,,,,, /`'`'`'`'`'`'`'`\\      ,\n"
-        + "                     .-------.`|`````````````|`  .   )\n"
-        + "                    / .^. .^. \\|  ,^^, ,^^,  |  / \\ ((\n"
-        + "                   /  |_| |_|  \\  |__| |__|  | /,-,\\||\n"
-        + "        _         /_____________\\ |\")| |  |  |/ |_| \\|\n"
-        + "       (\")         |  __   __  |  '==' '=='  /_______\\     _\n"
-        + "      (' ')        | /  \\ /  \\ |   _______   |,^, ,^,|    (\")\n"
-        + "       \\  \\        | |--| |--| |  ((--.--))  ||_| |_||   (' ')\n"
-        + "     _  ^^^ _      | |__| |(\"| |  ||  |  ||  |,-, ,-,|   /  /\n"
-        + "   ,' ',  ,' ',    |           |  ||  |  ||  ||_| |_||   ^^^\n"
-        + ".,,|RIP|,.|RIP|,.,,'==========='==''=='==''=='=======',,....,,,,.,\n");
-    System.out.println("\n====================Welcome to Halloween Village====================\n");
+
+    game.showTitle();
+    game.showBackstory();
+    game.showInstructions();
   }
 
 }
