@@ -71,19 +71,19 @@ public class TextParser {
     return valid;
   }
 
-  public static void main(String[] args) {
-    TextParser textParser = new TextParser();
-
-    String[] input;
-    input = textParser.userInput();
-    String verb = input[0];
-    String noun = input[1];
-
-    System.out.println("Verb: " + verb);
-
-    System.out.println("You input: " + verb + " " + noun);
-
-    System.out.println(input.length);
-  }
+//  public static void main(String[] args) {
+//    TextParser textParser = new TextParser();
+//
+//    String[] input;
+//    input = textParser.userInput();
+//    String verb = input[0];
+//    String noun = input[1];
+//
+//    System.out.println("Verb: " + verb);
+//
+//    System.out.println("You input: " + verb + " " + noun);
+//
+//    System.out.println(input.length);
+//  }
 
 }
