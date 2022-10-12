@@ -3,6 +3,7 @@ package com.halloween;
 public class Main {
 
   public static void main(String[] args) {
+    titleDisplay();
     backstory();
   }
   private static void backstory() {
@@ -20,4 +21,28 @@ public class Main {
     );
     System.out.println("\n\tGood Luck, you'll definitely need it...\n");
   }
+
+  public static void titleDisplay() {
+    // source: https://www.asciiart.eu/holiday-and-events/halloween
+    System.out.println("\n"
+        + "                                              ,           ^'^  _\n"
+        + "                                              )               (_) ^'^\n"
+        + "         _/\\_                    .---------. ((        ^'^\n"
+        + "         (('>                    )`'`'`'`'`( ||                 ^'^\n"
+        + "    _    /^|                    /`'`'`'`'`'`\\||           ^'^\n"
+        + "    =>--/__|m---               /`'`'`'`'`'`'`\\|\n"
+        + "         ^^           ,,,,,,, /`'`'`'`'`'`'`'`\\      ,\n"
+        + "                     .-------.`|`````````````|`  .   )\n"
+        + "                    / .^. .^. \\|  ,^^, ,^^,  |  / \\ ((\n"
+        + "                   /  |_| |_|  \\  |__| |__|  | /,-,\\||\n"
+        + "        _         /_____________\\ |\")| |  |  |/ |_| \\|\n"
+        + "       (\")         |  __   __  |  '==' '=='  /_______\\     _\n"
+        + "      (' ')        | /  \\ /  \\ |   _______   |,^, ,^,|    (\")\n"
+        + "       \\  \\        | |--| |--| |  ((--.--))  ||_| |_||   (' ')\n"
+        + "     _  ^^^ _      | |__| |(\"| |  ||  |  ||  |,-, ,-,|   /  /\n"
+        + "   ,' ',  ,' ',    |           |  ||  |  ||  ||_| |_||   ^^^\n"
+        + ".,,|RIP|,.|RIP|,.,,'==========='==''=='==''=='=======',,....,,,,.,\n");
+    System.out.println("\n====================Welcome to Halloween Village====================\n");
+  }
+
 }
