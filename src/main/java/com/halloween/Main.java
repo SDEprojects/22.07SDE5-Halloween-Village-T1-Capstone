@@ -14,7 +14,7 @@ public class Main {
     System.out.println(
         "It’s Halloween night. You must go trick or treating house-to-house \n"
             + "collecting candy and useful items. Most citizens of Halloween Village \n"
-            + "are friendsy, but beware, lurking somewhere in the shadows is the scariest \n"
+            + "are friendly, but beware, lurking somewhere in the shadows is the scariest \n"
             + "(and for sure rudest) villain of all time waiting for you! Should you \n"
             + "manage to defeat this great evil, peace and prosperity will be restored to \n"
             + "Halloween Village!"

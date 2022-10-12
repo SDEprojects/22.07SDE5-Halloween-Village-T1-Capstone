@@ -44,6 +44,7 @@ public class TextParser {
 
     // if input array is greater than two it is not value
     if (input.length > 2) {
+      System.out.println("WARNING: Invalid input! Input can NOT be more than two words!");
       return false;
       // if input has one word it can either be help or quit otherwise false
     } else if (input.length == 1) {
@@ -57,25 +58,32 @@ public class TextParser {
         return true;
       } else if (input[0].equals("knock") && input[1].equals("door")) {
         return true;
+      } else if (input[0].equals("new") && input[1].equals("game")){
+        return true;
+      } else if (input[0].equals("help")) {
+        return true;
+      } else if (input[0].equals("quit")) {
+        return true;
       }
     }
 
+    System.out.println("WARNING: Invalid input!");
     return valid;
   }
 
-//  public static void main(String[] args) {
-//    TextParser textParser = new TextParser();
-//
-//    String[] input;
-//    input = textParser.userInput();
-//    String verb = input[0];
-//    String noun = input[1];
-//
-//    System.out.println("Verb: " + verb);
-//
-//    System.out.println("You input: " + verb + " " + noun);
-//
-//    System.out.println(input.length);
-//  }
+  public static void main(String[] args) {
+    TextParser textParser = new TextParser();
+
+    String[] input;
+    input = textParser.userInput();
+    String verb = input[0];
+    String noun = input[1];
+
+    System.out.println("Verb: " + verb);
+
+    System.out.println("You input: " + verb + " " + noun);
+
+    System.out.println(input.length);
+  }
 
 }
