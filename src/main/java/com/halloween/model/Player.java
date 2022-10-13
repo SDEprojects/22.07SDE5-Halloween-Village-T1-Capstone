@@ -4,13 +4,17 @@ import java.util.ArrayList;
 
 public class Player {
   private String name;
-  private House position;
+  private String position;
   private ArrayList<String> items;
 
-  public Player(String name, House position, ArrayList<String> items) {
+  public Player(String name, String position, ArrayList<String> items) {
     this.name = name;
     this.position = position;
     this.items = new ArrayList<>();
+  }
+
+  public Player() {
+
   }
 
   public String getName() {
@@ -21,11 +25,11 @@ public class Player {
     this.name = name;
   }
 
-  public House getPosition() {
+  public String getPosition() {
     return position;
   }
 
-  public void setPosition(House position) {
+  public void setPosition(String position) {
     this.position = position;
   }
 
