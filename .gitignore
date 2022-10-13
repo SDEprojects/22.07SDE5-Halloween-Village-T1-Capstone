@@ -30,5 +30,5 @@ bin/
 # project metadata for intellij
 .idea/
 
-#
+# ignore intellij module configuration file
 *.iml
