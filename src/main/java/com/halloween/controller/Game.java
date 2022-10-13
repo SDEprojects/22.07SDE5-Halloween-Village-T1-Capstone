@@ -17,7 +17,7 @@ public class Game {
 
   public Game() {
     setUpNeighborhood();
-    player.setPosition("saw house");
+    player.setPosition("your house");
   }
 
   public void setUpNeighborhood() {
@@ -95,6 +95,36 @@ public class Game {
   }
   public void showInstructions() {
     System.out.println(View.INSTRUCTIONS);
+  }
+
+  public void movePlayer(String direction) {
+    House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
+
+    if(direction.equals("north") && currentPosition.getNorth() != null){
+      player.setPosition(currentPosition.getNorth());
+      System.out.println(player.getName() + " moved north. New position is " + player.getPosition());
+    } else if (direction.equals("east") && currentPosition.getEast() != null) {
+      player.setPosition(currentPosition.getEast());
+      System.out.println(player.getName() + " moved east. New position is " + player.getPosition());
+    }  else if (direction.equals("south") && currentPosition.getSouth() != null) {
+      player.setPosition(currentPosition.getSouth());
+      System.out.println(player.getName() + " moved south. New position is " + player.getPosition());
+    }  else if (direction.equals("west") && currentPosition.getWest() != null) {
+      player.setPosition(currentPosition.getWest());
+      System.out.println(player.getName() + " moved west. New position is " + player.getPosition());
+    } else {
+      System.out.println("WARNING: " + direction + " is an invalid direction. Please choose one of the following.");
+      // showValidMoves();
+    }
+  }
+
+  public void showValidMoves() {
+    House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
+    String north = currentPosition.getNorth() != null ? "\nnorth: " + currentPosition.getNorth() : "";
+    String east = currentPosition.getEast() != null ? "\neast: " + currentPosition.getEast(): "";
+    String south = currentPosition.getSouth() != null ? "\nsouth: " + currentPosition.getSouth() : "";
+    String west = currentPosition.getWest() != null ? "\nwest: " + currentPosition.getWest() : "";
+    System.out.println(north + east + south + west);
   }
 
 }
