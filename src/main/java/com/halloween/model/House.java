@@ -10,6 +10,7 @@ public class House {
   private String east;
   private String south;
   private String west;
+  private boolean knocked;
 
   public House(String houseName, ArrayList<String> houseItems, String[] residents, String north,
       String east, String south, String west) {
@@ -20,6 +21,7 @@ public class House {
     this.east = east;
     this.south = south;
     this.west = west;
+    this.knocked = false;
   }
 
   public String getHouseName() {
@@ -54,4 +56,11 @@ public class House {
     houseItems.remove(0);
   }
 
+  public boolean isKnocked() {
+    return knocked;
+  }
+
+  public void setKnocked(boolean knocked) {
+    this.knocked = knocked;
+  }
 }

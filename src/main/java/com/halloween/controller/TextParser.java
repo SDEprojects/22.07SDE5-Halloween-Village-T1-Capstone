@@ -48,7 +48,7 @@ public class TextParser {
       return false;
       // if input has one word it can either be help or quit otherwise false
     } else if (input.length == 1) {
-      if (input[0].equals("quit") || input[0].equals("help")) {
+      if (input[0].equals("quit") || input[0].equals("help") || input[0].equals("knock")) {
         return true;
       }
     } else {
@@ -56,7 +56,7 @@ public class TextParser {
         return true;
       } else if (input[0].equals("get") && input[1].equals("item")) {
         return true;
-      } else if (input[0].equals("knock") && input[1].equals("door")) {
+      } else if (input[0].equals("knock")) {
         return true;
       } else if (input[0].equals("new") && input[1].equals("game")){
         return true;
