@@ -2,9 +2,18 @@ package com.halloween.model;
 
 public enum State {
 
-  PLAY, WIN;
+  WIN,
+  LOSE,
+  PLAY {
+    @Override
+    public boolean isTerminal() {
+      return false;
+    }
+  };
 
-  private boolean play;
-  private boolean win;
+  // tells game whether the state causes the game to end
+  public boolean isTerminal() {
+    return true;
+  }
 
 }
