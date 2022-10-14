@@ -59,9 +59,9 @@ public class Main {
           System.out.println("WARNING: Invalid direction. Please choose one of the following.");
           game.showValidMoves();
         }
+      } else if (input[0].equals("get")) {
+          game.getItem(input[1]);
       }
-
-
     }
   }
 
