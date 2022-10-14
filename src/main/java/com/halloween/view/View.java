@@ -87,9 +87,12 @@ public class View {
     }
   }
   public void displayMenu() {
-    System.out.println("----- MENU -----");
-    System.out.println("To start game enter: new game");
-    System.out.println("To quit enter: quit");
+    System.out.println("..............................................................\n");
+    System.out.println("\t\t\t\t~~~~~~~~~~~MENU~~~~~~~~~~~");
+    System.out.println("\t\t\t\tTo start game enter: new game");
+    System.out.println("\t\t\t\tTo quit enter: quit\n");
+    System.out.println("...............................................................\n");
+
   }
 }
 
