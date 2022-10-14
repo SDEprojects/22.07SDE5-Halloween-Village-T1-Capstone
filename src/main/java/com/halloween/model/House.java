@@ -50,4 +50,8 @@ public class House {
     return west;
   }
 
+  public void removeItem() {
+    houseItems.remove(0);
+  }
+
 }
