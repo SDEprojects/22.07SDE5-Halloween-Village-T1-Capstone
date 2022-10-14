@@ -3,6 +3,7 @@ package com.halloween.view;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -59,24 +60,35 @@ public class View {
       + "Typing \"help\" will show a list of valid commands\n\n";
 
   private JSONParser parser = new JSONParser();
+  URL url = getClass().getResource("/dialogue.json");
+  String path = url.getPath();
+  JSONArray dialogueArray = (JSONArray) parser.parse(new FileReader(path));
 
-  public void greet(String currentPosition) throws IOException, ParseException {
-    JSONArray dialogueArray = (JSONArray) parser.parse(new FileReader("C:\\Users\\akwarkoh\\Desktop\\JAVA\\StudentWork\\IntmJ\\22.07SDE05-Halloween-Village\\src\\main\\resources\\dialogue.json"));
-
+  public View() throws IOException, ParseException {
+  }
+  public void greet(String currentPosition) {
     for (Object dialogue : dialogueArray) {
       JSONObject house = (JSONObject) dialogue;
-
-      JSONObject houseDialogue = (JSONObject)house.get(currentPosition);
-      String greeting = (String) houseDialogue.get("greet");
-      System.out.println(greeting);
-
-      JSONObject houseConversation = (JSONObject)house.get(currentPosition);
-      String secondVisit = (String) houseConversation.get("no item");
-      System.out.println(secondVisit);
+      if (house.containsKey(currentPosition)) {
+        JSONObject houseDialogue = (JSONObject) house.get(currentPosition);
+        String greeting = (String) houseDialogue.get("greet");
+        System.out.println(greeting);
+      }
     }
   }
-
-  public static void main(String[] args) throws IOException, ParseException {
-    new View().greet("amityville mansion");
+  public void noItem(String currentPosition) {
+    for (Object dialogue : dialogueArray) {
+      JSONObject house = (JSONObject) dialogue;
+      if (house.containsKey(currentPosition)) {
+        JSONObject houseDialogue = (JSONObject) house.get(currentPosition);
+        String secondVisit = (String) houseDialogue.get("no item");
+        System.out.println(secondVisit);
+      }
+    }
   }
+//  public static void main(String[] args) throws IOException, ParseException {
+//    new View().greet("saw house");
+//    new View().noItem("amityville mansion");
+//  }
 }
+
