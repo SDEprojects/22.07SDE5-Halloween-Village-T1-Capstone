@@ -9,13 +9,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.json.simple.parser.ParseException;
 
 public class Game {
   private View display = new View();
   private Player player = new Player();
   private Neighborhood neighborhood = new Neighborhood();
 
-  public Game() {
+  public Game() throws IOException, ParseException {
     setUpNeighborhood();
     player.setPosition("your house");
   }

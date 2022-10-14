@@ -1,5 +1,14 @@
 package com.halloween.view;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class View {
   public static final String TITLE =
       "\n"
@@ -50,4 +59,36 @@ public class View {
       + "Typing \"quit\" will cause you to immediately exit out of the game \n\n"
       + "Typing \"help\" will show a list of valid commands\n\n";
 
+  private JSONParser parser = new JSONParser();
+  URL url = getClass().getResource("/dialogue.json");
+  String path = url.getPath();
+  JSONArray dialogueArray = (JSONArray) parser.parse(new FileReader(path));
+
+  public View() throws IOException, ParseException {
+  }
+  public void greet(String currentPosition) {
+    for (Object dialogue : dialogueArray) {
+      JSONObject house = (JSONObject) dialogue;
+      if (house.containsKey(currentPosition)) {
+        JSONObject houseDialogue = (JSONObject) house.get(currentPosition);
+        String greeting = (String) houseDialogue.get("greet");
+        System.out.println(greeting);
+      }
+    }
+  }
+  public void noItem(String currentPosition) {
+    for (Object dialogue : dialogueArray) {
+      JSONObject house = (JSONObject) dialogue;
+      if (house.containsKey(currentPosition)) {
+        JSONObject houseDialogue = (JSONObject) house.get(currentPosition);
+        String secondVisit = (String) houseDialogue.get("no item");
+        System.out.println(secondVisit);
+      }
+    }
+  }
+//  public static void main(String[] args) throws IOException, ParseException {
+//    new View().greet("saw house");
+//    new View().noItem("amityville mansion");
+//  }
 }
+
