@@ -127,4 +127,17 @@ public class Game {
     System.out.println(north + east + south + west);
   }
 
+  public void getItem(String item) {
+    House house =  neighborhood.getNeighborhood().get(player.getPosition());
+
+    if (house.getHouseItems().size() > 0) {
+      String temp = house.getHouseItems().get(0);
+      player.addItem(temp);
+      house.removeItem();
+      System.out.println("You added a " + temp + " to your items!");
+    } else {
+      System.out.println("Error: no items available at this location!");
+    }
+  }
+
 }
