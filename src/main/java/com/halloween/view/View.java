@@ -86,9 +86,10 @@ public class View {
       }
     }
   }
-//  public static void main(String[] args) throws IOException, ParseException {
-//    new View().greet("saw house");
-//    new View().noItem("amityville mansion");
-//  }
+  public void displayMenu() {
+    System.out.println("----- MENU -----");
+    System.out.println("To start game enter: new game");
+    System.out.println("To quit enter: quit");
+  }
 }
 

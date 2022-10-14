@@ -15,7 +15,7 @@ public class Main {
     boolean startNewGame = false;
     while (!startNewGame) {
 
-      displayMenu();
+      game.showMenu();
 
       String[] userInput = textParser.userInput();
 
@@ -32,6 +32,7 @@ public class Main {
     game.showBackstory();
     game.showInstructions();
     game.greetPlayer();
+
 
     // Play game until user wins, loses, or quits
     playGame(game, textParser);
@@ -61,9 +62,5 @@ public class Main {
     }
   }
 
-  private static void displayMenu() {
-    System.out.println("----- MENU -----");
-    System.out.println("To start game enter: new game");
-    System.out.println("To quit enter: quit");
-  }
+
 }
