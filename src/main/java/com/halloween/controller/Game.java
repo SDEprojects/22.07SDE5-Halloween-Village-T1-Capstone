@@ -159,6 +159,7 @@ public class Game {
   }
 
   public void quitGame() {
+    System.out.println("See you next time");
     System.exit(0);
   }
   public State getState() {
