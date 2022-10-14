@@ -1,0 +1,45 @@
+
+main()
+  intro
+  menu()
+
+function playGame()
+
+  text parser
+
+  Game
+    player
+      getName()
+    board
+    title()
+    backstory()
+    instructions()
+
+
+function (game, text)
+
+  while (True)
+
+    display options()
+    getUserInput()
+
+
+    if (help)
+      print help
+    if (quit)
+      quit game
+    if (legal move)
+      makeMove
+      update
+    if (get item)
+      grab item
+
+
+    if (player wins)
+      winGame()
+
+
+
+text parser
+- add character name
+- add menu options
