@@ -85,6 +85,10 @@ public class Game {
     System.out.printf("\n%s is in %s and currently has %s in their inventory.\n", player.getName(), player.getPosition(), playerItems);
     showValidMoves();
   }
+
+  public void showMenu(){
+    display.displayMenu();
+  }
   public void showTitle() {
     System.out.println(View.TITLE);
   }
