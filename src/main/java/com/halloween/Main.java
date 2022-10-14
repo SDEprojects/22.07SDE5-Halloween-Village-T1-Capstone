@@ -3,7 +3,6 @@ package com.halloween;
 import com.halloween.controller.Game;
 import com.halloween.controller.TextParser;
 import com.halloween.model.Player;
-import com.halloween.model.State;
 import java.io.IOException;
 
 public class Main {
@@ -20,14 +19,13 @@ public class Main {
       String[] userInput = textParser.userInput();
 
       if(userInput[0].equals("quit")){
-        game.quitGame();
+        quitGame();
       } else if (userInput[0].equals("new") && userInput[1].equals("game")) {
         startNewGame = true;
-        game.setState(State.PLAY);
       }
     }
 
-    // Initialize the game object and get user's name
+    // Initialize the game object and get user name
     game.showTitle();
     game.showBackstory();
     game.showInstructions();
@@ -41,20 +39,28 @@ public class Main {
   private static void playGame(Game game, TextParser textParser) {
 
     String[] input;
-    while (!game.getState().isTerminal()) {
+    Boolean winGame = false;
+
+
+    while (!winGame) {
 
       game.showStatus();
       input = textParser.userInput();
 
       if (input[0].equals("quit")) {
-        game.quitGame();
+        quitGame();
       } else if (input[0].equals("help")) {
         game.showInstructions();
       } else if (input[0].equals("go")) {
-        game.movePlayer(input[1]);
-      } else if (input[0].equals("knock")) {
-        game.knockOnDoor();
+        if (input[1].equals("north") || input[1].equals("east") || input[1].equals("south") || input[1].equals("west")){
+          game.movePlayer(input[1]);
+        } else {
+          System.out.println("WARNING: Invalid direction. Please choose one of the following.");
+          game.showValidMoves();
+        }
       }
+
+
     }
   }
 
@@ -64,5 +70,7 @@ public class Main {
     System.out.println("To quit enter: quit");
   }
 
-
+  private static void quitGame() {
+    System.exit(0);
+  }
 }

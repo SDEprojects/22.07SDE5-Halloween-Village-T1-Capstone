@@ -14,7 +14,7 @@ public class Player {
   }
 
   public Player() {
-
+    this.items = new ArrayList<>();
   }
 
   public String getName() {
@@ -39,6 +39,10 @@ public class Player {
 
   public void setItems(ArrayList<String> items) {
     this.items = items;
+  }
+
+  public void addItem(String item){
+    items.add(item);
   }
 
 }
