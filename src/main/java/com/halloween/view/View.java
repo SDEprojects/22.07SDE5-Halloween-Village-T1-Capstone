@@ -1,5 +1,13 @@
 package com.halloween.view;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class View {
   public static final String TITLE =
       "\n"
@@ -50,4 +58,25 @@ public class View {
       + "Typing \"quit\" will cause you to immediately exit out of the game \n\n"
       + "Typing \"help\" will show a list of valid commands\n\n";
 
+  private JSONParser parser = new JSONParser();
+
+  public void greet(String currentPosition) throws IOException, ParseException {
+    JSONArray dialogueArray = (JSONArray) parser.parse(new FileReader("C:\\Users\\akwarkoh\\Desktop\\JAVA\\StudentWork\\IntmJ\\22.07SDE05-Halloween-Village\\src\\main\\resources\\dialogue.json"));
+
+    for (Object dialogue : dialogueArray) {
+      JSONObject house = (JSONObject) dialogue;
+
+      JSONObject houseDialogue = (JSONObject)house.get(currentPosition);
+      String greeting = (String) houseDialogue.get("greet");
+      System.out.println(greeting);
+
+      JSONObject houseConversation = (JSONObject)house.get(currentPosition);
+      String secondVisit = (String) houseConversation.get("no item");
+      System.out.println(secondVisit);
+    }
+  }
+
+  public static void main(String[] args) throws IOException, ParseException {
+    new View().greet("amityville mansion");
+  }
 }
