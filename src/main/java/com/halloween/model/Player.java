@@ -3,6 +3,7 @@ package com.halloween.model;
 import java.util.ArrayList;
 
 public class Player {
+
   private String name;
   private String position;
   private ArrayList<String> items;
@@ -41,20 +42,15 @@ public class Player {
     this.items = items;
   }
 
-  public void addItem(String item){
+  public void addItem(String item) {
     items.add(item);
   }
 
   public boolean removeItem(String item) {
-    if(items.contains(item) || (items.size() == 1 && item.equals("item"))) {
+    if (items.contains(item)) {
       System.out.println("You used a " + item + ". This item is now removed from your inventory.");
-      if(!item.equals("item")){
-        // if the is name is in the array, then remove it
-        items.remove(item);
-      } else {
-        // otherwise, remove the only item from the list
-        items.remove(0);
-      }
+      // remove the item
+      items.remove(item);
       // return true if we successfully use the item
       return true;
     } else {

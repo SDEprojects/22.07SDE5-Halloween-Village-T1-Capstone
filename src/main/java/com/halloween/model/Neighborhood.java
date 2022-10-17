@@ -14,9 +14,10 @@ public class Neighborhood {
   private HashMap<String, House> neighborhood = new HashMap<>();
   private JSONParser parser = new JSONParser();
   URL url = getClass().getResource("/map.json");
-  String path = url.getPath();
+  String path = url.getPath().replace("%20", " ");
 
   public Neighborhood() throws IOException, ParseException {
+
     JSONArray houseArray = (JSONArray) parser.parse(new FileReader(path));
     for (Object house : houseArray) {
       JSONObject houseObject = (JSONObject) house;

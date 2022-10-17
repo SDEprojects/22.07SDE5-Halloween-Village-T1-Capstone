@@ -61,9 +61,9 @@ public class View {
 
   private JSONParser parser = new JSONParser();
   URL url = getClass().getResource("/dialogue.json");
+
   String path = url.getPath().replace("%20", " ");
 
-  //String path = "/Users/zaarwil/Documents/SDE Training Java Content/Java-Part1/LabSetup_Java-Part1/StudentWork/IntmJ/22.07SDE05-Halloween-Village/target/classes/dialogue.json";
   JSONArray dialogueArray = (JSONArray) parser.parse(new FileReader(path));
 
   public View() throws IOException, ParseException {
