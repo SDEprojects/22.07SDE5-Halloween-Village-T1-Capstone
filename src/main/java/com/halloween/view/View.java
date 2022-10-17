@@ -61,7 +61,9 @@ public class View {
 
   private JSONParser parser = new JSONParser();
   URL url = getClass().getResource("/dialogue.json");
-  String path = url.getPath();
+
+  String path = url.getPath().replace("%20", " ");
+
   JSONArray dialogueArray = (JSONArray) parser.parse(new FileReader(path));
 
   public View() throws IOException, ParseException {

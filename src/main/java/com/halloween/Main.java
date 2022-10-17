@@ -58,8 +58,12 @@ public class Main {
         game.getItem();
       } else if (input[0].equals("knock")) {
         game.knockOnDoor();
+      } else if (input[0].equals("use") && input[1] != null) {
+        game.useItem(input[1]);
+        System.out.println(input[1]);
       }
     }
+
   }
 
 

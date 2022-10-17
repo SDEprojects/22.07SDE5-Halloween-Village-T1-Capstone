@@ -121,4 +121,24 @@ public class Game {
   public void setState(State state) {
     this.state = state;
   }
+
+  public void useItem(String item) {
+    // get the house the player is currently at
+    House house = neighborhood.getNeighborhood().get(player.getPosition());
+
+    // if the house is knocked then try to use the item
+    if (house.isKnocked()) {
+      System.out.println("Items in inventory: " + player.getItems());
+      boolean successfullyUsedItem = player.removeItem(item);
+
+      // if we use the badge at karen's house then we win the game
+      if (house.getHouseName().equals("karen's house") && item.equals("badge")
+          && successfullyUsedItem && house.isKnocked()) {
+        System.out.println("Karen is defeated! You win!");
+        setState(State.WIN);
+      }
+    } else {
+      System.out.println("Uh Oh! You can't use an item without knocking on the door first!");
+    }
+  }
 }
