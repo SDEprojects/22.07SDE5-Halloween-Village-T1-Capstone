@@ -61,6 +61,8 @@ public class Main {
       } else if (input[0].equals("use") && input[1] != null) {
         game.useItem(input[1]);
         System.out.println(input[1]);
+      } else if (input[0].equals("inventory")) {
+        game.showInventory();
       }
     }
 

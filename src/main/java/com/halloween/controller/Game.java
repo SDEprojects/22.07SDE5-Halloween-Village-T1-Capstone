@@ -128,7 +128,7 @@ public class Game {
 
     // if the house is knocked then try to use the item
     if (house.isKnocked()) {
-      System.out.println("Items in inventory: " + player.getItems());
+      showInventory();
       boolean successfullyUsedItem = player.removeItem(item);
 
       // if we use the badge at karen's house then we win the game
@@ -140,5 +140,9 @@ public class Game {
     } else {
       System.out.println("Uh Oh! You can't use an item without knocking on the door first!");
     }
+  }
+
+  public void showInventory() {
+    System.out.println("Items in inventory: " + player.getItems());
   }
 }
