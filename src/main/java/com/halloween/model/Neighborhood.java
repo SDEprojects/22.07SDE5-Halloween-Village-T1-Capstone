@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -36,8 +37,14 @@ public class Neighborhood {
       String east = (String) houseInfo.get("east");
       String south = (String) houseInfo.get("south");
       String west = (String) houseInfo.get("west");
+      String[] directions = new String[]{north, east, south, west};
+      for (int i = 0; i < directions.length; i++) {
+        if (Objects.equals(directions[i], "null")) {
+          directions[i] = null;
+        }
+      }
 
-      House houseConstructor = new House(name, items, residents, north, east, south, west);
+      House houseConstructor = new House(name, items, residents, directions[0], directions[1], directions[2], directions[3]);
       neighborhood.put(name, houseConstructor);
     }
 
