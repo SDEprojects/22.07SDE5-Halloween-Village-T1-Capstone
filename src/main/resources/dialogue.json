@@ -46,24 +46,24 @@
   },
   {
     "karen's house": {
-      "greet": "Karen’s House (without deputy mayor badge)\nPlayer: \"Trick or treat!\" \nKaren: \"How dare you trustpass on my property! I’m calling the police.\" \n**Police arrive**\nOfficer: \"Ummm what’s the issue Ms. Karen?\" \nKaren: \"This intruder (points at you) invaded my property, and made threats against my life - remove them at once!\" \nOfficer: \"It’s just a kid.. But if you say so!\" \nOfficer: \"Come on <name>, we’re taking you home. Also, your parents are gonna pay a hefty fine for trespassing.\" \nKaren: \"Oh and one last thing. <Name> stole that from me (points at candy bag).\"\n**Officer takes your candy bad and hands it to Karen** \nKaren: \"Muahahahah!!!\" \ngameOver()\n",
-      "no item": "Karen’s House (with deputy mayor badge)\nPlayer: \"Trick or treat!\" \nKaren: \"How dare you trustpass on my property! I’m calling the police.\" \n**Police arrive**\nOfficer: \"Ummm what’s the issue Ms. Karen?\" \nKaren: \"This intruder (points at you) invaded my property, and made threats against my life - remove them at once!\" \nOfficer: \"Not so fast - this kid is wearing a deputy mayor’s badge. Deputy mayor <name> is any of this true?\"\nPlayer: \"Not. a. word.\" \nOfficer: \"That’s the last straw Karen, we’re taking you downtown.\"\nKaren: \"Excuse me?! GET YOUR HANDS OFF OF ME! I’m the president of the neighborhood association! I’ll have your badge..\" \n**Officer tases Karen** \nOfficer: \"Hosta la vista, Karen\"\nGame Won() \n"
+      "greet": "Karen’s House (without deputy mayor badge)\nPlayer: Trick or treat! \nKaren: How dare you trespass on my property! I’m calling the police.\n**Police arrive**\nOfficer: Ummm what’s the issue Ms. Karen? \nKaren: This intruder (points at you) invaded my property, and made threats against my life - remove them at once! \nOfficer: It’s just a kid.. But if you say so! \nOfficer: Come on, we’re taking you home. Also, your parents are gonna pay a hefty fine for trespassing. \nKaren: Oh and one last thing. You stole that from me (points at candy bag).\n**Officer takes your candy bag and hands it to Karen** \nKaren: Muahahahah!!! \ngameOver()\n",
+      "no item": "Karen’s House (with deputy mayor badge)\nPlayer: Trick or treat! \nKaren: How dare you trespass on my property! I’m calling the police. \n**Police arrive**\nOfficer: Ummm what’s the issue Ms. Karen? \nKaren: This intruder (points at you) invaded my property, and made threats against my life - remove them at once! \nOfficer: Not so fast - this kid is wearing a deputy mayor’s badge. Deputy mayor is any of this true? \nPlayer: Not. a. word. \nOfficer: That’s the last straw Karen, we’re taking you downtown.\nKaren: Excuse me?! GET YOUR HANDS OFF OF ME! I’m the president of the neighborhood association! I’ll have your badge..\n**Officer tases Karen** \nOfficer: Hosta la vista, Karen \nGame Won() \n"
     }
     },
   {
     "grandma’s house": {
-      "greet": "Player: “Knock knock Trick or Treat Grandma”\nGrandma: “You must be cold honey! I’m sorry but I don’t have warm cookies or candy for you. You can have my dentures!\nPlayer: “Sure I’ll take that. Thank you Grandma”\nGrandma: “Always a treat to see you”\n"
+      "greet": "Player: Trick or Treat Grandma \nGrandma: You must be cold honey! I’m sorry but I don’t have warm cookies or candy for you. You can have my dentures!\nPlayer: Sure I’ll take that. Thank you Grandma \nGrandma: Always a treat to see you \n"
     }
   },
 {
   "freddy & jason's house": {
-    "greet": "**You arrive at Freddy and Jason’s house to find them drinking beer on the front porch**\nPlayer: “Trick or treat!” \n**You realize it’s the two most notorious slasher villains of all time but are too frightened to run**\nFreddy:  “Sup brochacho! Oh we’re not gonna kill ya <name>, we’re retired!” \nPlayer: “Umm wait why did you retire?!” \nFreddy: “We started our careers right out of high school and missed out on the whole college experience. So we decided to enroll in community college and start our own fraternity. Welcome to Kappa Iota Lambda Lambda (ΚΙλλ)\n**Freddy and Jason cheers bottle to each other** \nFreddy: “Anyway, someone (points at Jason) destroyed our candy stash, so I guess you can have one a cold one instead. \nConsole: Accept beer?\n",
-    "no item": "Freddy: \"Sorry kid, we’re all out of beer.\"\n"
+    "greet": "**You arrive at Freddy and Jason’s house to find them drinking beer on the front porch**\nPlayer: Trick or treat! \n**You realize it’s the two most notorious slasher villains of all time but are too frightened to run**\nFreddy: Sup brochacho! Oh we’re not gonna kill ya <name>, we’re retired! \nPlayer: Umm wait why did you retire?! \nFreddy: We started our careers right out of high school and missed out on the whole college experience. So we decided to enroll in community college and start our own fraternity. Welcome to Kappa Iota Lambda Lambda (ΚΙλλ)\n**Freddy and Jason cheers bottle to each other** \nFreddy: Anyway, someone (points at Jason) destroyed our candy stash, so I guess you can have one a cold one instead. \nConsole: Accept beer?\n",
+    "no item": "Freddy: Sorry kid, we’re all out of beer.\n"
   }
 },
   {
   "your house": {
-  "greet": "Player: \"Trick or treat!\" \nMom: \"You can't trick or treat at your own house!Bye!\n"
+  "greet": "Player: Trick or treat! \nMom: You can't trick or treat at your own house!Bye!\n"
 }
   }
 
