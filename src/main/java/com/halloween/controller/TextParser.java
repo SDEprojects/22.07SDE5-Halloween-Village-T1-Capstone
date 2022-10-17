@@ -64,6 +64,8 @@ public class TextParser {
         return true;
       } else if (input[0].equals("quit")) {
         return true;
+      } else if(input[0].equals("use")) {
+        return true;
       }
     }
 

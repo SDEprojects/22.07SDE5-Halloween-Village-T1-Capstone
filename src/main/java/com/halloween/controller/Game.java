@@ -50,7 +50,7 @@ public class Game {
     villageMap.put("addam\'s family house", new House("addam\'s family house", items0, new String[]{"wednesday addams"}, "amityville mansion", "mayor\'s house", null, null));
 
     ArrayList<String> items5 = new ArrayList<>();
-    items5.add("deputy mayor badge");
+    items5.add("badge");
     villageMap.put("mayor\'s house", new House("mayor\'s house", items5, new String[]{"mayor"}, "saw house", "your house", null, "addam\'s family house"));
 
     villageMap.put("your house", new House("your house", items0, new String[]{},"neighbor\'s house",  "freddy & jason\'s house", null, "mayor\'s house"));
@@ -168,5 +168,25 @@ public class Game {
 
   public void setState(State state) {
     this.state = state;
+  }
+
+  public void useItem(String item) {
+    // get the house the player is currently at
+    House house = neighborhood.getNeighborhood().get(player.getPosition());
+
+    // if the house is knocked then try to use the item
+    if (house.isKnocked()) {
+      System.out.println("Items in inventory: " + player.getItems());
+      boolean successfullyUsedItem = player.removeItem(item);
+
+      // if we use the badge at karen's house then we win the game
+      if (house.getHouseName().equals("karen's house") && item.equals("badge")
+          && successfullyUsedItem && house.isKnocked()) {
+        System.out.println("Karen is defeated! You win!");
+        setState(State.WIN);
+      }
+    } else {
+      System.out.println("Uh Oh! You can't use an item without knocking on the door first!");
+    }
   }
 }

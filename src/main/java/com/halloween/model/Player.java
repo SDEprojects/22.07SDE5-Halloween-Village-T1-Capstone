@@ -45,4 +45,23 @@ public class Player {
     items.add(item);
   }
 
+  public boolean removeItem(String item) {
+    if(items.contains(item) || (items.size() == 1 && item.equals("item"))) {
+      System.out.println("You used a " + item + ". This item is now removed from your inventory.");
+      if(!item.equals("item")){
+        // if the is name is in the array, then remove it
+        items.remove(item);
+      } else {
+        // otherwise, remove the only item from the list
+        items.remove(0);
+      }
+      // return true if we successfully use the item
+      return true;
+    } else {
+      System.out.println("Warning: Can NOT use " + item + " because it not in your inventory.");
+      // return false if we could not use the item
+      return false;
+    }
+  }
+
 }
