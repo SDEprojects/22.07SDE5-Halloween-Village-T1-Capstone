@@ -19,55 +19,7 @@ public class Game {
   private Neighborhood neighborhood = new Neighborhood();
 
   public Game() throws IOException, ParseException {
-    setUpNeighborhood();
     player.setPosition("your house");
-  }
-
-  public void setUpNeighborhood() {
-    HashMap<String, House> villageMap = new HashMap<>();
-    ArrayList<String> items0 = new ArrayList<>();
-
-    ArrayList<String> items1 = new ArrayList<>();
-    items1.add("dracula\'s tooth");
-    villageMap.put("amityville mansion", new House("amityville mansion", items1, new String[]{"ghost"}, null, "saw house", "addam\'s family house", null));
-
-    ArrayList<String> items2 = new ArrayList<>();
-    items2.add("thing");
-    villageMap.put("saw house", new House("saw house", items2, new String[]{"jigsaw"}, null, "neighbor\'s house", "mayor\'s house", "amityville mansion"));
-
-    ArrayList<String> items3 = new ArrayList<>();
-    items3.add("candy");
-    villageMap.put("neighbor\'s house", new House("neighbor\'s house", items3, new String[]{"neighbor"}, null, "karen\'s house", "your house", "saw house"));
-
-    villageMap.put("karen\'s house", new House("karen\'s house", items0, new String[]{"karen"}, null, "dracula\'s mansion", "freddy & jason\'s house", "neighbor\'s house"));
-
-    villageMap.put("dracula\'s mansion", new House("dracula\'s mansion", items0, new String[]{"dracula"}, null, "grandma\'s house", "witch\'s den", "karen\'s house"));
-
-    ArrayList<String> items4 = new ArrayList<>();
-    items4.add("dentures");
-    villageMap.put("grandma\'s house", new House("grandma\'s house", items4, new String[]{"grandma"}, null, null, "haunted house", "dracula\'s mansion"));
-
-    villageMap.put("addam\'s family house", new House("addam\'s family house", items0, new String[]{"wednesday addams"}, "amityville mansion", "mayor\'s house", null, null));
-
-    ArrayList<String> items5 = new ArrayList<>();
-    items5.add("badge");
-    villageMap.put("mayor\'s house", new House("mayor\'s house", items5, new String[]{"mayor"}, "saw house", "your house", null, "addam\'s family house"));
-
-    villageMap.put("your house", new House("your house", items0, new String[]{},"neighbor\'s house",  "freddy & jason\'s house", null, "mayor\'s house"));
-
-    ArrayList<String> items6 = new ArrayList<>();
-    items6.add("beer");
-    villageMap.put("freddy & jason\'s house", new House("freddy & jason\'s house", items6, new String[]{"freddy", "jason"}, "karen\'s house", "witch\'s den", null, "your house"));
-
-    ArrayList<String> items7 = new ArrayList<>();
-    items7.add("potion");
-    villageMap.put("witch\'s den", new House("witch\'s den", items7, new String[]{"witch"}, "dracula\'s mansion", "haunted house", null, "freddy & jason\'s house"));
-
-    ArrayList<String> items8 = new ArrayList<>();
-    items8.add("black cat hair");
-    villageMap.put("haunted house", new House("haunted house", items8, new String[]{"zombie"}, "grandma\'s house", null, null, "witch\'s den"));
-
-    neighborhood.setNeighborhood(villageMap);
   }
 
   public void greetPlayer() throws IOException {
