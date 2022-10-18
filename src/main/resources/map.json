@@ -111,7 +111,7 @@
   },
   {
     "witch's den": {
-      "items": ["potion"],
+      "items": [],
       "residents": ["witch"],
       "knocked": false,
       "north": "dracula's mansion",

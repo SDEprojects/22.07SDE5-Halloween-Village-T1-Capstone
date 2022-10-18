@@ -185,6 +185,27 @@ public class Game {
         System.out.println("*Karen faints*");
         System.out.println("Karen is defeated using help from Dracula! You win!");
         setState(State.WIN);
+      } else if (house.getHouseName().equals("dracula's mansion") && item.equals("tooth") && successfullyUsedItem) {
+        System.out.println("Dracula: Wow! You found my tooth! Thank you so much. If you run into any trouble, use this ruby and help will come!");
+        // added dracula's ruby to our inventory
+        // NOTE: dracula's tooth is a hidden item, so we don't store it in the house
+        player.addItem("ruby");
+      } else if (house.getHouseName().equals("witch's den")) {
+        if (item.equals("cat-hair") || item.equals("beer") || item.equals("dentures")) {
+          System.out.println("Hmmm yes, a " + item + " I can add this to my Witch's brew, and make a potion for you!");
+          System.out.println("Once I have all three ingredients, my potion will be complete with an expedience!");
+          house.addItem(item);
+
+          ArrayList<String> witchHouseItems = house.getHouseItems();
+          if (witchHouseItems.contains("cat-hair") && witchHouseItems.contains("beer") && witchHouseItems.contains("dentures")) {
+            System.out.println("Well done young one. My potion is complete, isn't that neat!");
+            System.out.println("I've added the potion to your items. Use it against any foe that wishes you harm!");
+            // NOTE: potion is a hidden item, so we don't store it in the house
+            player.addItem("potion");
+          }
+        } else {
+          System.out.println("Hmmm nope! I can't use this a " + item + " in my brew, but i'll still take it from you!");
+        }
       }
     } else {
       System.out.println("Uh Oh! You can't use an item without knocking on the door first!");
