@@ -54,6 +54,9 @@ public class Game {
   public void movePlayer(String direction) {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
 
+    // set the previous house knocked to false before moving
+    currentPosition.setKnocked(false);
+
     if(direction.equals("north") && currentPosition.getNorth() != null){
       player.setPosition(currentPosition.getNorth());
       System.out.println(player.getName() + " moved north. New position is " + player.getPosition());
@@ -103,10 +106,44 @@ public class Game {
   public void knockOnDoor() {
     House house =  neighborhood.getNeighborhood().get(player.getPosition());
     house.setKnocked(true);
-    if (house.getHouseItems().isEmpty()) {
-      display.noItem(player.getPosition());
+    ArrayList<String> playerItems = player.getItems();
+
+    // If we knock on karen's house or the saw house we need to have check for specific items in our inventory
+    // If we do not have the items, then we lose the game
+    if (house.getHouseName().equals("karen's house") || house.getHouseName().equals("saw house")){
+      // If we knock on karen's door
+      if (house.getHouseName().equals("karen's house")) {
+        // if we have a badge, potion, or ruby, then do nothing
+        if (playerItems.contains("badge") || playerItems.contains("potion") || playerItems.contains("ruby")) {
+          System.out.println("Karen: Look a trespasser! I'm calling the cops!");
+        }
+        // if we don't have a badge, potion, or ruby we lose the game
+        else {
+          display.greet(player.getPosition());
+          System.out.println("You are arrested and lose the game! Game Over!");
+          setState(State.LOSE);
+        }
+      }
+      // if knock on the saw house
+      if (house.getHouseName().equals("saw house")) {
+        // check for "thing" in not in our items then we lose the game
+        if (!playerItems.contains("thing")){
+          display.noItem(player.getPosition());
+          setState(State.LOSE);
+        } // otherwise, thing will free us from the trap, and be removed from the inventory
+        else {
+          // System.out.println("Suddenly, thing jumps from your candy bag, and frees you! RUN WHILE YOU CAN!");
+          display.greet(player.getPosition());
+          player.removeItem("thing");
+        }
+      }
     } else {
-      display.greet(player.getPosition());
+      // for all other houses (besides karen's house and saw house) we do the following
+      if (house.getHouseItems().isEmpty()) {
+        display.noItem(player.getPosition());
+      } else {
+        display.greet(player.getPosition());
+      }
     }
   }
 
@@ -133,8 +170,20 @@ public class Game {
 
       // if we use the badge at karen's house then we win the game
       if (house.getHouseName().equals("karen's house") && item.equals("badge")
-          && successfullyUsedItem && house.isKnocked()) {
-        System.out.println("Karen is defeated! You win!");
+          && successfullyUsedItem) {
+        // TODO: add to output to view
+        System.out.println("Karen is defeated using the deputy mayor badge! You win!");
+        setState(State.WIN);
+      } else if (house.getHouseName().equals("karen's house") && item.equals("potion") && successfullyUsedItem) {
+        // TODO: add output to view
+        System.out.println("Karen is defeated using the potion! You win!");
+        setState(State.WIN);
+      } else if (house.getHouseName().equals("karen's house") && item.equals("ruby") && successfullyUsedItem) {
+        // TODO: add output to view
+        System.out.println("*You throw down a red ruby, it turns into plume of smoke which Dracula appears from*");
+        System.out.println("Dracula: Oh hello Karen. Do you mind if I grab a quick drink (smile and wink)?");
+        System.out.println("*Karen faints*");
+        System.out.println("Karen is defeated using help from Dracula! You win!");
         setState(State.WIN);
       }
     } else {

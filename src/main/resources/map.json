@@ -12,7 +12,7 @@
   },
   {
     "saw house": {
-      "items": ["thing"],
+      "items": [],
       "residents": ["jigsaw"],
       "knocked": false,
       "north": null,
@@ -67,7 +67,7 @@
   },
   {
     "addam's family house": {
-      "items": [],
+      "items": ["thing"],
       "residents": ["wednesday addams"],
       "knocked": false,
       "north": "amityville mansion",
