@@ -8,9 +8,7 @@ import com.halloween.view.View;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.json.simple.parser.ParseException;
+
 
 public class Game {
   private State state;
@@ -18,7 +16,7 @@ public class Game {
   private Player player = new Player();
   private Neighborhood neighborhood = new Neighborhood();
 
-  public Game() throws IOException, ParseException {
+  public Game() throws IOException {
     player.setPosition("your house");
   }
 

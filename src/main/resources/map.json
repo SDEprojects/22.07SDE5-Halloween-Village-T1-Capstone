@@ -1,134 +1,122 @@
 [
   {
-    "amityville mansion": {
-      "items": ["tooth"],
-      "residents": ["ghost"],
-      "knocked": false,
-      "north": null,
-      "east": "saw house",
-      "south": "addam's family house",
-      "west": null
-    }
+    "houseName" : "amityville mansion",
+    "houseItems": ["tooth"],
+    "residents": ["ghost"],
+    "knocked": false,
+    "north": null,
+    "east": "saw house",
+    "south": "addam's family house",
+    "west": null
   },
   {
-    "saw house": {
-      "items": ["thing"],
-      "residents": ["jigsaw"],
-      "knocked": false,
-      "north": null,
-      "east": "neighbor's house",
-      "south": "addam's family house",
-      "west": "amityville mansion"
-    }
+    "houseName": "saw house",
+    "houseItems": ["thing"],
+    "residents": ["jigsaw"],
+    "knocked": false,
+    "north": null,
+    "east": "neighbor's house",
+    "south": "addam's family house",
+    "west": "amityville mansion"
   },
   {
-    "neighbor's house": {
-      "items": ["candy"],
-      "residents": ["neighbor"],
-      "knocked": false,
-      "north": null,
-      "east": "karen's house",
-      "south": "your house",
-      "west": "saw house"
-    }
+    "houseName": "neighbor's house",
+    "houseItems": ["candy"],
+    "residents": ["neighbor"],
+    "knocked": false,
+    "north": null,
+    "east": "karen's house",
+    "south": "your house",
+    "west": "saw house"
   },
   {
-    "karen's house": {
-      "items": [],
-      "residents": ["karen"],
-      "knocked": false,
-      "north": null,
-      "east": "dracula's mansion",
-      "south": "freddy & jason's house",
-      "west": "neighbor's house"
-    }
+    "houseName": "karen's house",
+    "houseItems": [],
+    "residents": ["karen"],
+    "knocked": false,
+    "north": null,
+    "east": "dracula's mansion",
+    "south": "freddy & jason's house",
+    "west": "neighbor's house"
   },
   {
-    "dracula's mansion": {
-      "items": [],
-      "residents": ["dracula"],
-      "knocked": false,
-      "north": null,
-      "east": "grandma's house",
-      "south": "witch's den",
-      "west": "karen's house"
-    }
+    "houseName": "dracula's mansion",
+    "houseItems": [],
+    "residents": ["dracula"],
+    "knocked": false,
+    "north": null,
+    "east": "grandma's house",
+    "south": "witch's den",
+    "west": "karen's house"
   },
   {
-    "grandma's house": {
-      "items": ["dentures"],
-      "residents": ["grandma"],
-      "knocked": false,
-      "north": null,
-      "east": null,
-      "south": "haunted house",
-      "west": "dracula's mansion"
-    }
+    "houseName": "grandma's house",
+    "houseItems": ["dentures"],
+    "residents": ["grandma"],
+    "knocked": false,
+    "north": null,
+    "east": null,
+    "south": "haunted house",
+    "west": "dracula's mansion"
   },
   {
-    "addam's family house": {
-      "items": [],
-      "residents": ["wednesday addams"],
-      "knocked": false,
-      "north": "amityville mansion",
-      "east": "mayor's house",
-      "south": null,
-      "west": null
-    }
+    "houseName": "addam's family house",
+    "houseItems": [],
+    "residents": ["wednesday addams"],
+    "knocked": false,
+    "north": "amityville mansion",
+    "east": "mayor's house",
+    "south": null,
+    "west": null
   },
   {
-    "mayor's house": {
-      "items": ["badge"],
-      "residents": ["mayor"],
-      "knocked": false,
-      "north": "saw house",
-      "east": "your house",
-      "south": "null",
-      "west": "addam's family house"
-    }
+    "houseName": "mayor's house",
+    "houseItems": ["badge"],
+    "residents": ["mayor"],
+    "knocked": false,
+    "north": "saw house",
+    "east": "your house",
+    "south": "null",
+    "west": "addam's family house"
   },
   {
-    "your house": {
-      "items": [],
-      "residents": ["mom"],
-      "knocked": false,
-      "north": "neighbor's house",
-      "east": "freddy & jason's house",
-      "south": null,
-      "west": "mayor's house"
-    }
+    "houseName": "your house",
+    "houseItems": [],
+    "residents": ["mom"],
+    "knocked": false,
+    "north": "neighbor's house",
+    "east": "freddy & jason's house",
+    "south": null,
+    "west": "mayor's house"
   },
   {
-    "freddy & jason's house": {
-      "items": ["beer"],
-      "residents": ["freddy", "jason"],
-      "knocked": false,
-      "north": "karen's house",
-      "east": "witch's den",
-      "south": null,
-      "west": "your house"
-    }
+    "houseName": "freddy & jason's house",
+    "houseItems": ["beer"],
+    "residents": ["freddy", "jason"],
+    "knocked": false,
+    "north": "karen's house",
+    "east": "witch's den",
+    "south": null,
+    "west": "your house"
   },
   {
-    "witch's den": {
-      "items": ["potion"],
-      "residents": ["witch"],
-      "knocked": false,
-      "north": "dracula's mansion",
-      "east": "haunted house",
-      "south": null,
-      "west": "freddy & jason's house"
-    }
+    "houseName": "witch's den",
+    "houseItems": ["potion"],
+    "residents": ["witch"],
+    "knocked": false,
+    "north": "dracula's mansion",
+    "east": "haunted house",
+    "south": null,
+    "west": "freddy & jason's house"
   },
   {
-    "haunted house": {
-      "items": ["cat-hair"],
-      "residents": ["zombie"],
-      "knocked": false,
-      "north": "grandma's house",
-      "east": null,
-      "south": null,
-      "west": "witch's den"
-    }
+    "houseName": "haunted house",
+    "houseItems": ["cat-hair"],
+    "residents": ["zombie"],
+    "knocked": false,
+    "north": "grandma's house",
+    "east": null,
+    "south": null,
+    "west": "witch's den"
   }
 ]
