@@ -51,12 +51,15 @@ public class View {
       + "For example: to move west, you would enter \"go west\"\n"
       + "\n~~~~HOW TO COLLECT ITEMS~~~~~\n"
       + "You can take items by using the keyword \"get\"\n"
-      + "In order to collect, type two words: \"get <item>\"\n"
-      + "For example: to collect candy, you would enter \"get candy\"\n"
+      + "In order to collect, type two words: \"get item\"\n"
       + "\n~~~~HOW TO KNOCK ON DOOR~~~~~\n"
-      + "You can trick or treat by knocking on someone\'s door\n"
-      + "In order to knock, type two words: \"knock door\"\n"
-      + "For example: to trick or treat you would enter \"knock door\"\n"
+      + "You can trick or treat by knocking on someone's door\n"
+      + "In order to knock, type two words: \"knock\"\n"
+      + "For example: to trick or treat you would enter \"knock\"\n"
+      + "\n~~~~~~HOW TO USE ITEMS~~~~~~~\n"
+      + "You can use items by using the keyword \"use\"\n"
+      + "In order to use, type two words: \"use <item>\"\n"
+      + "For example: to use your candy, you would enter \"use candy\"\n"
       + "\n~~~~~~~~OTHER COMMANDS~~~~~~~~\n"
       + "Typing \"quit\" will cause you to immediately exit out of the game \n\n"
       + "Typing \"help\" will show a list of valid commands\n\n";
@@ -85,9 +88,14 @@ public class View {
     System.out.println("...............................................................\n");
   }
 
-  public static void main(String[] args) {
-    View display = new View();
-    display.greet("amityville mansion");
+  public void displayHelp(){
+    System.out.println(".......................Help...................................");
+    System.out.println("go <direction> : Moves you north, south, east or west");
+    System.out.println("get item: adds item to your inventory");
+    System.out.println("knock: interact with the house");
+    System.out.println("use item: item disappears from your inventory once you use it");
+    System.out.println("help: displays a list of commands " );
+    System.out.println("quit: ends the game\n..............................................................");
   }
 }
 
