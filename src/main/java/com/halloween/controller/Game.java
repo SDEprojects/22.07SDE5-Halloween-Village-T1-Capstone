@@ -50,6 +50,10 @@ public class Game {
     System.out.println(View.INSTRUCTIONS);
   }
 
+  public void showHelp(){
+    display.displayHelp();
+  }
+
   public void movePlayer(String direction) {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
 
