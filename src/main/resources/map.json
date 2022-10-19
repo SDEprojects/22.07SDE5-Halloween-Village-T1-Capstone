@@ -11,7 +11,7 @@
   },
   {
     "houseName": "saw house",
-    "houseItems": ["thing"],
+    "houseItems": [],
     "residents": ["jigsaw"],
     "knocked": false,
     "north": null,
@@ -60,14 +60,15 @@
     "west": "dracula's mansion"
   },
   {
-    "houseName": "addam's family house",
-    "houseItems": [],
-    "residents": ["wednesday addams"],
-    "knocked": false,
-    "north": "amityville mansion",
-    "east": "mayor's house",
-    "south": null,
-    "west": null
+    "addam's family house": {
+      "items": ["thing"],
+      "residents": ["wednesday addams"],
+      "knocked": false,
+      "north": "amityville mansion",
+      "east": "mayor's house",
+      "south": null,
+      "west": null
+    }
   },
   {
     "houseName": "mayor's house",
@@ -100,14 +101,15 @@
     "west": "your house"
   },
   {
-    "houseName": "witch's den",
-    "houseItems": ["potion"],
-    "residents": ["witch"],
-    "knocked": false,
-    "north": "dracula's mansion",
-    "east": "haunted house",
-    "south": null,
-    "west": "freddy & jason's house"
+    "witch's den": {
+      "items": [],
+      "residents": ["witch"],
+      "knocked": false,
+      "north": "dracula's mansion",
+      "east": "haunted house",
+      "south": null,
+      "west": "freddy & jason's house"
+    }
   },
   {
     "houseName": "haunted house",
