@@ -1,13 +1,15 @@
 package com.halloween.view;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.halloween.model.House;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.stream.Collectors;
+
 
 public class View {
   public static final String TITLE =
@@ -58,33 +60,22 @@ public class View {
       + "\n~~~~~~~~OTHER COMMANDS~~~~~~~~\n"
       + "Typing \"quit\" will cause you to immediately exit out of the game \n\n"
       + "Typing \"help\" will show a list of valid commands\n\n";
+  private BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("dialogue.json")));
+  private Gson gson = new Gson();
+  private Type collectionType = new TypeToken<ArrayList<HashMap<String, HashMap<String, String>>>>(){}.getType();
+  private ArrayList<HashMap<String, HashMap<String, String>>> dialogueList = gson.fromJson( reader, collectionType);
+  private HashMap<String, HashMap<String, String>> dialogue =
+      (HashMap<String, HashMap<String, String>>)
+          dialogueList
+              .stream()
+              .collect(Collectors
+                  .toMap(map -> String.join("", map.keySet()) , map -> map.get(String.join("", map.keySet()))));
 
-  private JSONParser parser = new JSONParser();
-  URL url = getClass().getResource("/dialogue.json");
-  String path = url.getPath();
-  JSONArray dialogueArray = (JSONArray) parser.parse(new FileReader(path));
-
-  public View() throws IOException, ParseException {
-  }
   public void greet(String currentPosition) {
-    for (Object dialogue : dialogueArray) {
-      JSONObject house = (JSONObject) dialogue;
-      if (house.containsKey(currentPosition)) {
-        JSONObject houseDialogue = (JSONObject) house.get(currentPosition);
-        String greeting = (String) houseDialogue.get("greet");
-        System.out.println(greeting);
-      }
-    }
+    System.out.println(dialogue.get(currentPosition).get("greet"));
   }
   public void noItem(String currentPosition) {
-    for (Object dialogue : dialogueArray) {
-      JSONObject house = (JSONObject) dialogue;
-      if (house.containsKey(currentPosition)) {
-        JSONObject houseDialogue = (JSONObject) house.get(currentPosition);
-        String secondVisit = (String) houseDialogue.get("no item");
-        System.out.println(secondVisit);
-      }
-    }
+    System.out.println(dialogue.get(currentPosition).get("no item"));
   }
   public void displayMenu() {
     System.out.println("..............................................................\n");
@@ -92,7 +83,11 @@ public class View {
     System.out.println("\t\t\t\tTo start game enter: new game");
     System.out.println("\t\t\t\tTo quit enter: quit\n");
     System.out.println("...............................................................\n");
+  }
 
+  public static void main(String[] args) {
+    View display = new View();
+    display.greet("amityville mansion");
   }
 }
 
