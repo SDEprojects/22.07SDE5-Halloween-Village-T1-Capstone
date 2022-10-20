@@ -1,13 +1,15 @@
 package com.halloween.view;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.halloween.model.House;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.stream.Collectors;
+
 
 public class View {
   public static final String TITLE =
@@ -49,42 +51,34 @@ public class View {
       + "For example: to move west, you would enter \"go west\"\n"
       + "\n~~~~HOW TO COLLECT ITEMS~~~~~\n"
       + "You can take items by using the keyword \"get\"\n"
-      + "In order to collect, type two words: \"get <item>\"\n"
-      + "For example: to collect candy, you would enter \"get candy\"\n"
+      + "In order to collect, type two words: \"get item\"\n"
       + "\n~~~~HOW TO KNOCK ON DOOR~~~~~\n"
-      + "You can trick or treat by knocking on someone\'s door\n"
-      + "In order to knock, type two words: \"knock door\"\n"
-      + "For example: to trick or treat you would enter \"knock door\"\n"
+      + "You can trick or treat by knocking on someone's door\n"
+      + "In order to knock, type two words: \"knock\"\n"
+      + "For example: to trick or treat you would enter \"knock\"\n"
+      + "\n~~~~~~HOW TO USE ITEMS~~~~~~~\n"
+      + "You can use items by using the keyword \"use\"\n"
+      + "In order to use, type two words: \"use <item>\"\n"
+      + "For example: to use your candy, you would enter \"use candy\"\n"
       + "\n~~~~~~~~OTHER COMMANDS~~~~~~~~\n"
       + "Typing \"quit\" will cause you to immediately exit out of the game \n\n"
       + "Typing \"help\" will show a list of valid commands\n\n";
+  private BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("dialogue.json")));
+  private Gson gson = new Gson();
+  private Type collectionType = new TypeToken<ArrayList<HashMap<String, HashMap<String, String>>>>(){}.getType();
+  private ArrayList<HashMap<String, HashMap<String, String>>> dialogueList = gson.fromJson( reader, collectionType);
+  private HashMap<String, HashMap<String, String>> dialogue =
+      (HashMap<String, HashMap<String, String>>)
+          dialogueList
+              .stream()
+              .collect(Collectors
+                  .toMap(map -> String.join("", map.keySet()) , map -> map.get(String.join("", map.keySet()))));
 
-  private JSONParser parser = new JSONParser();
-  URL url = getClass().getResource("/dialogue.json");
-  String path = url.getPath();
-  JSONArray dialogueArray = (JSONArray) parser.parse(new FileReader(path));
-
-  public View() throws IOException, ParseException {
-  }
   public void greet(String currentPosition) {
-    for (Object dialogue : dialogueArray) {
-      JSONObject house = (JSONObject) dialogue;
-      if (house.containsKey(currentPosition)) {
-        JSONObject houseDialogue = (JSONObject) house.get(currentPosition);
-        String greeting = (String) houseDialogue.get("greet");
-        System.out.println(greeting);
-      }
-    }
+    System.out.println(dialogue.get(currentPosition).get("greet"));
   }
   public void noItem(String currentPosition) {
-    for (Object dialogue : dialogueArray) {
-      JSONObject house = (JSONObject) dialogue;
-      if (house.containsKey(currentPosition)) {
-        JSONObject houseDialogue = (JSONObject) house.get(currentPosition);
-        String secondVisit = (String) houseDialogue.get("no item");
-        System.out.println(secondVisit);
-      }
-    }
+    System.out.println(dialogue.get(currentPosition).get("no item"));
   }
   public void displayMenu() {
     System.out.println("..............................................................\n");
@@ -92,7 +86,16 @@ public class View {
     System.out.println("\t\t\t\tTo start game enter: new game");
     System.out.println("\t\t\t\tTo quit enter: quit\n");
     System.out.println("...............................................................\n");
+  }
 
+  public void displayHelp(){
+    System.out.println(".......................Help...................................");
+    System.out.println("go <direction> : Moves you north, south, east or west");
+    System.out.println("get item: adds item to your inventory");
+    System.out.println("knock: interact with the house");
+    System.out.println("use item: item disappears from your inventory once you use it");
+    System.out.println("help: displays a list of commands " );
+    System.out.println("quit: ends the game\n..............................................................");
   }
 }
 

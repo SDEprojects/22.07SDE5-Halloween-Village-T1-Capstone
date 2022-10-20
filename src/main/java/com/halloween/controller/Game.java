@@ -9,8 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.json.simple.parser.ParseException;
+
 
 public class Game {
   private State state;
@@ -18,56 +17,8 @@ public class Game {
   private Player player = new Player();
   private Neighborhood neighborhood = new Neighborhood();
 
-  public Game() throws IOException, ParseException {
-    setUpNeighborhood();
+  public Game() throws IOException {
     player.setPosition("your house");
-  }
-
-  public void setUpNeighborhood() {
-    HashMap<String, House> villageMap = new HashMap<>();
-    ArrayList<String> items0 = new ArrayList<>();
-
-    ArrayList<String> items1 = new ArrayList<>();
-    items1.add("dracula\'s tooth");
-    villageMap.put("amityville mansion", new House("amityville mansion", items1, new String[]{"ghost"}, null, "saw house", "addam\'s family house", null));
-
-    ArrayList<String> items2 = new ArrayList<>();
-    items2.add("thing");
-    villageMap.put("saw house", new House("saw house", items2, new String[]{"jigsaw"}, null, "neighbor\'s house", "mayor\'s house", "amityville mansion"));
-
-    ArrayList<String> items3 = new ArrayList<>();
-    items3.add("candy");
-    villageMap.put("neighbor\'s house", new House("neighbor\'s house", items3, new String[]{"neighbor"}, null, "karen\'s house", "your house", "saw house"));
-
-    villageMap.put("karen\'s house", new House("karen\'s house", items0, new String[]{"karen"}, null, "dracula\'s mansion", "freddy & jason\'s house", "neighbor\'s house"));
-
-    villageMap.put("dracula\'s mansion", new House("dracula\'s mansion", items0, new String[]{"dracula"}, null, "grandma\'s house", "witch\'s den", "karen\'s house"));
-
-    ArrayList<String> items4 = new ArrayList<>();
-    items4.add("dentures");
-    villageMap.put("grandma\'s house", new House("grandma\'s house", items4, new String[]{"grandma"}, null, null, "haunted house", "dracula\'s mansion"));
-
-    villageMap.put("addam\'s family house", new House("addam\'s family house", items0, new String[]{"wednesday addams"}, "amityville mansion", "mayor\'s house", null, null));
-
-    ArrayList<String> items5 = new ArrayList<>();
-    items5.add("deputy mayor badge");
-    villageMap.put("mayor\'s house", new House("mayor\'s house", items5, new String[]{"mayor"}, "saw house", "your house", null, "addam\'s family house"));
-
-    villageMap.put("your house", new House("your house", items0, new String[]{},"neighbor\'s house",  "freddy & jason\'s house", null, "mayor\'s house"));
-
-    ArrayList<String> items6 = new ArrayList<>();
-    items6.add("beer");
-    villageMap.put("freddy & jason\'s house", new House("freddy & jason\'s house", items6, new String[]{"freddy", "jason"}, "karen\'s house", "witch\'s den", null, "your house"));
-
-    ArrayList<String> items7 = new ArrayList<>();
-    items7.add("potion");
-    villageMap.put("witch\'s den", new House("witch\'s den", items7, new String[]{"witch"}, "dracula\'s mansion", "haunted house", null, "freddy & jason\'s house"));
-
-    ArrayList<String> items8 = new ArrayList<>();
-    items8.add("black cat hair");
-    villageMap.put("haunted house", new House("haunted house", items8, new String[]{"zombie"}, "grandma\'s house", null, null, "witch\'s den"));
-
-    neighborhood.setNeighborhood(villageMap);
   }
 
   public void greetPlayer() throws IOException {
@@ -99,8 +50,15 @@ public class Game {
     System.out.println(View.INSTRUCTIONS);
   }
 
+  public void showHelp(){
+    display.displayHelp();
+  }
+
   public void movePlayer(String direction) {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
+
+    // set the previous house knocked to false before moving
+    currentPosition.setKnocked(false);
 
     if(direction.equals("north") && currentPosition.getNorth() != null){
       player.setPosition(currentPosition.getNorth());
@@ -151,10 +109,44 @@ public class Game {
   public void knockOnDoor() {
     House house =  neighborhood.getNeighborhood().get(player.getPosition());
     house.setKnocked(true);
-    if (house.getHouseItems().isEmpty()) {
-      display.noItem(player.getPosition());
+    ArrayList<String> playerItems = player.getItems();
+
+    // If we knock on karen's house or the saw house we need to have check for specific items in our inventory
+    // If we do not have the items, then we lose the game
+    if (house.getHouseName().equals("karen's house") || house.getHouseName().equals("saw house")){
+      // If we knock on karen's door
+      if (house.getHouseName().equals("karen's house")) {
+        // if we have a badge, potion, or ruby, then do nothing
+        if (playerItems.contains("badge") || playerItems.contains("potion") || playerItems.contains("ruby")) {
+          System.out.println("Karen: Look a trespasser! I'm calling the cops!");
+        }
+        // if we don't have a badge, potion, or ruby we lose the game
+        else {
+          display.greet(player.getPosition());
+          System.out.println("You are arrested and lose the game! Game Over!");
+          setState(State.LOSE);
+        }
+      }
+      // if knock on the saw house
+      if (house.getHouseName().equals("saw house")) {
+        // check for "thing" in not in our items then we lose the game
+        if (!playerItems.contains("thing")){
+          display.noItem(player.getPosition());
+          setState(State.LOSE);
+        } // otherwise, thing will free us from the trap, and be removed from the inventory
+        else {
+          // System.out.println("Suddenly, thing jumps from your candy bag, and frees you! RUN WHILE YOU CAN!");
+          display.greet(player.getPosition());
+          player.removeItem("thing");
+        }
+      }
     } else {
-      display.greet(player.getPosition());
+      // for all other houses (besides karen's house and saw house) we do the following
+      if (house.getHouseItems().isEmpty()) {
+        display.noItem(player.getPosition());
+      } else {
+        display.greet(player.getPosition());
+      }
     }
   }
 
@@ -168,5 +160,62 @@ public class Game {
 
   public void setState(State state) {
     this.state = state;
+  }
+
+  public void useItem(String item) {
+    // get the house the player is currently at
+    House house = neighborhood.getNeighborhood().get(player.getPosition());
+
+    // if the house is knocked then try to use the item
+    if (house.isKnocked()) {
+      showInventory();
+      boolean successfullyUsedItem = player.removeItem(item);
+
+      // if we use the badge at karen's house then we win the game
+      if (house.getHouseName().equals("karen's house") && item.equals("badge")
+          && successfullyUsedItem) {
+        // TODO: add to output to view
+        System.out.println("Karen is defeated using the deputy mayor badge! You win!");
+        setState(State.WIN);
+      } else if (house.getHouseName().equals("karen's house") && item.equals("potion") && successfullyUsedItem) {
+        // TODO: add output to view
+        System.out.println("Karen is defeated using the potion! You win!");
+        setState(State.WIN);
+      } else if (house.getHouseName().equals("karen's house") && item.equals("ruby") && successfullyUsedItem) {
+        // TODO: add output to view
+        System.out.println("*You throw down a red ruby, it turns into plume of smoke which Dracula appears from*");
+        System.out.println("Dracula: Oh hello Karen. Do you mind if I grab a quick drink (smile and wink)?");
+        System.out.println("*Karen faints*");
+        System.out.println("Karen is defeated using help from Dracula! You win!");
+        setState(State.WIN);
+      } else if (house.getHouseName().equals("dracula's mansion") && item.equals("tooth") && successfullyUsedItem) {
+        System.out.println("Dracula: Wow! You found my tooth! Thank you so much. If you run into any trouble, use this ruby and help will come!");
+        // added dracula's ruby to our inventory
+        // NOTE: dracula's tooth is a hidden item, so we don't store it in the house
+        player.addItem("ruby");
+      } else if (house.getHouseName().equals("witch's den")) {
+        if (item.equals("cat-hair") || item.equals("beer") || item.equals("dentures")) {
+          System.out.println("Hmmm yes, a " + item + " I can add this to my Witch's brew, and make a potion for you!");
+          System.out.println("Once I have all three ingredients, my potion will be complete with an expedience!");
+          house.addItem(item);
+
+          ArrayList<String> witchHouseItems = house.getHouseItems();
+          if (witchHouseItems.contains("cat-hair") && witchHouseItems.contains("beer") && witchHouseItems.contains("dentures")) {
+            System.out.println("Well done young one. My potion is complete, isn't that neat!");
+            System.out.println("I've added the potion to your items. Use it against any foe that wishes you harm!");
+            // NOTE: potion is a hidden item, so we don't store it in the house
+            player.addItem("potion");
+          }
+        } else {
+          System.out.println("Hmmm nope! I can't use this a " + item + " in my brew, but i'll still take it from you!");
+        }
+      }
+    } else {
+      System.out.println("Uh Oh! You can't use an item without knocking on the door first!");
+    }
+  }
+
+  public void showInventory() {
+    System.out.println("Items in inventory: " + player.getItems());
   }
 }

@@ -51,7 +51,7 @@ public class Main {
       if (input[0].equals("quit")) {
         game.quitGame();
       } else if (input[0].equals("help")) {
-        game.showInstructions();
+        game.showHelp();
       } else if (input[0].equals("go")) {
         game.movePlayer(input[1]);
       } else if (input[0].equals("get")) {
