@@ -59,22 +59,14 @@ public class Game {
 
   public void movePlayer(String direction) {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
+    String playersMove = neighborhood.isValidDirection(direction, currentPosition);
 
-    if(direction.equals("north") && currentPosition.getNorth() != null){
-      player.setPosition(currentPosition.getNorth());
-      System.out.println(player.getName() + " moved north. New position is " + player.getPosition());
-    } else if (direction.equals("east") && currentPosition.getEast() != null) {
-      player.setPosition(currentPosition.getEast());
-      System.out.println(player.getName() + " moved east. New position is " + player.getPosition());
-    }  else if (direction.equals("south") && currentPosition.getSouth() != null) {
-      player.setPosition(currentPosition.getSouth());
-      System.out.println(player.getName() + " moved south. New position is " + player.getPosition());
-    }  else if (direction.equals("west") && currentPosition.getWest() != null) {
-      player.setPosition(currentPosition.getWest());
-      System.out.println(player.getName() + " moved west. New position is " + player.getPosition());
-    } else {
+    if (playersMove.isEmpty()){
       System.out.println("WARNING: " + direction + " is an invalid direction. Please choose one of the following.");
-       showValidMoves();
+      showValidMoves();
+    } else {
+      player.setPosition(playersMove);
+      System.out.println(player.getName() + " moved " + direction + ". New position is " + player.getPosition());
     }
   }
 
