@@ -56,6 +56,10 @@ public class House {
     houseItems.remove(0);
   }
 
+  public void addItem(String item) {
+    houseItems.add(item);
+  }
+
   public boolean isKnocked() {
     return knocked;
   }
