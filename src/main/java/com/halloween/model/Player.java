@@ -44,5 +44,17 @@ public class Player {
   public void addItem(String item){
     items.add(item);
   }
-
+  public boolean removeItem(String item) {
+    if (items.contains(item)) {
+      System.out.println("You used a " + item + ". This item is now removed from your inventory.");
+      // remove the item
+      items.remove(item);
+      // return true if we successfully use the item
+      return true;
+    } else {
+      System.out.println("Warning: Can NOT use " + item + " because it not in your inventory.");
+      // return false if we could not use the item
+      return false;
+    }
+  }
 }
