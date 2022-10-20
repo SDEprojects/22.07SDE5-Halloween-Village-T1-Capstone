@@ -8,6 +8,7 @@ import com.halloween.view.View;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 
 public class Game {
@@ -88,7 +89,6 @@ public class Game {
 
   public void getItem() {
     House house =  neighborhood.getNeighborhood().get(player.getPosition());
-
     if (house.isKnocked()) {
       if (house.getHouseItems().size() > 0) {
         String temp = house.getHouseItems().get(0);
@@ -108,10 +108,43 @@ public class Game {
   public void knockOnDoor() {
     House house =  neighborhood.getNeighborhood().get(player.getPosition());
     house.setKnocked(true);
-    if (house.getHouseItems().isEmpty()) {
-      display.noItem(player.getPosition());
+    ArrayList<String> playerItems = player.getItems();
+    // If we knock on karen's house or the saw house we need to have check for specific items in our inventory
+    // If we do not have the items, then we lose the game
+    if (house.getHouseName().equals("karen's house") || house.getHouseName().equals("saw house")){
+      // If we knock on karen's door
+      if (house.getHouseName().equals("karen's house")) {
+        // if we have a badge, potion, or ruby, then do nothing
+        if (playerItems.contains("badge") || playerItems.contains("potion") || playerItems.contains("ruby")) {
+          System.out.println("Karen: Look a trespasser! I'm calling the cops!");
+        }
+        // if we don't have a badge, potion, or ruby we lose the game
+        else {
+          display.greet(player.getPosition());
+          System.out.println("You are arrested and lose the game! Game Over!");
+          setState(State.LOSE);
+        }
+      }
+      // if knock on the saw house
+      if (house.getHouseName().equals("saw house")) {
+        // check for "thing" in not in our items then we lose the game
+        if (!playerItems.contains("thing")){
+          display.noItem(player.getPosition());
+          setState(State.LOSE);
+        } // otherwise, thing will free us from the trap, and be removed from the inventory
+        else {
+          // System.out.println("Suddenly, thing jumps from your candy bag, and frees you! RUN WHILE YOU CAN!");
+          display.greet(player.getPosition());
+          player.removeItem("thing");
+        }
+      }
     } else {
-      display.greet(player.getPosition());
+      // for all other houses (besides karen's house and saw house) we do the following
+      if (house.getHouseItems().isEmpty()) {
+        display.noItem(player.getPosition());
+      } else {
+        display.greet(player.getPosition());
+      }
     }
   }
 
