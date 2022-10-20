@@ -4,11 +4,10 @@ import com.halloween.controller.Game;
 import com.halloween.controller.TextParser;
 import com.halloween.model.State;
 import java.io.IOException;
-import org.json.simple.parser.ParseException;
 
 public class Main {
 
-  public static void main(String[] args) throws IOException, ParseException {
+  public static void main(String[] args) throws IOException {
     Game game = new Game();
     TextParser textParser = new TextParser();
 
@@ -27,7 +26,7 @@ public class Main {
       }
     }
 
-    // Initialize the game object and get user name
+    // Initialize the game object and get username
     game.showTitle();
     game.showBackstory();
     game.showInstructions();
@@ -58,6 +57,11 @@ public class Main {
         game.getItem();
       } else if (input[0].equals("knock")) {
         game.knockOnDoor();
+      } else if (input[0].equals("use") && input[1] != null) {
+        game.useItem(input[1]);
+        System.out.println(input[1]);
+      } else if (input[0].equals("inventory")) {
+        game.showInventory();
       }
     }
   }
