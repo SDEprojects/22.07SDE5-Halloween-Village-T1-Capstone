@@ -3,6 +3,7 @@ package com.halloween;
 import com.halloween.controller.Game;
 import com.halloween.controller.TextParser;
 import com.halloween.model.State;
+import com.halloween.view.PlayMusic;
 import java.io.IOException;
 
 public class Main {
@@ -18,7 +19,7 @@ public class Main {
 
       String[] userInput = textParser.userInput();
 
-      if(userInput[0].equals("quit")){
+      if (userInput[0].equals("quit")) {
         game.quitGame();
       } else if (userInput[0].equals("new") && userInput[1].equals("game")) {
         startNewGame = true;
@@ -32,13 +33,17 @@ public class Main {
     game.showInstructions();
     game.greetPlayer();
 
-
     // Play game until user wins, loses, or quits
     playGame(game, textParser);
 
   }
 
   private static void playGame(Game game, TextParser textParser) {
+
+    // start the music
+    PlayMusic playMusic = new PlayMusic();
+    String musicName = "/darkess.wav";
+    playMusic.play(musicName);
 
     String[] input;
 
