@@ -1,5 +1,7 @@
 package com.halloween.controller;
 
+import static com.halloween.view.SoundEffects.playSound;
+
 import com.halloween.model.House;
 import com.halloween.model.Neighborhood;
 import com.halloween.model.Player;
@@ -76,6 +78,7 @@ public class Game {
     } else {
       player.setPosition(playersMove);
       System.out.printf( display.getNpcResponse("players_move"), player.getName(), direction, player.getPosition());
+      playSound("/footsteps.wav");
     }
   }
 
@@ -109,6 +112,10 @@ public class Game {
   public void knockOnDoor() {
     House house =  neighborhood.getNeighborhood().get(player.getPosition());
     house.setKnocked(true);
+
+    String knock = "/door-knock.wav";
+    playSound(knock);
+
     ArrayList<String> playerItems = player.getItems();
     // If we knock on karen's house or the saw house we need to have check for specific items in our inventory
     // If we do not have the items, then we lose the game
@@ -123,6 +130,7 @@ public class Game {
         else {
           display.greet(player.getPosition());
           System.out.println(display.getNpcResponse("player_arrested"));
+          playSound("/evil-shreik.wav");
           setState(State.LOSE);
         }
       }
@@ -183,6 +191,7 @@ public class Game {
       if (house.getHouseName().equals("karen's house") && item.equals("badge")
           && successfullyUsedItem && house.isKnocked()) {
         System.out.println(display.getNpcResponse("karen_defeated_badge"));
+        playSound("/girl_scream.wav");
         setState(State.WIN);
       } else if (house.getHouseName().equals("karen's house") && item.equals("potion") && successfullyUsedItem) {
         System.out.println(display.getNpcResponse("karen_defeated_potion"));
@@ -198,12 +207,14 @@ public class Game {
       } else if (house.getHouseName().equals("witch's den")) {
         if (item.equals("cat-hair") || item.equals("beer") || item.equals("dentures")) {
           System.out.printf(display.getNpcResponse("give_witch_ingredient"), item);
+          playSound("/bubbles.wav");
           house.addItem(item);
           ArrayList<String> witchHouseItems = house.getHouseItems();
           if (witchHouseItems.contains("cat-hair") && witchHouseItems.contains("beer") && witchHouseItems.contains("dentures")) {
             System.out.println(display.getNpcResponse("complete_witch_potion"));
             // NOTE: potion is a hidden item, so we don't store it in the house
             player.addItem("potion");
+            playSound("/witch.wav");
           }
         } else {
           System.out.printf(display.getNpcResponse("incorrect_witch_ingredient"), item);
