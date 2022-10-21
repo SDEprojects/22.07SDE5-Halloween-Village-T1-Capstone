@@ -58,7 +58,7 @@ public class View {
    return instructions.getString("help") + "\n";
   }
   public String getNpcResponse(String key){
-    return npcResponse.getString(key);
+    return npcResponse.getString(key) + "\n";
   }
   public String getMap() {
     return instructions.getString("map") + "\n";
