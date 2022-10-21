@@ -26,17 +26,17 @@ public class Game {
 
   public void greetPlayer() throws IOException {
     BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-    System.out.println("Hello there! What is your name?");
+    System.out.println(display.getNpcResponse("ask_name"));
     player.setName(buffer.readLine().trim());
-    System.out.printf("Welcome to Halloween Village, %s!%n", player.getName());
+    System.out.printf(display.getNpcResponse("welcome"), player.getName());
   }
   public void showStatus() {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
     String playerItems = player.getItems() == null ? "nothing" : player.getItems().toString();
     String houseItems = currentPosition.getHouseItems().isEmpty() ? "a whole lot of nothing" : currentPosition.getHouseItems().toString();
 
-    System.out.printf("\nIt looks like %s has %s", currentPosition.getHouseName(), houseItems);
-    System.out.printf("\n%s is in %s and currently has %s in their inventory.\n", player.getName(), player.getPosition(), playerItems);
+    System.out.printf(display.getNpcResponse("house_item"), currentPosition.getHouseName(), houseItems);
+    System.out.printf(display.getNpcResponse("item_in_inventory"), player.getName(), player.getPosition(), playerItems);
     showValidMoves();
   }
 
@@ -56,7 +56,7 @@ public class Game {
     System.out.println(display.getHelp());
   }
   public void showInventory() {
-    System.out.println("Items in inventory: " + player.getItems());
+    System.out.printf(display.getNpcResponse("show_inventory"), player.getItems());
   }
   public void showMap(){
     System.out.println(display.getMap());
@@ -71,11 +71,11 @@ public class Game {
     currentPosition.setKnocked(false);
 
     if (playersMove.isEmpty()){
-      System.out.println("WARNING: " + direction + " is an invalid direction. Please choose one of the following.");
+      System.out.printf(display.getNpcResponse("invalid_direction"), direction);
       showValidMoves();
     } else {
       player.setPosition(playersMove);
-      System.out.println(player.getName() + " moved " + direction + ". New position is " + player.getPosition());
+      System.out.printf( display.getNpcResponse("players_move"), player.getName(), direction, player.getPosition());
     }
   }
 
@@ -95,13 +95,13 @@ public class Game {
         String temp = house.getHouseItems().get(0);
         player.addItem(temp);
         house.removeItem();
-        System.out.println("You added a " + temp + " to your items!");
+        System.out.printf(display.getNpcResponse("get_items"), temp);
       } else {
-        System.out.println("Error: no items available at this location!");
+        System.out.println(display.getNpcResponse("no_item_error"));
       }
     } else {
-      System.out.println("Uh Oh! You can't get trick or treat without knocking on the door first!");
-      System.out.println("Try using the 'knock' command to get your treats!");
+      System.out.println(display.getNpcResponse("knock_door_first"));
+      System.out.println(display.getNpcResponse("knock_door"));
     }
     house.setKnocked(false);
   }
@@ -117,12 +117,12 @@ public class Game {
       if (house.getHouseName().equals("karen's house")) {
         // if we have a badge, potion, or ruby, then do nothing
         if (playerItems.contains("badge") || playerItems.contains("potion") || playerItems.contains("ruby")) {
-          System.out.println("Karen: Look a trespasser! I'm calling the cops!");
+          System.out.println(display.getNpcResponse("karen_calling_cops"));
         }
         // if we don't have a badge, potion, or ruby we lose the game
         else {
           display.greet(player.getPosition());
-          System.out.println("You are arrested and lose the game! Game Over!");
+          System.out.println(display.getNpcResponse("player_arrested"));
           setState(State.LOSE);
         }
       }
@@ -150,7 +150,7 @@ public class Game {
   }
 
   public void quitGame() {
-    System.out.println("See you next time");
+    System.out.println(display.getNpcResponse("exit_game"));
     System.exit(0);
   }
   public State getState() {
@@ -170,15 +170,20 @@ public class Game {
       showInventory();
       boolean successfullyUsedItem = player.removeItem(item);
 
+      String response = successfullyUsedItem ? "remove_item" : "warning_remove_item";
+      System.out.printf(display.getNpcResponse(response), item);
+
+//      if (successfullyUsedItem){
+//        System.out.println("You used a " + item + ". This item is now removed from your inventory.");
+//      } else {
+//        System.out.println("Warning: Can NOT use " + item + " because it not in your inventory.");
+//      }
+
       // if we use the badge at karen's house then we win the game
       if (house.getHouseName().equals("karen's house") && item.equals("badge")
-          && successfullyUsedItem) {
-        // TODO: add to output to view
-        System.out.println("Karen is defeated using the deputy mayor badge! You win!");
-        setState(State.WIN);
-      } else if (house.getHouseName().equals("karen's house") && item.equals("potion") && successfullyUsedItem) {
-        // TODO: add output to view
-        System.out.println("Karen is defeated using the potion! You win!");
+          && successfullyUsedItem && house.isKnocked()) {
+        System.out.println(display.getNpcResponse("karen_defeated"));
+
         setState(State.WIN);
       } else if (house.getHouseName().equals("karen's house") && item.equals("ruby") && successfullyUsedItem) {
         // TODO: add output to view
@@ -210,7 +215,7 @@ public class Game {
         }
       }
     } else {
-      System.out.println("Uh Oh! You can't use an item without knocking on the door first!");
+      System.out.println(display.getNpcResponse("knock_to_use_item"));
     }
   }
 
@@ -230,7 +235,5 @@ public class Game {
   public void decreaseVolume() {
     musicPlayer.decreaseVolume();
   }
-
-
 
 }

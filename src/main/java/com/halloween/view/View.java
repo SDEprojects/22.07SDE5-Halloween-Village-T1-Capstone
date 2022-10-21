@@ -54,8 +54,11 @@ public class View {
     return instructions.getString("menu") + "\n";
   }
 
-  public String getHelp() {
-    return instructions.getString("help") + "\n";
+ public String getHelp() {
+   return instructions.getString("help") + "\n";
+  }
+  public String getNpcResponse(String key){
+    return npcResponse.getString(key);
   }
   public String getMap() {
     return instructions.getString("map") + "\n";
