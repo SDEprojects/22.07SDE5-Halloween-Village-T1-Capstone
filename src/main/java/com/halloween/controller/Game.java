@@ -214,7 +214,6 @@ public class Game {
     }
   }
 
-
   public void startMusic() {
     String musicName = "/darkess.wav";
     musicPlayer.play(musicName);
@@ -223,6 +222,15 @@ public class Game {
   public void stopMusic() {
     musicPlayer.stop();
   }
+
+  public void increaseVolume() {
+    musicPlayer.increaseVolume();
+  }
+
+  public void decreaseVolume() {
+    musicPlayer.decreaseVolume();
+  }
+
 
 
 }
