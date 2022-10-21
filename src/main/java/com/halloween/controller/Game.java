@@ -4,6 +4,7 @@ import com.halloween.model.House;
 import com.halloween.model.Neighborhood;
 import com.halloween.model.Player;
 import com.halloween.model.State;
+import com.halloween.view.PlayMusic;
 import com.halloween.view.View;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +17,8 @@ public class Game {
   private View display = new View();
   private Player player = new Player();
   private Neighborhood neighborhood = new Neighborhood();
+
+  private PlayMusic musicPlayer = new PlayMusic();
 
   public Game() throws IOException {
     player.setPosition("your house");
@@ -55,11 +58,17 @@ public class Game {
   public void showInventory() {
     System.out.printf(display.getNpcResponse("show_inventory"), player.getItems());
   }
+  public void showMap(){
+    System.out.println(display.getMap());
+  }
 
 
   public void movePlayer(String direction) {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
     String playersMove = neighborhood.isValidDirection(direction, currentPosition);
+
+    // set the previous house knocked to false before moving
+    currentPosition.setKnocked(false);
 
     if (playersMove.isEmpty()){
       System.out.printf(display.getNpcResponse("invalid_direction"), direction);
@@ -174,10 +183,57 @@ public class Game {
       if (house.getHouseName().equals("karen's house") && item.equals("badge")
           && successfullyUsedItem && house.isKnocked()) {
         System.out.println(display.getNpcResponse("karen_defeated"));
+
         setState(State.WIN);
+      } else if (house.getHouseName().equals("karen's house") && item.equals("ruby") && successfullyUsedItem) {
+        // TODO: add output to view
+        System.out.println("*You throw down a red ruby, it turns into plume of smoke which Dracula appears from*");
+        System.out.println("Dracula: Oh hello Karen. Do you mind if I grab a quick drink (smile and wink)?");
+        System.out.println("*Karen faints*");
+        System.out.println("Karen is defeated using help from Dracula! You win!");
+        setState(State.WIN);
+      } else if (house.getHouseName().equals("dracula's mansion") && item.equals("tooth") && successfullyUsedItem) {
+        System.out.println("Dracula: Wow! You found my tooth! Thank you so much. If you run into any trouble, use this ruby and help will come!");
+        // added dracula's ruby to our inventory
+        // NOTE: dracula's tooth is a hidden item, so we don't store it in the house
+        player.addItem("ruby");
+      } else if (house.getHouseName().equals("witch's den")) {
+        if (item.equals("cat-hair") || item.equals("beer") || item.equals("dentures")) {
+          System.out.println("Hmmm yes, a " + item + " I can add this to my Witch's brew, and make a potion for you!");
+          System.out.println("Once I have all three ingredients, my potion will be complete with an expedience!");
+          house.addItem(item);
+
+          ArrayList<String> witchHouseItems = house.getHouseItems();
+          if (witchHouseItems.contains("cat-hair") && witchHouseItems.contains("beer") && witchHouseItems.contains("dentures")) {
+            System.out.println("Well done young one. My potion is complete, isn't that neat!");
+            System.out.println("I've added the potion to your items. Use it against any foe that wishes you harm!");
+            // NOTE: potion is a hidden item, so we don't store it in the house
+            player.addItem("potion");
+          }
+        } else {
+          System.out.println("Hmmm nope! I can't use this a " + item + " in my brew, but i'll still take it from you!");
+        }
       }
     } else {
       System.out.println(display.getNpcResponse("knock_to_use_item"));
     }
   }
+
+  public void startMusic() {
+    String musicName = "/darkess.wav";
+    musicPlayer.play(musicName);
+  }
+
+  public void stopMusic() {
+    musicPlayer.stop();
+  }
+
+  public void increaseVolume() {
+    musicPlayer.increaseVolume();
+  }
+
+  public void decreaseVolume() {
+    musicPlayer.decreaseVolume();
+  }
+
 }

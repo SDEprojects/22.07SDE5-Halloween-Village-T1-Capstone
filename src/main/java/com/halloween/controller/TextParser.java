@@ -32,7 +32,7 @@ public class TextParser {
         System.out.println("Error Exception: " + e);
       }
 
-      inputArray = input.split(" ");
+      inputArray = input.split("\\s+");
 
     } while (!isInputValid(inputArray));
 
@@ -48,7 +48,7 @@ public class TextParser {
       return false;
       // if input has one word it can either be help or quit otherwise false
     } else if (input.length == 1) {
-      if (input[0].equals("quit") || input[0].equals("help") || input[0].equals("knock") || input[0].equals("inventory")) {
+      if (input[0].equals("quit") || input[0].equals("help") || input[0].equals("knock") || input[0].equals("inventory") || input[0].equals("map")) {
         return true;
       }
     } else {
@@ -58,7 +58,7 @@ public class TextParser {
         return true;
       } else if (input[0].equals("knock")) {
         return true;
-      } else if (input[0].equals("new") && input[1].equals("game")){
+      } else if (input[0].equals("new") && input[1].equals("game")) {
         return true;
       } else if (input[0].equals("help")) {
         return true;
@@ -67,6 +67,16 @@ public class TextParser {
       } else if (input[0].equals("inventory")) {
         return true;
       } else if (input[0].equals("use")) {
+        return true;
+      } else if (input[0].equals("map")){
+        return true;
+      } else if (input[0].equals("start") && input[1].equals("music")) {
+        return true;
+      } else if (input[0].equals("stop") && input[1].equals("music")) {
+        return true;
+      } else if (input[0].equals("increase") && input[1].equals("volume")) {
+        return true;
+      } else if (input[0].equals("decrease") && input[1].equals("volume")) {
         return true;
       }
     }
