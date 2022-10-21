@@ -8,7 +8,8 @@
   },
   {
     "dracula's mansion": {
-      "greet": "Player: \"Trick or treat!\" \nDracula: \"Why hello there human… good timing that you’re here because I am sooo hungry!\"\nPlayer: \"Please don’t drink my blood!\"\nDracula: \"I would eat you where you stand right now if my tooth didn’t fall out. I can’t find it anywhere. Have you seen it?\"\nConsole: enter give[item] or press enter\nif enter: \"If you find it for me I will be indebted to you. I pinky promise I won’t eat you!\"\nFind Item: \"Wow! You found my fang! Thank you so much. If there is anything I can do to help you please let me know\"\n"
+      "greet": "Player: \"Trick or treat!\" \nDracula: \"Why hello there human… good timing that you’re here because I am sooo hungry!\"\nPlayer: \"Please don’t drink my blood!\"\nDracula: \"I would eat you where you stand right now if my tooth didn’t fall out. I can’t find it anywhere. Have you seen it?\"\nConsole: enter give[item] or press enter\nif enter: \"If you find it for me I will be indebted to you. I pinky promise I won’t eat you!\"\nFind Item: \"Wow! You found my fang! Thank you so much. If there is anything I can do to help you please let me know\"\n",
+      "no item": "There's nothing for you here. Sorry!"
     }
   },
     {
@@ -19,12 +20,14 @@
     },
     {
       "addam's family house": {
-        "greet": "Player: \"Trick or treat!\" \nWednesday Addams: *rolls eyes* \"What do you want?\"\nPlayer: \"Candy!!!\"\nWednesday: \"We have no candy. The Thing went out to get some this morning and I have not seen him since. So if you want your stupid little candies, I suggest you find him instead! GOODBYE *slams door* \"\nFind Item: \"Nice of you to finally come back, Thing. I am tired of these childish trick or treaters. Thank you for finding him\"\n"
+        "greet": "Player: \"Trick or treat!\" \nWednesday Addams: *rolls eyes* \"What do you want?\"\nPlayer: \"Candy!!!\"\nWednesday: \"We have no candy. The Thing went out to get some this morning and I have not seen him since. So if you want your stupid little candies, I suggest you find him instead! GOODBYE *slams door* \"\nFind Item: \"Nice of you to finally come back, Thing. I am tired of these childish trick or treaters. Thank you for finding him\"\n",
+        "no item": "There's nothing for you here. Sorry!"
       }
     },
   {
     "witch's den": {
-      "greet": "Player: \"Trick or treat!\" \nWitch: \"Hehehehe Hi young one… I just used the last of my candies to lure Hansel and Gretel into my kitchen. There’s nothing here\"\nPlayer: \"How can you be empty handed this time of year!?\"\nWitch: \"I’ll tell you what. I can make you a little potion instead. I won’t tell you what it does until after I make it, it’s a surprise. But in order for me to do this, I need you to gather some ingredients for me: Beer, Dentures, and Cat Hair\"\nFind Item: \"Thank you for the ingredients dear! This potion has the power to make people __________________________IDK\nPlayer take potion from witch\n"
+      "greet": "Player: \"Trick or treat!\" \nWitch: \"Hehehehe Hi young one… I just used the last of my candies to lure Hansel and Gretel into my kitchen. There’s nothing here\"\nPlayer: \"How can you be empty handed this time of year!?\"\nWitch: \"I’ll tell you what. I can make you a little potion instead. I won’t tell you what it does until after I make it, it’s a surprise. But in order for me to do this, I need you to gather some ingredients for me: Beer, Dentures, and Cat Hair\"\nFind Item: \"Thank you for the ingredients dear! This potion has the power to make people __________________________IDK\nPlayer take potion from witch\n",
+      "no item": "There's nothing for you here. Sorry!"
     }
   },
   {
@@ -35,7 +38,8 @@
   },
   {
     "neighbor's house": {
-      "greet": "Player: \"Trick or treat!\" \nNeighbor: \"Omg Hey Bestieee! Here’s some of your favorite candy! Come back anytime :)\"\nPlayer takes candy\nFind Item: \"I know I told you to come back anytime, but I’m all out of goods. Sorry bud!\"\n"
+      "greet": "Player: \"Trick or treat!\" \nNeighbor: \"Omg Hey Bestieee! Here’s some of your favorite candy! Come back anytime :)\"\nPlayer takes candy\nFind Item: \"I know I told you to come back anytime, but I’m all out of goods. Sorry bud!\"\n",
+      "no item": "There's nothing for you here. Sorry!"
     }
   },
   {
@@ -52,7 +56,8 @@
     },
   {
     "grandma’s house": {
-      "greet": "Player: “Knock knock Trick or Treat Grandma”\nGrandma: “You must be cold honey! I’m sorry but I don’t have warm cookies or candy for you. You can have my dentures!\nPlayer: “Sure I’ll take that. Thank you Grandma”\nGrandma: “Always a treat to see you”\n"
+      "greet": "Player: “Knock knock Trick or Treat Grandma”\nGrandma: “You must be cold honey! I’m sorry but I don’t have warm cookies or candy for you. You can have my dentures!\nPlayer: “Sure I’ll take that. Thank you Grandma”\nGrandma: “Always a treat to see you”\n",
+      "no item": "There's nothing for you here. Sorry!"
     }
   },
 {
@@ -63,7 +68,8 @@
 },
   {
   "your house": {
-  "greet": "Player: \"Trick or treat!\" \nMom: \"You can't trick or treat at your own house!Bye!\n"
+  "greet": "Player: \"Trick or treat!\" \nMom: \"You can't trick or treat at your own house!Bye!\n",
+    "no item": "There's nothing for you here. Sorry!"
 }
   }
 
