@@ -56,6 +56,10 @@ public class View {
 
   public String getHelp() {
     return instructions.getString("help");
+
+  }
+  public String getNpcResponse(String key){
+    return npcResponse.getString(key);
   }
 }
 
