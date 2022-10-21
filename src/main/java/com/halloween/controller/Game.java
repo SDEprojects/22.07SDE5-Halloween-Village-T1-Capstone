@@ -182,36 +182,31 @@ public class Game {
       // if we use the badge at karen's house then we win the game
       if (house.getHouseName().equals("karen's house") && item.equals("badge")
           && successfullyUsedItem && house.isKnocked()) {
-        System.out.println(display.getNpcResponse("karen_defeated"));
-
+        System.out.println(display.getNpcResponse("karen_defeated_badge"));
+        setState(State.WIN);
+      } else if (house.getHouseName().equals("karen's house") && item.equals("potion") && successfullyUsedItem) {
+        System.out.println(display.getNpcResponse("karen_defeated_potion"));
         setState(State.WIN);
       } else if (house.getHouseName().equals("karen's house") && item.equals("ruby") && successfullyUsedItem) {
-        // TODO: add output to view
-        System.out.println("*You throw down a red ruby, it turns into plume of smoke which Dracula appears from*");
-        System.out.println("Dracula: Oh hello Karen. Do you mind if I grab a quick drink (smile and wink)?");
-        System.out.println("*Karen faints*");
-        System.out.println("Karen is defeated using help from Dracula! You win!");
+        System.out.println(display.getNpcResponse("karen_defeated_ruby"));
         setState(State.WIN);
       } else if (house.getHouseName().equals("dracula's mansion") && item.equals("tooth") && successfullyUsedItem) {
-        System.out.println("Dracula: Wow! You found my tooth! Thank you so much. If you run into any trouble, use this ruby and help will come!");
+        System.out.println(display.getNpcResponse("draculas_tooth"));
         // added dracula's ruby to our inventory
         // NOTE: dracula's tooth is a hidden item, so we don't store it in the house
         player.addItem("ruby");
       } else if (house.getHouseName().equals("witch's den")) {
         if (item.equals("cat-hair") || item.equals("beer") || item.equals("dentures")) {
-          System.out.println("Hmmm yes, a " + item + " I can add this to my Witch's brew, and make a potion for you!");
-          System.out.println("Once I have all three ingredients, my potion will be complete with an expedience!");
+          System.out.printf(display.getNpcResponse("give_witch_ingredient"), item);
           house.addItem(item);
-
           ArrayList<String> witchHouseItems = house.getHouseItems();
           if (witchHouseItems.contains("cat-hair") && witchHouseItems.contains("beer") && witchHouseItems.contains("dentures")) {
-            System.out.println("Well done young one. My potion is complete, isn't that neat!");
-            System.out.println("I've added the potion to your items. Use it against any foe that wishes you harm!");
+            System.out.println(display.getNpcResponse("complete_witch_potion"));
             // NOTE: potion is a hidden item, so we don't store it in the house
             player.addItem("potion");
           }
         } else {
-          System.out.println("Hmmm nope! I can't use this a " + item + " in my brew, but i'll still take it from you!");
+          System.out.printf(display.getNpcResponse("incorrect_witch_ingredient"), item);
         }
       }
     } else {
