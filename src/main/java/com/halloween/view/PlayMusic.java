@@ -11,6 +11,7 @@ import javax.sound.sampled.Clip;
 
 public class PlayMusic {
 
+  private Clip clip;
 
   public void play(String musicName) {
     try {
@@ -18,12 +19,12 @@ public class PlayMusic {
       URL url = getClass().getResource(musicName);
       String temp = url.getPath();
       String music = temp.replace("%20", " ");
-      System.out.println(music);
+      //System.out.println(music);
       File musicPath = new File(music);
 
       if (musicPath.exists()) {
         AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-        Clip clip = AudioSystem.getClip();
+        clip = AudioSystem.getClip();
         clip.open(audioInput);
         clip.loop(Clip.LOOP_CONTINUOUSLY);
         clip.start();
@@ -33,6 +34,10 @@ public class PlayMusic {
     } catch (Exception ex) {
       ex.printStackTrace();
     }
+  }
+
+  public void stop() {
+    clip.stop();
   }
 
 //  public static void main(String[] args) {

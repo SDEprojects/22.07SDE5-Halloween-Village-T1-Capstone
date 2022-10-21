@@ -41,9 +41,7 @@ public class Main {
   private static void playGame(Game game, TextParser textParser) {
 
     // start the music
-    PlayMusic playMusic = new PlayMusic();
-    String musicName = "/darkess.wav";
-    playMusic.play(musicName);
+    game.startMusic();
 
     String[] input;
 
@@ -69,7 +67,12 @@ public class Main {
         game.showInventory();
       } else if (input[0].equals("map")) {
         game.showMap();
+      } else if (input[0].equals("start") && input[1].equals("music")) {
+        game.startMusic();
+      } else if (input[0].equals("stop") && input[1].equals("music")) {
+        game.stopMusic();
       }
+
     }
   }
 
