@@ -71,6 +71,10 @@ public class Main {
         game.startMusic();
       } else if (input[0].equals("stop") && input[1].equals("music")) {
         game.stopMusic();
+      } else if (input[0].equals("increase") && input[1].equals("volume")) {
+        game.increaseVolume();
+      } else if (input[0].equals("decrease") && input[1].equals("volume")) {
+        game.decreaseVolume();
       }
 
     }
