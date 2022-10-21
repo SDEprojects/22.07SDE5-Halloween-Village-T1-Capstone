@@ -69,6 +69,7 @@ public class TextParser {
       } else if (input[0].equals("use")) {
         return true;
       } else if (input[0].equals("map")){
+        return true;
       } else if (input[0].equals("start") && input[1].equals("music")) {
         return true;
       } else if (input[0].equals("stop") && input[1].equals("music")) {
