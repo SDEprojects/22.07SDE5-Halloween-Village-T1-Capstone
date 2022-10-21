@@ -58,6 +58,9 @@ public class Game {
   public void showInventory() {
     System.out.println("Items in inventory: " + player.getItems());
   }
+  public void showMap(){
+    System.out.println(display.getMap());
+  }
 
 
   public void movePlayer(String direction) {
