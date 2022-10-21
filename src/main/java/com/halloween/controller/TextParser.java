@@ -48,7 +48,7 @@ public class TextParser {
       return false;
       // if input has one word it can either be help or quit otherwise false
     } else if (input.length == 1) {
-      if (input[0].equals("quit") || input[0].equals("help") || input[0].equals("knock") || input[0].equals("inventory")) {
+      if (input[0].equals("quit") || input[0].equals("help") || input[0].equals("knock") || input[0].equals("inventory") || input[0].equals("map")) {
         return true;
       }
     } else {
@@ -67,6 +67,8 @@ public class TextParser {
       } else if (input[0].equals("inventory")) {
         return true;
       } else if (input[0].equals("use")) {
+        return true;
+      } else if (input[0].equals("map")){
         return true;
       }
     }

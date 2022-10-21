@@ -42,20 +42,24 @@ public class View {
     System.out.println(dialogue.get(currentPosition).get("no item"));
   }
   public String getTitle(){
-    return instructions.getString("title");
+    return instructions.getString("title") + "\n";
   }
   public String getBackstory(){
-    return instructions.getString("backstory");
+    return instructions.getString("backstory") + "\n";
   }
   public String getInstructions(){
-    return instructions.getString("instruction");
+    return instructions.getString("instruction") + "\n";
   }
   public String getMenu() {
-    return instructions.getString("menu");
+    return instructions.getString("menu") + "\n";
   }
 
   public String getHelp() {
-    return instructions.getString("help");
+    return instructions.getString("help") + "\n";
   }
+  public String getMap() {
+    return instructions.getString("map") + "\n";
+  }
+
 }
 

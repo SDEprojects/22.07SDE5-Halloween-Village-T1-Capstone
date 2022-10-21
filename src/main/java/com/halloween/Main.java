@@ -67,6 +67,8 @@ public class Main {
         System.out.println(input[1]);
       } else if (input[0].equals("inventory")) {
         game.showInventory();
+      } else if (input[0].equals("map")) {
+        game.showMap();
       }
     }
   }
