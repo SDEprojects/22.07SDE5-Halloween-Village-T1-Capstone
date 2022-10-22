@@ -12,16 +12,16 @@ import java.util.stream.Collectors;
 
 
 public class View {
-  private final ResourceBundle instructions;
+  private ResourceBundle instructions;
   private ResourceBundle npcResponse;
-  private final BufferedReader reader = new BufferedReader(
+  private BufferedReader reader = new BufferedReader(
       new InputStreamReader(getClass().getClassLoader().getResourceAsStream("dialogue.json")));
-  private final Gson gson = new Gson();
-  private final Type collectionType = new TypeToken<ArrayList<HashMap<String, HashMap<String, String>>>>() {
+  private Gson gson = new Gson();
+  private Type collectionType = new TypeToken<ArrayList<HashMap<String, HashMap<String, String>>>>() {
   }.getType();
-  private final ArrayList<HashMap<String, HashMap<String, String>>> dialogueList = gson.fromJson(reader,
+  private ArrayList<HashMap<String, HashMap<String, String>>> dialogueList = gson.fromJson(reader,
       collectionType);
-  private final HashMap<String, HashMap<String, String>> dialogue =
+  private HashMap<String, HashMap<String, String>> dialogue =
       (HashMap<String, HashMap<String, String>>)
           dialogueList
               .stream()

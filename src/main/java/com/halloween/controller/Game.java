@@ -19,11 +19,17 @@ public class Game {
   private View display = new View();
   private Player player = new Player();
   private Neighborhood neighborhood = new Neighborhood();
-
+  private StoreGame storeGame = new StoreGame();
   private PlayMusic musicPlayer = new PlayMusic();
 
   public Game() throws IOException {
     player.setPosition("your house");
+  }
+
+  public Game(State state, Player player, Neighborhood neighborhood) {
+    this.state = state;
+    this.player = player;
+    this.neighborhood = neighborhood;
   }
 
   public void greetPlayer() throws IOException {
@@ -34,7 +40,7 @@ public class Game {
   }
   public void showStatus() {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
-    String playerItems = player.getItems() == null ? "nothing" : player.getItems().toString();
+    String playerItems = player.getItems().isEmpty() ? "nothing" : player.getItems().toString();
     String houseItems = currentPosition.getHouseItems().isEmpty() ? "a whole lot of nothing" : currentPosition.getHouseItems().toString();
 
     System.out.printf(display.getNpcResponse("house_item"), currentPosition.getHouseName(), houseItems);
@@ -160,6 +166,12 @@ public class Game {
   public void quitGame() {
     System.out.println(display.getNpcResponse("exit_game"));
     System.exit(0);
+  }
+  public void saveGame() {
+    storeGame.saveGame(state, player, neighborhood);
+  }
+  public void loadGame() {
+    storeGame.loadGame();
   }
   public State getState() {
     return state;

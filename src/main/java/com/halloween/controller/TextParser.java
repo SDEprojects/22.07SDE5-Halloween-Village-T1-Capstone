@@ -8,9 +8,9 @@ import java.util.Set;
 
 public class TextParser {
 
-  private final Reader reader;
-  private final BufferedReader buffer;
-  private static final Set<String> DIRECTIONS = Set.of(
+  private Reader reader;
+  private BufferedReader buffer;
+  private static Set<String> DIRECTIONS = Set.of(
       "north","east","south","west"
   );
 
@@ -48,7 +48,7 @@ public class TextParser {
       return false;
       // if input has one word it can either be help or quit otherwise false
     } else if (input.length == 1) {
-      if (input[0].equals("quit") || input[0].equals("help") || input[0].equals("knock") || input[0].equals("inventory") || input[0].equals("map")) {
+      if (input[0].equals("quit") || input[0].equals("help") || input[0].equals("knock") || input[0].equals("inventory") || input[0].equals("map") || input[0].equals("save")) {
         return true;
       }
     } else {
@@ -60,6 +60,8 @@ public class TextParser {
         return true;
       } else if (input[0].equals("new") && input[1].equals("game")) {
         return true;
+      }else if (input[0].equals("load") && input[1].equals("game")) {
+        return true;
       } else if (input[0].equals("help")) {
         return true;
       } else if (input[0].equals("quit")) {
@@ -70,7 +72,9 @@ public class TextParser {
         return true;
       } else if (input[0].equals("map")){
         return true;
-      } else if (input[0].equals("start") && input[1].equals("music")) {
+      } else if (input[0].equals("save")){
+        return true;
+      }else if (input[0].equals("start") && input[1].equals("music")) {
         return true;
       } else if (input[0].equals("stop") && input[1].equals("music")) {
         return true;
