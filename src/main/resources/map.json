@@ -102,7 +102,7 @@
     "knocked": false,
     "north": "saw house",
     "east": "your house",
-    "south": "null",
+    "south": null,
     "west": "addam's family house"
   },
   {
