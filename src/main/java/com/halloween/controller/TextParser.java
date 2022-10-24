@@ -60,7 +60,7 @@ public class TextParser {
         return true;
       } else if (input[0].equals("new") && input[1].equals("game")) {
         return true;
-      }else if (input[0].equals("load") && input[1].equals("game")) {
+      } else if (input[0].equals("load") && input[1].equals("game")) {
         return true;
       } else if (input[0].equals("help")) {
         return true;

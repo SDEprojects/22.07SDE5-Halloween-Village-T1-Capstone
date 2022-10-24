@@ -7,24 +7,42 @@ import com.halloween.model.Player;
 import com.halloween.model.State;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class StoreGame {
-    private Gson gson = new Gson();
+//    private Gson gson = new Gson();
 
-    public Game loadGame(){
-        BufferedReader stateReader = new BufferedReader(
-            new InputStreamReader(getClass().getClassLoader().getResourceAsStream("state.json")));
-        State state = gson.fromJson(stateReader, State.class);
-        BufferedReader playerReader = new BufferedReader(
-            new InputStreamReader(getClass().getClassLoader().getResourceAsStream("player.json")));
-        Player player = gson.fromJson(playerReader, Player.class);
-        BufferedReader neighborhoodReader = new BufferedReader(
-            new InputStreamReader(getClass().getClassLoader().getResourceAsStream("neighborhood.json")));
-        Neighborhood neighborhood = gson.fromJson(neighborhoodReader, Neighborhood.class);
-        return new Game(state, player, neighborhood);
+    public <T> T loadGame(String resourceFile, Type type, Gson gson) {
+
+        try {
+            URL url = StoreGame.class.getProtectionDomain().getCodeSource().getLocation();
+            File jar = new File(url.toURI());
+            File f = new File(jar.getParentFile().getParent(), resourceFile);
+            try {
+                if (f.exists()) {
+                    Reader reader = new InputStreamReader(new FileInputStream(f));
+                    return gson.fromJson(reader, type);
+                } else {
+                    System.out.println("There is no game to load!");
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("There is no game to load");
+            }
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
     public void saveGame(State state, Player player, Neighborhood neighborhood){
@@ -35,6 +53,7 @@ public class StoreGame {
     }
 
     private <T> void writeFile(T gameObject, String name) {
+        Gson gson = new Gson();
         try {
         String filepath = new File(name).getAbsolutePath();
         FileWriter writer = new FileWriter(filepath, false);
@@ -45,5 +64,21 @@ public class StoreGame {
         } catch (JsonIOException e) {
             throw new RuntimeException();
         }
+    }
+    public void removeJsonFiles() {
+        removeFile("state.json");
+        removeFile("player.json");
+        removeFile("neighborhood.json");
+    }
+    private void removeFile(String resourceFile) {
+        try {
+            URL url = StoreGame.class.getProtectionDomain().getCodeSource().getLocation();
+            File jar = new File(url.toURI());
+            File f = new File(jar.getParentFile().getParent(), resourceFile);
+            Files.deleteIfExists(Path.of(f.getAbsolutePath()));
+        } catch (URISyntaxException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

@@ -41,28 +41,16 @@ public class View {
   public void noItem(String currentPosition) {
     System.out.println(dialogue.get(currentPosition).get("no item"));
   }
-  public String getTitle(){
-    return instructions.getString("title") + "\n";
-  }
-  public String getBackstory(){
-    return instructions.getString("backstory") + "\n";
-  }
-  public String getInstructions(){
-    return instructions.getString("instruction") + "\n";
-  }
-  public String getMenu() {
-    return instructions.getString("menu") + "\n";
-  }
-
- public String getHelp() {
-   return instructions.getString("help") + "\n";
+  public String getImportantDisplay(String key) {
+    return instructions.getString(key) + "\n";
   }
   public String getNpcResponse(String key){
     return npcResponse.getString(key) + "\n";
   }
-  public String getMap() {
-    return instructions.getString("map") + "\n";
-  }
 
+  public static void main(String[] args) {
+    View view = new View();
+    System.out.println(view.getImportantDisplay("lose"));
+  }
 }
 

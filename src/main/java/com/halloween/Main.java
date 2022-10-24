@@ -25,7 +25,8 @@ public class Main {
         game.setState(State.PLAY);
       } else if (userInput[0].equals("load") && userInput[1].equals("game")) {
         startGame = true;
-        game.loadGame();
+        game = game.loadGame();
+        game.setState(State.PLAY);
       }
     }
 
@@ -81,6 +82,13 @@ public class Main {
         }
         game.showStatus();
       }
+    }
+    if (game.getState().equals(State.PLAY)) {
+      game.showWin();
+      game.removeFiles();
+    } else {
+      game.showLose();
+      game.removeFiles();
     }
   }
 
