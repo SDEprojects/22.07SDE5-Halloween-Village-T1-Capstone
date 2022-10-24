@@ -1,5 +1,8 @@
 package com.halloween;
 
+import static com.halloween.view.SoundEffects.muteSoundEffects;
+import static com.halloween.view.SoundEffects.unmuteSoundEffects;
+
 import com.halloween.controller.Game;
 import com.halloween.controller.TextParser;
 import com.halloween.model.State;
@@ -70,6 +73,10 @@ public class Main {
         game.increaseVolume();
       } else if (input[0].equals("decrease") && input[1].equals("volume")) {
         game.decreaseVolume();
+      }  else if (input[0].equals("mute") && input[1].equals("fx")) {
+        muteSoundEffects();
+      } else if (input[0].equals("unmute") && input[1].equals("fx")) {
+        unmuteSoundEffects();
       } else {
         if (input[0].equals("go")) {
           game.movePlayer(input[1]);
@@ -83,12 +90,13 @@ public class Main {
         game.showStatus();
       }
     }
-    if (game.getState().equals(State.PLAY)) {
+    if (game.getState().equals(State.WIN)) {
       game.showWin();
       game.removeFiles();
     } else {
       game.showLose();
       game.removeFiles();
+
     }
   }
 
