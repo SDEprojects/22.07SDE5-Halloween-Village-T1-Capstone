@@ -11,8 +11,8 @@ public class Main {
     Game game = new Game();
     TextParser textParser = new TextParser();
 
-    boolean startNewGame = false;
-    while (!startNewGame) {
+    boolean startGame = false;
+    while (!startGame) {
 
       game.showMenu();
 
@@ -21,7 +21,11 @@ public class Main {
       if (userInput[0].equals("quit")) {
         game.quitGame();
       } else if (userInput[0].equals("new") && userInput[1].equals("game")) {
-        startNewGame = true;
+        startGame = true;
+        game.setState(State.PLAY);
+      } else if (userInput[0].equals("load") && userInput[1].equals("game")) {
+        startGame = true;
+        game = game.loadGame();
         game.setState(State.PLAY);
       }
     }
@@ -50,6 +54,8 @@ public class Main {
 
       if (input[0].equals("quit")) {
         game.quitGame();
+      } else if (input[0].equals("save")) {
+        game.saveGame();
       } else if (input[0].equals("help")) {
         game.showHelp();
       } else if (input[0].equals("inventory")) {
@@ -76,6 +82,13 @@ public class Main {
         }
         game.showStatus();
       }
+    }
+    if (game.getState().equals(State.PLAY)) {
+      game.showWin();
+      game.removeFiles();
+    } else {
+      game.showLose();
+      game.removeFiles();
     }
   }
 

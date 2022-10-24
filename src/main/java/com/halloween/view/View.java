@@ -12,16 +12,16 @@ import java.util.stream.Collectors;
 
 
 public class View {
-  private final ResourceBundle instructions;
+  private ResourceBundle instructions;
   private ResourceBundle npcResponse;
-  private final BufferedReader reader = new BufferedReader(
+  private BufferedReader reader = new BufferedReader(
       new InputStreamReader(getClass().getClassLoader().getResourceAsStream("dialogue.json")));
-  private final Gson gson = new Gson();
-  private final Type collectionType = new TypeToken<ArrayList<HashMap<String, HashMap<String, String>>>>() {
+  private Gson gson = new Gson();
+  private Type collectionType = new TypeToken<ArrayList<HashMap<String, HashMap<String, String>>>>() {
   }.getType();
-  private final ArrayList<HashMap<String, HashMap<String, String>>> dialogueList = gson.fromJson(reader,
+  private ArrayList<HashMap<String, HashMap<String, String>>> dialogueList = gson.fromJson(reader,
       collectionType);
-  private final HashMap<String, HashMap<String, String>> dialogue =
+  private HashMap<String, HashMap<String, String>> dialogue =
       (HashMap<String, HashMap<String, String>>)
           dialogueList
               .stream()
@@ -41,28 +41,16 @@ public class View {
   public void noItem(String currentPosition) {
     System.out.println(dialogue.get(currentPosition).get("no item"));
   }
-  public String getTitle(){
-    return instructions.getString("title") + "\n";
-  }
-  public String getBackstory(){
-    return instructions.getString("backstory") + "\n";
-  }
-  public String getInstructions(){
-    return instructions.getString("instruction") + "\n";
-  }
-  public String getMenu() {
-    return instructions.getString("menu") + "\n";
-  }
-
- public String getHelp() {
-   return instructions.getString("help") + "\n";
+  public String getImportantDisplay(String key) {
+    return instructions.getString(key) + "\n";
   }
   public String getNpcResponse(String key){
     return npcResponse.getString(key) + "\n";
   }
-  public String getMap() {
-    return instructions.getString("map") + "\n";
-  }
 
+  public static void main(String[] args) {
+    View view = new View();
+    System.out.println(view.getImportantDisplay("lose"));
+  }
 }
 

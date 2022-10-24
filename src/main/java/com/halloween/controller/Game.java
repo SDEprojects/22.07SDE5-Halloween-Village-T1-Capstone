@@ -2,6 +2,7 @@ package com.halloween.controller;
 
 import static com.halloween.view.SoundEffects.playSound;
 
+import com.google.gson.Gson;
 import com.halloween.model.House;
 import com.halloween.model.Neighborhood;
 import com.halloween.model.Player;
@@ -19,23 +20,33 @@ public class Game {
   private View display = new View();
   private Player player = new Player();
   private Neighborhood neighborhood = new Neighborhood();
-
+  private StoreGame storeGame = new StoreGame();
   private PlayMusic musicPlayer = new PlayMusic();
 
-  public Game() throws IOException {
+  public Game(){
     player.setPosition("your house");
   }
 
+  public Game(State state, Player player, Neighborhood neighborhood) {
+    this.state = state;
+    this.player = player;
+    this.neighborhood = neighborhood;
+  }
+
   public void greetPlayer() throws IOException {
-    BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-    System.out.println(display.getNpcResponse("ask_name"));
-    player.setName(buffer.readLine().trim());
-    if (player.getName().equals("quit")) quitGame();
-    System.out.printf(display.getNpcResponse("welcome"), player.getName());
+    if (player.getName() != null) {
+      System.out.printf(display.getNpcResponse("welcome_back") + "\n", player.getName());
+    } else {
+      BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+      System.out.println(display.getNpcResponse("ask_name"));
+      player.setName(buffer.readLine().trim());
+      if (player.getName().equals("quit")) quitGame();
+      System.out.printf(display.getNpcResponse("welcome"), player.getName());
+    }
   }
   public void showStatus() {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
-    String playerItems = player.getItems() == null ? "nothing" : player.getItems().toString();
+    String playerItems = player.getItems().isEmpty() ? "nothing" : player.getItems().toString();
     String houseItems = currentPosition.getHouseItems().isEmpty() ? "a whole lot of nothing" : currentPosition.getHouseItems().toString();
 
     System.out.printf(display.getNpcResponse("house_item"), currentPosition.getHouseName(), houseItems);
@@ -44,25 +55,25 @@ public class Game {
   }
 
   public void showMenu(){
-    System.out.println(display.getMenu());;
+    System.out.println(display.getImportantDisplay("menu"));;
   }
   public void showTitle() {
-    System.out.println(display.getTitle());
+    System.out.println(display.getImportantDisplay("title"));
   }
   public void showBackstory() {
-    System.out.println(display.getBackstory());
+    System.out.println(display.getImportantDisplay("backstory"));
   }
   public void showInstructions() {
-    System.out.println(display.getInstructions());
+    System.out.println(display.getImportantDisplay("instruction"));
   }
   public void showHelp() {
-    System.out.println(display.getHelp());
+    System.out.println(display.getImportantDisplay("help"));
   }
   public void showInventory() {
     System.out.printf(display.getNpcResponse("show_inventory"), player.getItems());
   }
   public void showMap(){
-    System.out.println(display.getMap());
+    System.out.println(display.getImportantDisplay("map"));
   }
   public void showValidMoves() {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
@@ -72,7 +83,12 @@ public class Game {
     String west = currentPosition.getWest() != null ? "\nwest: " + currentPosition.getWest() : "";
     System.out.println(north + east + south + west);
   }
-
+  public void showWin() {
+    System.out.println(display.getImportantDisplay("win"));
+  }
+  public void showLose(){
+    System.out.println(display.getImportantDisplay("lose"));
+  }
   public void movePlayer(String direction) {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
     String playersMove = neighborhood.isValidDirection(direction, currentPosition);
@@ -158,6 +174,19 @@ public class Game {
   public void quitGame() {
     System.out.println(display.getNpcResponse("exit_game"));
     System.exit(0);
+  }
+  public void saveGame() {
+    storeGame.saveGame(state, player, neighborhood);
+  }
+  public Game loadGame() {
+    Gson gson = new Gson();
+    State state = storeGame.loadGame("state.json", State.class, gson);
+    Player player = storeGame.loadGame("player.json", Player.class, gson);
+    Neighborhood neighborhood = storeGame.loadGame("neighborhood.json", Neighborhood.class, gson);
+    return new Game(state, player, neighborhood);
+  }
+  public void removeFiles() {
+    storeGame.removeJsonFiles();
   }
   public State getState() {
     return state;

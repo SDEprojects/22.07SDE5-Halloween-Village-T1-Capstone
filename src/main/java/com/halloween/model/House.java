@@ -52,6 +52,22 @@ public class House {
     return west;
   }
 
+  public void setNorth(String north) {
+    this.north = north;
+  }
+
+  public void setEast(String east) {
+    this.east = east;
+  }
+
+  public void setSouth(String south) {
+    this.south = south;
+  }
+
+  public void setWest(String west) {
+    this.west = west;
+  }
+
   public void removeItem() {
     houseItems.remove(0);
   }
