@@ -169,6 +169,11 @@ public class Game {
       display.greet(player.getPosition());
       System.out.println(display.getNpcResponse("player_arrested"));
       playSound("/evil-shreik.wav");
+      try {
+        TimeUnit.SECONDS.sleep(3);  // Wait 2 seconds
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
       setState(State.LOSE);
     }
   }
