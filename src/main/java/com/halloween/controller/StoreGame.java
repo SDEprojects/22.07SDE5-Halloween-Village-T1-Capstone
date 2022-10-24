@@ -34,7 +34,7 @@ public class StoreGame {
                     Reader reader = new InputStreamReader(new FileInputStream(f));
                     return gson.fromJson(reader, type);
                 } else {
-                    System.out.println("There is no game to load!");
+                    System.out.println("There is no game to load! \n Starting a new game soon...");
                 }
             } catch (FileNotFoundException e) {
                 System.out.println("There is no game to load");

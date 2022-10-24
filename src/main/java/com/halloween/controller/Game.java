@@ -183,6 +183,9 @@ public class Game {
     State state = storeGame.loadGame("state.json", State.class, gson);
     Player player = storeGame.loadGame("player.json", Player.class, gson);
     Neighborhood neighborhood = storeGame.loadGame("neighborhood.json", Neighborhood.class, gson);
+    if (state == null || player == null || neighborhood == null){
+      return new Game();
+    }
     return new Game(state, player, neighborhood);
   }
   public void removeFiles() {
