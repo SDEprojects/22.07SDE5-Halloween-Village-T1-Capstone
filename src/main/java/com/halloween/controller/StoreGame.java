@@ -28,7 +28,7 @@ public class StoreGame {
         try {
             URL url = StoreGame.class.getProtectionDomain().getCodeSource().getLocation();
             File jar = new File(url.toURI());
-            File f = new File(jar.getParentFile().getParent(), resourceFile);
+            File f = new File(jar.getParent(), resourceFile);
             try {
                 if (f.exists()) {
                     Reader reader = new InputStreamReader(new FileInputStream(f));
