@@ -3,7 +3,6 @@ package com.halloween;
 import com.halloween.controller.Game;
 import com.halloween.controller.TextParser;
 import com.halloween.model.State;
-import com.halloween.view.PlayMusic;
 import java.io.IOException;
 
 public class Main {
@@ -47,10 +46,9 @@ public class Main {
     game.startMusic();
 
     String[] input;
-
+    game.showStatus();
     while (!game.getState().isTerminal()) {
 
-      game.showStatus();
       input = textParser.userInput();
 
       if (input[0].equals("quit")) {
@@ -59,15 +57,6 @@ public class Main {
         game.saveGame();
       } else if (input[0].equals("help")) {
         game.showHelp();
-      } else if (input[0].equals("go")) {
-        game.movePlayer(input[1]);
-      } else if (input[0].equals("get")) {
-        game.getItem();
-      } else if (input[0].equals("knock")) {
-        game.knockOnDoor();
-      } else if (input[0].equals("use") && input[1] != null) {
-        game.useItem(input[1]);
-        System.out.println(input[1]);
       } else if (input[0].equals("inventory")) {
         game.showInventory();
       } else if (input[0].equals("map")) {
@@ -80,8 +69,18 @@ public class Main {
         game.increaseVolume();
       } else if (input[0].equals("decrease") && input[1].equals("volume")) {
         game.decreaseVolume();
+      } else {
+        if (input[0].equals("go")) {
+          game.movePlayer(input[1]);
+        } else if (input[0].equals("knock")) {
+          game.knockOnDoor();
+        } else if (input[0].equals("get")) {
+          game.getItem();
+        } else if (input[0].equals("use") && input[1] != null) {
+          game.useItem(input[1]);
+        }
+        game.showStatus();
       }
-
     }
   }
 
