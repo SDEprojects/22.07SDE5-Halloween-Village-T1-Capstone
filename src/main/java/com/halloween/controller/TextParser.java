@@ -82,26 +82,14 @@ public class TextParser {
         return true;
       } else if (input[0].equals("decrease") && input[1].equals("volume")) {
         return true;
+      } else if (input[0].equals("mute") && input[1].equals("fx")) {
+        return true;
+      } else if (input[0].equals("unmute") && input[1].equals("fx")) {
+        return true;
       }
     }
 
     System.out.println("WARNING: Invalid input!");
     return valid;
   }
-
-//  public static void main(String[] args) {
-//    TextParser textParser = new TextParser();
-//
-//    String[] input;
-//    input = textParser.userInput();
-//    String verb = input[0];
-//    String noun = input[1];
-//
-//    System.out.println("Verb: " + verb);
-//
-//    System.out.println("You input: " + verb + " " + noun);
-//
-//    System.out.println(input.length);
-//  }
-
 }

@@ -18,11 +18,6 @@ public class PlayMusic {
       // get the url path for our music
       URL url = getClass().getResource(musicName);
 
-      // String temp = url.getPath();
-      // String music = temp.replace("%20", " ");
-      //System.out.println(music);
-      // File musicPath = new File(music);
-
       if (url != null) {
         // NOTE: Audio input stream can take a URL, file, or string
         AudioInputStream audioInput = AudioSystem.getAudioInputStream(url);
@@ -34,11 +29,6 @@ public class PlayMusic {
         musicVolume.setValue(-20.0f);
         // start the music
         clip.start();
-
-
-        //System.out.println("Current volume: " + musicVolume.getValue());
-        //System.out.println("Max volume: " + musicVolume.getMaximum());
-        //System.out.println("Min volume: " + musicVolume.getMinimum());
 
       } else {
         System.out.println("Can't find file");
@@ -68,22 +58,4 @@ public class PlayMusic {
     }
   }
 
-  public static void main(String[] args) {
-    PlayMusic playMusic = new PlayMusic();
-
-
-    // String musicName = "/main_combat.wav";
-    // String musicName = "/darkess.wav";
-    //String musicName = "/losing-oneself.wav";
-
-    String musicName = "/door-knock.wav";
-
-    playMusic.play(musicName);
-
-
-    while (true) {
-      //System.out.println("hello");
-    }
-
-  }
 }
