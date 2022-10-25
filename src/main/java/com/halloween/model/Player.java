@@ -7,6 +7,7 @@ public class Player {
   private String position;
   private ArrayList<String> items;
 
+  // player constructor with name, current location, and inventory
   public Player(String name, String position, ArrayList<String> items) {
     this.name = name;
     this.position = position;
@@ -41,9 +42,12 @@ public class Player {
     this.items = items;
   }
 
+  // add item to inventory
   public void addItem(String item){
     items.add(item);
   }
+
+  // remove item from inventory
   public boolean removeItem(String item) {
     if (items.contains(item)) {
       // remove the item
