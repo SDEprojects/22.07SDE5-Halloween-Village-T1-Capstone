@@ -19,7 +19,7 @@ public class TextParser {
     this.buffer = new BufferedReader(reader);
   }
 
-
+  // getting input and split into verb and noun and put it into array
   public String[] userInput() {
     String input = "";
     String[] inputArray;
@@ -39,6 +39,7 @@ public class TextParser {
     return inputArray;
   }
 
+  // checking if the input is valid
   public boolean isInputValid(String[] input) {
     boolean valid = false;
 
