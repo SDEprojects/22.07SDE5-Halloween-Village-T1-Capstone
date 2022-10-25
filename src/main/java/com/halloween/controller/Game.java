@@ -35,7 +35,7 @@ public class Game {
     this.neighborhood = neighborhood;
   }
 
-  // Greeting user by display welcome message and ask name. user can quit the game by typing "quit"
+  // Greeting user by displaying welcome message and ask name. user can quit the game by typing "quit"
   public void greetPlayer() throws IOException {
     if (player.getName() != null) {
       System.out.printf(display.getNpcResponse("welcome_back") + "\n", player.getName());
