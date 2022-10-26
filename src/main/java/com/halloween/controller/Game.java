@@ -10,6 +10,7 @@ import com.halloween.model.State;
 import com.halloween.view.PlayMusic;
 import com.halloween.view.View;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalTime;
@@ -127,6 +128,7 @@ public class Game {
         String temp = house.getHouseItems().get(0);
         player.addItem(temp);
         house.removeItem();
+        display.getItem(player.getPosition());
         System.out.printf(display.getNpcResponse("get_items"), temp);
     } else if (house.isKnocked()){
         System.out.println(display.getNpcResponse("no_item_error"));
@@ -215,6 +217,7 @@ public class Game {
     }
     return new Game(state, player, neighborhood);
   }
+
   public void removeFiles() {
     storeGame.removeJsonFiles();
   }
@@ -228,7 +231,6 @@ public class Game {
 
 
   // user uses item. if the item was used in proper places, run the associated function.
-
   public void useItem(String item) {
     // get the house the player is currently at
     House house = neighborhood.getNeighborhood().get(player.getPosition());

@@ -41,6 +41,10 @@ public class View {
   public void noItem(String currentPosition) {
     System.out.println(dialogue.get(currentPosition).get("no item"));
   }
+
+  public void getItem(String currentPosition) {
+    System.out.println(dialogue.get(currentPosition).get("get item"));
+  }
   public String getImportantDisplay(String key) {
     return instructions.getString(key) + "\n";
   }
