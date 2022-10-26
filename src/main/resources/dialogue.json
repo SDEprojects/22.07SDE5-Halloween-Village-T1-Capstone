@@ -44,9 +44,9 @@
   },
   {
     "neighbor's house": {
-      "greet": "Player: Trick or treat! \nNeighbor: Omg Hey Bestieee! Here’s some of your favorite candy! Come back anytime :)\n",
-      "no item": "There's nothing for you here. Sorry!",
-      "get item": "Player takes candy\nFind Item: I know I told you to come back anytime, but I’m all out of goods. Sorry bud! \n"
+      "greet": "Player: Trick or treat! \nNeighbor: Omg Hey Bestieee! Here’s some of your favorite candy! Come back anytime :)\n Player takes candy\n",
+      "no item": "I know I told you to come back anytime, but I’m all out of goods. Sorry bud! \n",
+      "get item": ""
     }
   },
   {
