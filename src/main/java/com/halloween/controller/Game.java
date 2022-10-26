@@ -128,6 +128,7 @@ public class Game {
         String temp = house.getHouseItems().get(0);
         player.addItem(temp);
         house.removeItem();
+        display.getItem(player.getPosition());
         System.out.printf(display.getNpcResponse("get_items"), temp);
     } else if (house.isKnocked()){
         System.out.println(display.getNpcResponse("no_item_error"));
