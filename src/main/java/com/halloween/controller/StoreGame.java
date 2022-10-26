@@ -24,12 +24,17 @@ public class StoreGame {
 
 
     public <T> T loadGame(String resourceFile, Type type, Gson gson) {
-        try {
-            FileReader fileReader = new FileReader(resourceFile);
-            return gson.fromJson(fileReader, type);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        File file = new File(resourceFile);
+        if (file.exists()) {
+            try {
+                FileReader fileReader = new FileReader(resourceFile);
+                return gson.fromJson(fileReader, type);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            System.out.println("There is no saved game");
+        }return null;
     }
 
     public void saveGame(State state, Player player, Neighborhood neighborhood){

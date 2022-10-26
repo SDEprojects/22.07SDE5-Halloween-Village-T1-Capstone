@@ -10,6 +10,7 @@ import com.halloween.model.State;
 import com.halloween.view.PlayMusic;
 import com.halloween.view.View;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalTime;
@@ -215,6 +216,7 @@ public class Game {
     }
     return new Game(state, player, neighborhood);
   }
+
   public void removeFiles() {
     storeGame.removeJsonFiles();
   }
