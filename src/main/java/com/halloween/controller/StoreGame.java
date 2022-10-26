@@ -21,28 +21,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class StoreGame {
-//    private Gson gson = new Gson();
+
 
     public <T> T loadGame(String resourceFile, Type type, Gson gson) {
-
         try {
-            URL url = StoreGame.class.getProtectionDomain().getCodeSource().getLocation();
-            File jar = new File(url.toURI());
-            File f = new File(jar.getParent(), resourceFile);
-            try {
-                if (f.exists()) {
-                    Reader reader = new InputStreamReader(new FileInputStream(f));
-                    return gson.fromJson(reader, type);
-                } else {
-                    System.out.println("There is no game to load! \n Starting a new game soon...");
-                }
-            } catch (FileNotFoundException e) {
-                System.out.println("There is no game to load");
-            }
-        } catch (URISyntaxException e) {
+            FileReader fileReader = new FileReader(resourceFile);
+            return gson.fromJson(fileReader, type);
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     public void saveGame(State state, Player player, Neighborhood neighborhood){

@@ -228,7 +228,6 @@ public class Game {
 
 
   // user uses item. if the item was used in proper places, run the associated function.
-
   public void useItem(String item) {
     // get the house the player is currently at
     House house = neighborhood.getNeighborhood().get(player.getPosition());
