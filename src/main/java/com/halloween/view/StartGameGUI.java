@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -45,6 +47,12 @@ public class StartGameGUI {
     JButton quitBtn = new JButton("Quit");
     quitBtn.setFont(new Font("Arial", Font.PLAIN, 40));
     quitBtn.setBounds(175, 60, 250, 50);
+    quitBtn.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        System.exit(0);
+      }
+    });
 
     JMenuBar menu = new JMenuBar();
     menu.setPreferredSize(new Dimension(1200, 400));
