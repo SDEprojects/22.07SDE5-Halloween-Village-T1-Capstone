@@ -10,6 +10,7 @@ import com.halloween.model.State;
 import com.halloween.view.PlayMusic;
 import com.halloween.view.View;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalTime;
@@ -35,6 +36,7 @@ public class Game {
     this.neighborhood = neighborhood;
   }
 
+  // Greeting user by displaying welcome message and ask name. user can quit the game by typing "quit"
   public void greetPlayer() throws IOException {
     if (player.getName() != null) {
       System.out.printf(display.getNpcResponse("welcome_back") + "\n", player.getName());
@@ -46,6 +48,8 @@ public class Game {
       System.out.printf(display.getNpcResponse("welcome"), player.getName());
     }
   }
+
+  // Display user status including user's current location, inventory items, and item in house.
   public void showStatus() {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
     String playerItems = player.getItems().isEmpty() ? "nothing" : player.getItems().toString();
@@ -56,6 +60,7 @@ public class Game {
     showValidMoves();
   }
 
+  // Display user menu
   public void showMenu(){
     System.out.println(display.getImportantDisplay("menu"));;
   }
@@ -74,9 +79,13 @@ public class Game {
   public void showInventory() {
     System.out.printf(display.getNpcResponse("show_inventory"), player.getItems());
   }
+
+  // Display map
   public void showMap(){
     System.out.println(display.getImportantDisplay("map"));
   }
+
+  // Display valid moves from user's current location
   public void showValidMoves() {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
     String north = currentPosition.getNorth() != null ? "\nnorth: " + currentPosition.getNorth() : "";
@@ -85,12 +94,18 @@ public class Game {
     String west = currentPosition.getWest() != null ? "\nwest: " + currentPosition.getWest() : "";
     System.out.println(north + east + south + west);
   }
+
+  // Display win message
   public void showWin() {
     System.out.println(display.getImportantDisplay("win"));
   }
+
+  //Display lose message
   public void showLose(){
     System.out.println(display.getImportantDisplay("lose"));
   }
+
+  // Update user's current location
   public void movePlayer(String direction) {
     House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
     String playersMove = neighborhood.isValidDirection(direction, currentPosition);
@@ -106,12 +121,14 @@ public class Game {
     }
   }
 
+  // User get item, and save it to the inventory
   public void getItem() {
     House house =  neighborhood.getNeighborhood().get(player.getPosition());
     if (house.isKnocked() && house.getHouseItems().size() > 0) {
         String temp = house.getHouseItems().get(0);
         player.addItem(temp);
         house.removeItem();
+        display.getItem(player.getPosition());
         System.out.printf(display.getNpcResponse("get_items"), temp);
     } else if (house.isKnocked()){
         System.out.println(display.getNpcResponse("no_item_error"));
@@ -122,6 +139,7 @@ public class Game {
     house.setKnocked(false);
   }
 
+  // set knocked value to true when user knocks. also checks user's inventory when user knocks on Karen's house or Saw house.
   public void knockOnDoor() {
     House house =  neighborhood.getNeighborhood().get(player.getPosition());
     house.setKnocked(true);
@@ -146,6 +164,7 @@ public class Game {
     }
   }
 
+  // LOSE CONDITION 1
   private void knockOnSawHouse(ArrayList<String> playerItems) {
     // check for "thing" in not in our items then we lose the game
     if (!playerItems.contains("thing")){
@@ -159,6 +178,9 @@ public class Game {
     }
   }
 
+  // LOSE CONDITION 2
+  // When user knock on Karen's house, if user has "badge" or "potion" or"ruby" in the inventory, Karen calls cop"
+  // if not, the user lose the game.
   private void knockOnKarenHouse(ArrayList<String> playerItems) {
     // if we have a badge, potion, or ruby, then do nothing
     if (playerItems.contains("badge") || playerItems.contains("potion") || playerItems.contains("ruby")) {
@@ -195,6 +217,7 @@ public class Game {
     }
     return new Game(state, player, neighborhood);
   }
+
   public void removeFiles() {
     storeGame.removeJsonFiles();
   }
@@ -206,6 +229,8 @@ public class Game {
     this.state = state;
   }
 
+
+  // user uses item. if the item was used in proper places, run the associated function.
   public void useItem(String item) {
     // get the house the player is currently at
     House house = neighborhood.getNeighborhood().get(player.getPosition());
@@ -233,6 +258,9 @@ public class Game {
      }
   }
 
+  // if user knocks on the witch's house, and user has cat-hair or beer or dentures in the inventory,
+  // the witch will take the items to make a potion.
+  // if all the items are collected by the witch, user will get the potion.
   private void witchUseItem(String item, House house) {
     if (item.equals("cat-hair") || item.equals("beer") || item.equals("dentures")) {
       System.out.printf(display.getNpcResponse("give_witch_ingredient"), item);
@@ -250,6 +278,8 @@ public class Game {
     }
   }
 
+// WIN condition
+// if user use one of the items(badge, potion, ruby) to Karen, user wins the game.
   public void karenUseItem(String item) {
     if (item.equals("badge")) {
       System.out.println(display.getNpcResponse("karen_defeated_badge"));

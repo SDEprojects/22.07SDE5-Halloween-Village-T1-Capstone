@@ -18,6 +18,7 @@ public class Neighborhood {
       "north", "south", "east", "west"
   };
 
+  // change json file to neighborhood object contains with house objects.
   public Neighborhood() {
     BufferedReader reader = new BufferedReader(
         new InputStreamReader(getClass().getClassLoader().getResourceAsStream("map.json")));
@@ -37,6 +38,7 @@ public class Neighborhood {
     this.neighborhood = neighborhood;
   }
 
+  // checking valid directions from current location
   public String isValidDirection(String direction, House currentPosition) {
     HashMap<String, String> possibleHouses = new HashMap<>();
     possibleHouses.put(directions[0],currentPosition.getNorth());
