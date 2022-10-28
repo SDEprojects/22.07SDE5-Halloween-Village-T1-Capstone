@@ -19,10 +19,6 @@ public class GuiGame implements ActionListener {
 
   StartGameGUI startGameGui = new StartGameGUI();
 
-  public JPanel getPanelForGameWindow() {
-    return panelForGameWindow;
-  }
-
   JPanel panelForGameWindow;
 
 
