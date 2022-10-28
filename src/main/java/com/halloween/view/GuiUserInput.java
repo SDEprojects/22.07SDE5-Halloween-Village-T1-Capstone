@@ -25,9 +25,6 @@ public class GuiUserInput {
 
   public GuiUserInput() {
     frame = new JFrame();
-
-    Game game = new Game();
-
     frame.setTitle("Halloween-Village");
     frame.getContentPane().setBackground(Color.cyan);
     frame.setSize(new Dimension(1000, 800));
@@ -55,13 +52,13 @@ public class GuiUserInput {
     panelForLocationInventoryMOve.setBounds(5, 435, 660, 250);
     panelForLocationInventoryMOve.setLayout(null);
 
-    JPanel panelForTitleWithImg = new JPanel();
-    panelForTitleWithImg.setBackground(Color.LIGHT_GRAY);
-    panelForTitleWithImg.setBounds(7, 5, 970, 100);
-    panelForTitleWithImg.setLayout(new FlowLayout());
+//    JPanel panelForTitleWithImg = new JPanel();
+//    panelForTitleWithImg.setBackground(Color.LIGHT_GRAY);
+//    panelForTitleWithImg.setBounds(7, 5, 970, 100);
+//    panelForTitleWithImg.setLayout(new FlowLayout());
 
-    JLabel labelForTitle = new JLabel("Title");
-    panelForTitleWithImg.add(labelForTitle);
+//    JLabel labelForTitle = new JLabel("Title");
+//    panelForTitleWithImg.add(labelForTitle);
 
     JLabel labelForScript = new JLabel("Script");
 
@@ -140,7 +137,7 @@ public class GuiUserInput {
     frame.add(panelForDirectionButtonsWithOtherButtons);
     frame.add(panelForDefaultButtons);
     frame.add(panelForLocationInventoryMOve);
-    frame.add(panelForTitleWithImg);
+//    frame.add(panelForTitleWithImg);
     frame.add(panelForScript);
 
 //   ---------------------------------------------------------------------------------------------
@@ -170,6 +167,9 @@ public class GuiUserInput {
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
 //   ---------------------------------------------------------------------------------------------
+
+  }
+  public void displayTitle() {
 
   }
 
