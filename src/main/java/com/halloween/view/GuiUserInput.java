@@ -36,11 +36,11 @@ public class GuiUserInput {
     panelForDirectionButtonsWithOtherButtons.setBackground(Color.lightGray);
     panelForDirectionButtonsWithOtherButtons.setBounds(675, 435, 300, 250);
     panelForDirectionButtonsWithOtherButtons.setLayout(null);
-
-    JPanel panelForDefaultButtons = new JPanel();
-    panelForDefaultButtons.setBackground(Color.lightGray);
-    panelForDefaultButtons.setBounds(825, 130, 150, 280);
-    panelForDefaultButtons.setLayout(null);
+//
+//    JPanel panelForDefaultButtons = new JPanel();
+//    panelForDefaultButtons.setBackground(Color.lightGray);
+//    panelForDefaultButtons.setBounds(825, 130, 150, 280);
+//    panelForDefaultButtons.setLayout(null);
 
     JPanel panelForDirectionButton = new JPanel();
     panelForDirectionButton.setBackground(Color.lightGray);
@@ -60,13 +60,13 @@ public class GuiUserInput {
 //    JLabel labelForTitle = new JLabel("Title");
 //    panelForTitleWithImg.add(labelForTitle);
 
-    JLabel labelForScript = new JLabel("Script");
-
-    JPanel panelForScript = new JPanel();
-    panelForScript.setBackground(Color.LIGHT_GRAY);
-    panelForScript.setBounds(10, 120, 800, 300);
-    panelForScript.setLayout(new FlowLayout());
-    panelForScript.add(labelForScript);
+//    JLabel labelForScript = new JLabel("Script");
+//
+//    JPanel panelForScript = new JPanel();
+//    panelForScript.setBackground(Color.LIGHT_GRAY);
+//    panelForScript.setBounds(10, 120, 800, 300);
+//    panelForScript.setLayout(new FlowLayout());
+//    panelForScript.add(labelForScript);
 
 
     JTextArea textAreaForLocation = new JTextArea("Location:");
@@ -107,23 +107,23 @@ public class GuiUserInput {
     button7.setBounds(180, 160, 90, 40);
     button7.setFocusable(false);
 
-    JButton button8 = new JButton("Map");
-    button8.setBounds(30, 30, 90, 40);
-    button8.setFocusable(false);
-    JButton button9 = new JButton("Mute");
-    button9.setBounds(30, 90, 90, 40);
-    button9.setFocusable(false);
-    JButton button10 = new JButton("Help");
-    button10.setBounds(30, 150, 90, 40);
-    button10.setFocusable(false);
-    JButton button11 = new JButton("Quit");
-    button11.setBounds(30, 210, 90, 40);
-    button11.setFocusable(false);
+//    JButton button8 = new JButton("Map");
+//    button8.setBounds(30, 30, 90, 40);
+//    button8.setFocusable(false);
+//    JButton button9 = new JButton("Mute");
+//    button9.setBounds(30, 90, 90, 40);
+//    button9.setFocusable(false);
+//    JButton button10 = new JButton("Help");
+//    button10.setBounds(30, 150, 90, 40);
+//    button10.setFocusable(false);
+//    JButton button11 = new JButton("Quit");
+//    button11.setBounds(30, 210, 90, 40);
+//    button11.setFocusable(false);
 
-    panelForDefaultButtons.add(button8);
-    panelForDefaultButtons.add(button9);
-    panelForDefaultButtons.add(button10);
-    panelForDefaultButtons.add(button11);
+//    panelForDefaultButtons.add(button8);
+//    panelForDefaultButtons.add(button9);
+//    panelForDefaultButtons.add(button10);
+//    panelForDefaultButtons.add(button11);
 
     panelForDirectionButton.add(button1);
     panelForDirectionButton.add(button2);
@@ -135,10 +135,10 @@ public class GuiUserInput {
     panelForDirectionButtonsWithOtherButtons.add(panelForDirectionButton);
 
     frame.add(panelForDirectionButtonsWithOtherButtons);
-    frame.add(panelForDefaultButtons);
+//    frame.add(panelForDefaultButtons);
     frame.add(panelForLocationInventoryMOve);
 //    frame.add(panelForTitleWithImg);
-    frame.add(panelForScript);
+//    frame.add(panelForScript);
 
 //   ---------------------------------------------------------------------------------------------
 
