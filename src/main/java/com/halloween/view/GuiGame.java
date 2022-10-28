@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 public class GuiGame {
 
   GuiTitle title = new GuiTitle();
+  GuiForUserInput userInput = new GuiForUserInput();
+  GuiDirectionButton directionButton = new GuiDirectionButton();
+  GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
 
   public GuiGame() {
     JFrame frame = new JFrame();
@@ -16,6 +19,11 @@ public class GuiGame {
     frame.setLayout(null);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.add(title.getPanelForTitleWithImg());
+    frame.add(userInput.getPanelForUserInput());
+    frame.add(directionButton.getPanelForDirectionButtonsWithOtherButtons());
+    frame.add(userLocationInventoryMove.getPanelForLocationInventoryMOve());
+
+    frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
 
