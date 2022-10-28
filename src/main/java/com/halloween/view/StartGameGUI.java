@@ -1,29 +1,21 @@
 package com.halloween.view;
 
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Insets;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 public class StartGameGUI {
-//  private static JFrame frame;
+
+  //  private static JFrame frame;
 //  private static JPanel panel;
 //  private static JPanel redPanel;
 //  private static JPanel bluePanel;
@@ -36,10 +28,17 @@ public class StartGameGUI {
 //  private static JTextField userText;
 //  private static JPasswordField passwordText;
 //  private static JButton button;
+  JButton newGameBtn;
+  JPanel panelForStartWindow;
 
-  public static void main(String[] args) {
+  public JPanel getPanelForStartWindow() {
+    return panelForStartWindow;
+  }
+
+  public StartGameGUI() {
+
     // New Game Button
-    JButton newGameBtn = new JButton("New Game");
+    newGameBtn = new JButton("New Game");
     newGameBtn.setFont(new Font("Arial", Font.PLAIN, 40));
     newGameBtn.setBounds(175, 60, 250, 50);
 
@@ -59,47 +58,56 @@ public class StartGameGUI {
 
     JPanel redPanel = new JPanel();
     redPanel.setBackground(Color.red);
-    redPanel.setBounds(0, 0, 1200, 600);
+    redPanel.setBounds(0, 0, 1000, 600);
 
     JPanel bluePanel = new JPanel();
     bluePanel.setBackground(Color.blue);
 //    bluePanel.setBounds(0, 600, 1200, 200);
-    bluePanel.setBounds(0, 600, 600, 200);
+    bluePanel.setBounds(0, 600, 500, 200);
 //    bluePanel.setLayout(new BorderLayout());
     bluePanel.setLayout(null);
+    bluePanel.add(newGameBtn);
+
 
     JPanel greenPanel = new JPanel();
     greenPanel.setBackground(Color.green);
-    greenPanel.setBounds(600, 600, 600, 200);
+    greenPanel.setBounds(500, 600, 500, 200);
     greenPanel.setLayout(null);
-
-    JFrame frame = new JFrame();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setLayout(null);
-    frame.setSize(1200, 800);
-//    frame.setResizable(false);
-    frame.setTitle("Halloween Village");
-    frame.setVisible(true);
-    frame.add(redPanel);
-    frame.add(bluePanel);
-    frame.add(greenPanel);
-    frame.add(menu);
-//    frame.add(titleLabel);
-    System.out.println(frame.getSize());
-
-    bluePanel.add(newGameBtn);
     greenPanel.add(quitBtn);
 
+    panelForStartWindow = new JPanel();
+    panelForStartWindow.setLayout(null);
+    panelForStartWindow.setBounds(0, 0, 1000, 800);
+    panelForStartWindow.add(redPanel);
+    panelForStartWindow.add(bluePanel);
+    panelForStartWindow.add(greenPanel);
+    panelForStartWindow.add(menu);
 
-    // set window icon
-    URL iconLocation = StartGameGUI.class.getClassLoader().getResource("pumpkinIcon1.png");
-    ImageIcon img = new ImageIcon(iconLocation);
-    frame.setIconImage(img.getImage());
+//    JFrame frame = new JFrame();
+//    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    frame.setLayout(null);
+//    frame.setSize(1000, 800);
+//    frame.setResizable(false);
+//    frame.setTitle("Halloween Village");
+//    frame.add(panelForStartWindow);
 
+//    frame.add(redPanel);
+//    frame.add(bluePanel);
+//    frame.add(greenPanel);
+//    frame.add(menu);
+//    frame.add(titleLabel);
+//    System.out.println(frame.getSize());
+//
+//    // set window icon
+//    URL iconLocation = StartGameGUI.class.getClassLoader().getResource("pumpkinIcon1.png");
+//    ImageIcon img = new ImageIcon(iconLocation);
+//    frame.setIconImage(img.getImage());
+//    frame.setVisible(true);
 
+  }
 
-
-
+  public static void main(String[] args) {
+    new StartGameGUI();
 
 //
 //  panel = new JPanel();
