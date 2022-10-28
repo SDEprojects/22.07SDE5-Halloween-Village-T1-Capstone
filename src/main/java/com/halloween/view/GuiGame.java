@@ -10,6 +10,10 @@ public class GuiGame {
   GuiTitle title = new GuiTitle();
   GuiScript script = new GuiScript();
   GuiButtons defaultButton = new GuiButtons();
+  GuiForUserInput userInput = new GuiForUserInput();
+  GuiDirectionButton directionButton = new GuiDirectionButton();
+  GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
+
 
   public GuiGame() {
     JFrame frame = new JFrame();
@@ -21,6 +25,10 @@ public class GuiGame {
     frame.add(title.getPanelForTitleWithImg());
     frame.add(script.getPanelForScript());
     frame.add(defaultButton.getPanelForDefaultButtons());
+    frame.add(userInput.getPanelForUserInput());
+    frame.add(directionButton.getPanelForDirectionButtonsWithOtherButtons());
+    frame.add(userLocationInventoryMove.getPanelForLocationInventoryMOve());
+    frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
 
