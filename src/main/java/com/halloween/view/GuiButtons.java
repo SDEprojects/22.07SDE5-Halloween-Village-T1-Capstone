@@ -27,7 +27,6 @@ public class GuiButtons {
     JButton mapButton = new JButton("Map");
     mapButton.setBounds(30, 30, 90, 40);
     mapButton.setFocusable(false);
-
     mapButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -47,14 +46,20 @@ public class GuiButtons {
     help.setBounds(30, 150, 90, 40);
     help.setFocusable(false);
 
-    JButton button11 = new JButton("Quit");
-    button11.setBounds(30, 210, 90, 40);
-    button11.setFocusable(false);
+    JButton quitButton = new JButton("Quit");
+    quitButton.setBounds(30, 210, 90, 40);
+    quitButton.setFocusable(false);
+    quitButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        System.exit(0);
+      }
+    });
 
     panelForDefaultButtons.add(mapButton);
     panelForDefaultButtons.add(muteButton);
     panelForDefaultButtons.add(help);
-    panelForDefaultButtons.add(button11);
+    panelForDefaultButtons.add(quitButton);
   }
 
 }
