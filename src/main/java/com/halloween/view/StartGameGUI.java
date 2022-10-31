@@ -1,8 +1,10 @@
 package com.halloween.view;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +12,7 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
@@ -30,6 +33,7 @@ public class StartGameGUI {
 //  private static JButton button;
   JButton newGameBtn;
   JPanel panelForStartWindow;
+  JLabel labelForRedPanel;
 
   public JPanel getPanelForStartWindow() {
     return panelForStartWindow;
@@ -37,15 +41,16 @@ public class StartGameGUI {
 
   public StartGameGUI() {
 
+
     // New Game Button
     newGameBtn = new JButton("New Game");
     newGameBtn.setFont(new Font("Arial", Font.PLAIN, 40));
-    newGameBtn.setBounds(175, 60, 250, 50);
+    newGameBtn.setBounds(175, 600, 250, 50);
 
     // Quit Button
     JButton quitBtn = new JButton("Quit");
     quitBtn.setFont(new Font("Arial", Font.PLAIN, 40));
-    quitBtn.setBounds(175, 60, 250, 50);
+    quitBtn.setBounds(550, 600, 250, 50);
     quitBtn.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -57,30 +62,43 @@ public class StartGameGUI {
     menu.setPreferredSize(new Dimension(1200, 400));
 
     JPanel redPanel = new JPanel();
-    redPanel.setBackground(Color.red);
-    redPanel.setBounds(0, 0, 1000, 600);
+//    redPanel.setBackground(Color.red);
+    redPanel.setBounds(0, 0, 1000, 800);
+//    redPanel.setLayout(new FlowLayout());
+    redPanel.setLayout(new BorderLayout());
+    redPanel.add(newGameBtn);
+    redPanel.add(quitBtn);
 
-    JPanel bluePanel = new JPanel();
-    bluePanel.setBackground(Color.blue);
-//    bluePanel.setBounds(0, 600, 1200, 200);
-    bluePanel.setBounds(0, 600, 500, 200);
-//    bluePanel.setLayout(new BorderLayout());
-    bluePanel.setLayout(null);
-    bluePanel.add(newGameBtn);
+    // add Image to redPanel
+//    URL iconLocation = StartGameGUI.class.getClassLoader().getResource("redImage.png");
+    URL imageLocation = StartGameGUI.class.getClassLoader().getResource("halloween-village-image.png");
+    ImageIcon img = new ImageIcon(imageLocation);
+    labelForRedPanel = new JLabel();
+    labelForRedPanel.setIcon(img);
+    redPanel.add(labelForRedPanel);
 
 
-    JPanel greenPanel = new JPanel();
-    greenPanel.setBackground(Color.green);
-    greenPanel.setBounds(500, 600, 500, 200);
-    greenPanel.setLayout(null);
-    greenPanel.add(quitBtn);
+//    JPanel bluePanel = new JPanel();
+//    bluePanel.setBackground(Color.blue);
+////    bluePanel.setBounds(0, 600, 1200, 200);
+//    bluePanel.setBounds(0, 600, 500, 200);
+////    bluePanel.setLayout(new BorderLayout());
+//    bluePanel.setLayout(null);
+//    bluePanel.add(newGameBtn);
+
+
+//    JPanel greenPanel = new JPanel();
+//    greenPanel.setBackground(Color.green);
+//    greenPanel.setBounds(500, 600, 500, 200);
+//    greenPanel.setLayout(null);
+//    greenPanel.add(quitBtn);
 
     panelForStartWindow = new JPanel();
     panelForStartWindow.setLayout(null);
     panelForStartWindow.setBounds(0, 0, 1000, 800);
     panelForStartWindow.add(redPanel);
-    panelForStartWindow.add(bluePanel);
-    panelForStartWindow.add(greenPanel);
+//    panelForStartWindow.add(bluePanel);
+//    panelForStartWindow.add(greenPanel);
     panelForStartWindow.add(menu);
 
 //    JFrame frame = new JFrame();
@@ -100,8 +118,8 @@ public class StartGameGUI {
 //
 //    // set window icon
 //    URL iconLocation = StartGameGUI.class.getClassLoader().getResource("pumpkinIcon1.png");
-//    ImageIcon img = new ImageIcon(iconLocation);
-//    frame.setIconImage(img.getImage());
+//    ImageIcon imgIcon = new ImageIcon(iconLocation);
+//    frame.setIconImage(imgIcon.getImage());
 //    frame.setVisible(true);
 
   }
@@ -125,7 +143,7 @@ public class StartGameGUI {
 //  titleLabel.setBounds(100, 150, 500, 150);
 //  panel.add(titleLabel);
 //
-//  // set window icon
+  // set window icon
 //  URL iconLocation = StartGameGUI.class.getClassLoader().getResource("pumpkinIcon1.png");
 //  ImageIcon img = new ImageIcon(iconLocation);
 //  frame.setIconImage(img.getImage());
