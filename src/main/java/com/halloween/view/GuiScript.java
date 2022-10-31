@@ -28,9 +28,13 @@ public class GuiScript {
 
   public void greetPlayer(){
     textAreaForScript.append(view.getImportantDisplay("backstory"));
-    //    textAreaForScript.append(view.getImportantDisplay("title"));
+//        textAreaForScript.append(view.getImportantDisplay("title"));
 //    textAreaForScript.append(view.getImportantDisplay("instruction"));
 //    textAreaForScript.append(view.getNpcResponse("welcome"));
+
+  }
+  public void displayKnock(String currentLocation){
+    textAreaForScript.append(view.noItem(currentLocation));
   }
 
 }

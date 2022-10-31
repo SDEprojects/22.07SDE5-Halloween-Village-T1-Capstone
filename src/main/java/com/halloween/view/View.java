@@ -38,8 +38,8 @@ public class View {
     System.out.println(dialogue.get(currentPosition).get("greet"));
   }
 
-  public void noItem(String currentPosition) {
-    System.out.println(dialogue.get(currentPosition).get("no item"));
+  public String noItem(String currentPosition) {
+    return dialogue.get(currentPosition).get("no item");
   }
 
   public void getItem(String currentPosition) {

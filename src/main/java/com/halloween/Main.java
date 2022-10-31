@@ -13,10 +13,10 @@ import java.io.IOException;
 public class Main {
 
   public static void main(String[] args) throws IOException {
-
-    GuiGame guiGame = new GuiGame();
-
-
+//    GuiGame guiGame = new GuiGame();
+    GuiController guiController = new GuiController();
+    Game game = new Game();
+    guiController.playGame(game);
   }
 //    Game game = new Game();
 //    TextParser textParser = new TextParser();
