@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -25,7 +27,7 @@ public class GuiGame implements ActionListener {
 
   public GuiGame() {
     frame = new JFrame();
-    frame.setTitle("Halloween-Village");
+    frame.setTitle("Halloween Village");
     frame.getContentPane().setBackground(Color.cyan);
     frame.setSize(new Dimension(1000, 800));
     frame.setLayout(null);
@@ -46,6 +48,12 @@ public class GuiGame implements ActionListener {
 
     frame.add(startGameGui.getPanelForStartWindow());
     startGameGui.newGameBtn.addActionListener(this);
+
+    // set window icon
+    URL iconLocation = StartGameGUI.class.getClassLoader().getResource("pumpkinIcon1.png");
+    ImageIcon imgIcon = new ImageIcon(iconLocation);
+    frame.setIconImage(imgIcon.getImage());
+    frame.setVisible(true);
 
 
     frame.setLocationRelativeTo(null);
