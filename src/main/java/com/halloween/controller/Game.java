@@ -39,13 +39,13 @@ public class Game {
   // Greeting user by displaying welcome message and ask name. user can quit the game by typing "quit"
   public void greetPlayer() throws IOException {
     if (player.getName() != null) {
-      System.out.printf(display.getNpcResponse("welcome_back") + "\n", player.getName());
+      System.out.println(display.getNpcResponse("welcome_back") + "\n" + player.getName());
     } else {
       BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
       System.out.println(display.getNpcResponse("ask_name"));
       player.setName(buffer.readLine().trim());
       if (player.getName().equals("quit")) quitGame();
-      System.out.printf(display.getNpcResponse("welcome"), player.getName());
+      System.out.println(display.getNpcResponse("welcome"));
     }
   }
 

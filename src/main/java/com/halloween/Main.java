@@ -7,13 +7,14 @@ import com.halloween.controller.Game;
 import com.halloween.controller.GuiController;
 import com.halloween.controller.TextParser;
 import com.halloween.model.State;
+import com.halloween.view.GuiGame;
 import java.io.IOException;
 
 public class Main {
 
   public static void main(String[] args) throws IOException {
 
-    GuiController guiGame = new GuiController();
+    GuiGame guiGame = new GuiGame();
 
 
   }
