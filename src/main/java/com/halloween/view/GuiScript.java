@@ -13,6 +13,7 @@ public class GuiScript {
   JPanel panelForScript = new JPanel();
   JLabel labelForScript = new JLabel("Script");
   JTextArea textAreaForScript = new JTextArea();
+  JTextArea textAreaForHelp = new JTextArea();
   View view = new View();
   Game game = new Game();
   public GuiScript() {
@@ -20,6 +21,7 @@ public class GuiScript {
     panelForScript.setBounds(10, 120, 800, 300);
     panelForScript.setLayout(new FlowLayout());
     panelForScript.add(textAreaForScript);
+    panelForScript.add(textAreaForHelp);
   }
 
   public JPanel getPanelForScript() {
@@ -28,9 +30,9 @@ public class GuiScript {
 
   public void greetPlayer(){
     textAreaForScript.append(view.getImportantDisplay("backstory"));
-    //    textAreaForScript.append(view.getImportantDisplay("title"));
+//        textAreaForScript.append(view.getImportantDisplay("title"));
 //    textAreaForScript.append(view.getImportantDisplay("instruction"));
 //    textAreaForScript.append(view.getNpcResponse("welcome"));
+//    textAreaForScript.append(view.getImportantDisplay("help"));
   }
-
 }
