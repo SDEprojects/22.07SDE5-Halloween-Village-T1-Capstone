@@ -8,14 +8,24 @@ import javax.swing.JTextArea;
 public class GuiUserLocationInventoryMove {
   JPanel panelForLocationInventoryMOve;
 
+  public JTextArea getTextAreaForInventory() {
+    return textAreaForInventory;
+  }
+
+  JTextArea textAreaForInventory;
+
   public GuiUserLocationInventoryMove() {
 
     JTextArea textAreaForLocation = new JTextArea("Location:");
+    textAreaForLocation.setEditable(false);
     textAreaForLocation.setBorder(BorderFactory.createLineBorder(Color.black));
     textAreaForLocation.setBounds(2, 2, 215, 245);
-    JTextArea textAreaForInventory = new JTextArea("Inventory:");
+
+
+    textAreaForInventory = new JTextArea("Inventory:");
     textAreaForInventory.setBorder(BorderFactory.createLineBorder(Color.black));
     textAreaForInventory.setBounds(222, 2, 215, 245);
+
     JTextArea textAreaForPossibleMove = new JTextArea("Possible Moves:");
     textAreaForPossibleMove.setBorder(BorderFactory.createLineBorder(Color.black));
     textAreaForPossibleMove.setBounds(442, 2, 215, 245);

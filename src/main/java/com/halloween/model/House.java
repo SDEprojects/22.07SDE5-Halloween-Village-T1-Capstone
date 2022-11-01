@@ -1,6 +1,7 @@
 package com.halloween.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class House {
   private String houseName;
@@ -11,6 +12,7 @@ public class House {
   private String south;
   private String west;
   private boolean knocked;
+
 
   public House(String houseName, ArrayList<String> houseItems, String[] residents, String north,
       String east, String south, String west) {
@@ -84,3 +86,4 @@ public class House {
     this.knocked = knocked;
   }
 }
+
