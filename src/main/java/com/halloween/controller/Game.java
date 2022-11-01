@@ -112,8 +112,8 @@ public class Game {
   }
 
   // Update user's current location
-  public void movePlayer(String direction) {
-    House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
+  public void movePlayer(String direction, String location) {
+    House currentPosition =  neighborhood.getNeighborhood().get(location);
     String playersMove = neighborhood.isValidDirection(direction, currentPosition);
     // set the previous house knocked to false before moving
     currentPosition.setKnocked(false);
@@ -149,7 +149,7 @@ public class Game {
   // set knocked value to true when user knocks. also checks user's inventory when user knocks on Karen's house or Saw house.
   public void knockOnDoor(String location) {
     House house =  neighborhood.getNeighborhood().get(location);
-    house.setKnocked(true);
+//    house.setKnocked(true);
 
     String knock = "/door-knock.wav";
     playSound(knock);

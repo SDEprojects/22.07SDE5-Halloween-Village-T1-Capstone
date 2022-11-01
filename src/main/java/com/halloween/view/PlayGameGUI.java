@@ -78,8 +78,9 @@ public class PlayGameGUI implements ActionListener {
   }
 
   public void updateKnockButton(String location){
-    directionButton.updateButton(location);
+    directionButton.updateDirectionButtons(location);
   }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     startGameGui.getPanelForStartWindow().setVisible(false);
@@ -94,6 +95,11 @@ public class PlayGameGUI implements ActionListener {
 //    knockListener = listener;
 
 }
+
+
+  public void setDirectionConsumer(Consumer<String> listener) {
+    directionButton.setDirectionListener(direction -> listener.accept(direction));
+  }
   public static void main(String[] args) {
     new PlayGameGUI();
   }
