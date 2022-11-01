@@ -112,9 +112,10 @@ public class Game {
   }
 
   // Update user's current location
-  public void movePlayer(String direction, String location) {
+  public String movePlayer(String direction, String location) {
     House currentPosition =  neighborhood.getNeighborhood().get(location);
     String playersMove = neighborhood.isValidDirection(direction, currentPosition);
+    System.out.println("player move is " + playersMove);
     // set the previous house knocked to false before moving
     currentPosition.setKnocked(false);
     if (playersMove.isEmpty()){
@@ -125,6 +126,7 @@ public class Game {
       System.out.printf( display.getNpcResponse("players_move"), player.getName(), direction, player.getPosition());
       playSound("/footsteps.wav");
     }
+    return playersMove;
   }
 
   // User get item, and save it to the inventory

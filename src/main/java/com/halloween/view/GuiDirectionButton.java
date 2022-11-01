@@ -54,7 +54,7 @@ public class GuiDirectionButton {
     westButton.setFocusable(false);
     westButton.setActionCommand("west");
     westButton.addActionListener(e ->
-        directionListener.accept(northButton.getActionCommand()));
+        directionListener.accept(westButton.getActionCommand()));
 
 
     JButton eastButton = new JButton("E");
@@ -62,7 +62,7 @@ public class GuiDirectionButton {
     eastButton.setFocusable(false);
     eastButton.setActionCommand("east");
     eastButton.addActionListener(e ->
-        directionListener.accept(northButton.getActionCommand()));
+        directionListener.accept(eastButton.getActionCommand()));
 
 
     JButton getButton = new JButton("Get");

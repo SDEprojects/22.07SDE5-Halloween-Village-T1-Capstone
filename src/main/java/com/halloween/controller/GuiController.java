@@ -30,6 +30,7 @@ public class GuiController {
 
   public void setCurrentLocation(String currentLocation) {
     this.currentLocation = currentLocation;
+    System.out.println("your current Location isss " + currentLocation);
   }
 
   public String getCurrentLocation() {
@@ -61,10 +62,12 @@ public class GuiController {
           game.knockOnDoor(location);
           House house = neighborhood.getNeighborhood().get(location);
           house.setKnocked(true);
+          setCurrentLocation(house.getHouseName());
         });
     playGameGUI.getDirectionButton().setDirectionListener(
         direction-> {
-          game.movePlayer(direction, currentLocation);
+          String newLocation = game.movePlayer(direction, currentLocation);
+          setCurrentLocation(newLocation);
         }
     );
 
