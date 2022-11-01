@@ -1,14 +1,16 @@
 package com.halloween.view;
 
+import com.halloween.model.Neighborhood;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.function.Consumer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class GuiGame implements ActionListener {
+public class PlayGameGUI implements ActionListener {
 
   JFrame frame;
   GuiTitle title = new GuiTitle();
@@ -21,9 +23,16 @@ public class GuiGame implements ActionListener {
   StartGameGUI startGameGui = new StartGameGUI();
 
   JPanel panelForGameWindow;
+  PlayGameGUI guiScript;
+
+  private Consumer<String> knockListener;
+
+  public String currentLocation;
+  public ArrayList<String> inventory;
+  public Neighborhood neighborhood;
 
 
-  public GuiGame() {
+  public PlayGameGUI() {
     frame = new JFrame();
     frame.setTitle("Halloween-Village");
     frame.getContentPane().setBackground(Color.cyan);
@@ -50,20 +59,34 @@ public class GuiGame implements ActionListener {
 
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
+
+    currentLocation = "your house";
+
   }
 
 
+  public GuiDirectionButton getDirectionButton() {
+    return directionButton;
+  }
 
+  public void updateKnockButton(String location){
+    directionButton.updateButton(location);
+  }
   @Override
   public void actionPerformed(ActionEvent e) {
     startGameGui.getPanelForStartWindow().setVisible(false);
     panelForGameWindow.setVisible(true);
-    script.greetPlayer();
+    script.printScript("backstory");
 
   }
 
+  public void setKnockConsumer(Consumer<String> listener) {
 
+    directionButton.setKnockListener(location -> listener.accept(location));
+//    knockListener = listener;
+
+}
   public static void main(String[] args) {
-    new GuiGame();
+    new PlayGameGUI();
   }
 }

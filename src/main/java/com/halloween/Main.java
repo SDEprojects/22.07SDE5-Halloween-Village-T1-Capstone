@@ -1,23 +1,29 @@
 package com.halloween;
 
-import static com.halloween.view.SoundEffects.muteSoundEffects;
-import static com.halloween.view.SoundEffects.unmuteSoundEffects;
-
 import com.halloween.controller.Game;
 import com.halloween.controller.GuiController;
-import com.halloween.controller.TextParser;
-import com.halloween.model.State;
-import com.halloween.view.GuiGame;
+import com.halloween.model.Player;
 import java.io.IOException;
 
 public class Main {
 
   public static void main(String[] args) throws IOException {
-//    GuiGame guiGame = new GuiGame();
+//    PlayGameGUI guiGame = new PlayGameGUI();
     GuiController guiController = new GuiController();
-    Game game = new Game();
-    guiController.playGame(game);
-  }
+//    playGame();
+//    Player player = new Player();
+    System.out.println(guiController.getCurrentLocation());
+
+    guiController.updateGuiView(guiController.getCurrentLocation());
+    guiController.setUpHandlers();
+
+    }
+
+//    public static void setGame(Game game){
+//
+//
+//  }
+}
 //    Game game = new Game();
 //    TextParser textParser = new TextParser();
 //
@@ -108,4 +114,4 @@ public class Main {
 //  }
 
 
-}
+//}
