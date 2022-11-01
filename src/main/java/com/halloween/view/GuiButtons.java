@@ -1,5 +1,6 @@
 package com.halloween.view;
 
+import com.halloween.controller.Game;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,9 @@ import javax.swing.JPanel;
 
 public class GuiButtons {
   JPanel panelForDefaultButtons;
+  Game game = new Game();
+  GuiScript guiScript = new GuiScript();
+  SoundEffects soundEffects = new SoundEffects();
 
   public JPanel getPanelForDefaultButtons() {
     return panelForDefaultButtons;
@@ -27,7 +31,6 @@ public class GuiButtons {
     JButton mapButton = new JButton("Map");
     mapButton.setBounds(30, 30, 90, 40);
     mapButton.setFocusable(false);
-
     mapButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -42,6 +45,22 @@ public class GuiButtons {
     JButton muteButton = new JButton("Mute");
     muteButton.setBounds(30, 90, 90, 40);
     muteButton.setFocusable(false);
+    muteButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (muteButton.getText().equals("Mute")) {
+//        game.stopMusic();
+          // muteSoundEffects method may need to change to a non-static method
+//          soundEffects.muteSoundEffects();
+          muteButton.setText("Unmute");
+        } else {
+//          game.startMusic();
+          // unmuteSoundEffects method may need to change to a non-static method
+//          soundEffects.unmuteSoundEffects();
+          muteButton.setText("Mute");
+        }
+      }
+    });
 
     JButton help = new JButton("Help");
     help.setBounds(30, 150, 90, 40);
