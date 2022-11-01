@@ -1,32 +1,82 @@
 package com.halloween.controller;
 
-import com.halloween.view.GuiGame;
+import com.halloween.model.House;
+import com.halloween.model.Neighborhood;
+import com.halloween.model.Player;
+import com.halloween.view.PlayGameGUI;
+import java.util.ArrayList;
 
 public class GuiController {
-  GuiGame guiGame;
+  PlayGameGUI playGameGUI;
+  Player player;
+  Game game;
+  String currentLocation;
+  ArrayList<String> inventory;
+  Neighborhood neighborhood;
+
+
+
+
+  public GuiController(){
+    playGameGUI = new PlayGameGUI();
+    game = new Game();
+    neighborhood = new Neighborhood();
+    currentLocation = "your house";
+    inventory = new ArrayList<>();
+//    playGameGUI.setKnockListener(location -> {
+//      System.out.println("knocked");
+//    });
+  }
+
+  public void setCurrentLocation(String currentLocation) {
+    this.currentLocation = currentLocation;
+  }
+
+  public String getCurrentLocation() {
+    return currentLocation;
+  }
 
   public void setGame(Game game) {
     this.game = game;
   }
 
-  Game game;
 
-  public GuiController(){
-    guiGame = new GuiGame();
-//    game = new Game();
-  }
   public static void playGame(Game game) {
     System.out.println("GuiController");
     game.currentLocation();
+
+
   }
+
+  public void updateGuiView(String location){
+    playGameGUI.updateKnockButton(location);
+  }
+
+
+
+  public void setUpHandlers() {
+
+    playGameGUI.getDirectionButton().setKnockListener(
+        location -> {
+          game.knockOnDoor(location);
+          House house = neighborhood.getNeighborhood().get(location);
+          house.setKnocked(true);
+        });
+    playGameGUI.getDirectionButton().setDirectionListener(
+        direction-> {
+          game.movePlayer(direction, currentLocation);
+        }
+    );
+
+    }
+
   public void knockOnDoor(){
-    game.knockOnDoor();
+    game.knockOnDoor(currentLocation);
   }
   public Game getGame() {
     return game;
   }
-//  public void currentLocation(){
-//   game.currentLocation();
-//  }
+
+
 
 }
