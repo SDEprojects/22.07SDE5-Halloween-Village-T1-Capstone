@@ -12,16 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class GuiButtons {
+
   JPanel panelForDefaultButtons;
-  Game game = new Game();
+  JButton help;
   GuiScript guiScript = new GuiScript();
+  HelpGui helpGui = new HelpGui();
   SoundEffects soundEffects = new SoundEffects();
+
 
   public JPanel getPanelForDefaultButtons() {
     return panelForDefaultButtons;
   }
 
-  public GuiButtons(){
+  public GuiButtons() {
 
     panelForDefaultButtons = new JPanel();
     panelForDefaultButtons.setBackground(Color.lightGray);
@@ -31,6 +34,7 @@ public class GuiButtons {
     JButton mapButton = new JButton("Map");
     mapButton.setBounds(30, 30, 90, 40);
     mapButton.setFocusable(false);
+
     mapButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -41,6 +45,7 @@ public class GuiButtons {
         mapFrame.setVisible(true);
       }
     });
+
 
     JButton muteButton = new JButton("Mute");
     muteButton.setBounds(30, 90, 90, 40);
@@ -62,9 +67,13 @@ public class GuiButtons {
       }
     });
 
-    JButton help = new JButton("Help");
+    
+    help = new JButton("Help");
     help.setBounds(30, 150, 90, 40);
     help.setFocusable(false);
+    help.addActionListener(e -> helpGui.setVisibleHelpMenu());
+
+    
 
     JButton quitButton = new JButton("Quit");
     quitButton.setBounds(30, 210, 90, 40);
@@ -76,10 +85,12 @@ public class GuiButtons {
       }
     });
 
+
     panelForDefaultButtons.add(mapButton);
     panelForDefaultButtons.add(muteButton);
     panelForDefaultButtons.add(help);
     panelForDefaultButtons.add(quitButton);
   }
+
 
 }
