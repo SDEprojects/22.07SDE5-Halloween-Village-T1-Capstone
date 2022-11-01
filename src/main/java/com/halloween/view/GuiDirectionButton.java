@@ -1,14 +1,10 @@
 package com.halloween.view;
 
-import com.halloween.Main;
 import com.halloween.controller.Game;
 import com.halloween.controller.GuiController;
-import com.halloween.model.Player;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.function.Consumer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -16,6 +12,7 @@ import javax.swing.JPanel;
 public class GuiDirectionButton {
 
   private Consumer<String> knockListener;
+  private Consumer<String> directionListener;
   JPanel panelForDirectionButtonsWithOtherButtons;
 
   GuiController controller;
@@ -39,44 +36,33 @@ public class GuiDirectionButton {
 
     JButton northButton = new JButton("N");
     northButton.setBounds(45, 0, 46, 46);
+    northButton.setActionCommand("north");
     northButton.setFocusable(false);
-//    northButton.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        controller.getGame().movePlayer("north");
-//      }
-//    });
+    northButton.addActionListener(e ->
+        directionListener.accept(northButton.getActionCommand()));
 
     JButton southButton = new JButton("S");
     southButton.setBounds(45, 90, 46, 46);
+    southButton.setActionCommand("south");
     southButton.setFocusable(false);
-//    southButton.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        game.movePlayer("south");
-//      }
-//    });
+    southButton.addActionListener(e ->
+          directionListener.accept(southButton.getActionCommand()));
+
 
     JButton westButton = new JButton("W");
     westButton.setBounds(0, 45, 46, 46);
     westButton.setFocusable(false);
-//    westButton.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        game.movePlayer("west");
-//      }
-//    });
+    westButton.setActionCommand("west");
+    westButton.addActionListener(e ->
+        directionListener.accept(northButton.getActionCommand()));
+
 
     JButton eastButton = new JButton("E");
     eastButton.setBounds(90, 45, 46, 46);
     eastButton.setFocusable(false);
-//    eastButton.addActionListener(new ActionListener(e) {
-//      @Override
-//    public void actionPerformed(ActionEvent e) {
-//      game.movePlayer("east");
-//    }
-//
-//    });
+    eastButton.setActionCommand("east");
+    eastButton.addActionListener(e ->
+        directionListener.accept(northButton.getActionCommand()));
 
 
     JButton getButton = new JButton("Get");
@@ -99,21 +85,16 @@ public class GuiDirectionButton {
 //      }
 //    });
 
-//    JButton knockButton = new JButton("Knock");
-////    knockButton.setActionCommand();
-//    knockButton.setBounds(180, 160, 90, 40);
-//    knockButton.setFocusable(false);
+    JButton knockButton = new JButton("Knock");
+    knockButton.setActionCommand("your house");
+    knockButton.setBounds(180, 160, 90, 40);
+    knockButton.setFocusable(false);
 
-//    knockButton.addActionListener(e -> {
-//      knockListener.accept(knockButton.getActionCommand());
-//    });
-//    knockButton.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//
-//
-//      }
-//    });
+    knockButton.addActionListener(e -> {
+      knockListener.accept(knockButton.getActionCommand());
+    });
+
+
 
 //    String currentLocation = controller.getCurrentLocation();
 //    knockButton.addActionListener(game.knockOnDoor(currentLocation));
@@ -143,7 +124,7 @@ public class GuiDirectionButton {
     panelForDirectionButton.add(eastButton);
     panelForDirectionButtonsWithOtherButtons.add(getButton);
     panelForDirectionButtonsWithOtherButtons.add(useButton);
-//    panelForDirectionButtonsWithOtherButtons.add(knockButton);
+    panelForDirectionButtonsWithOtherButtons.add(knockButton);
     panelForDirectionButtonsWithOtherButtons.add(panelForDirectionButton);
   }
 
@@ -152,16 +133,18 @@ public class GuiDirectionButton {
   // new value is received from GUI controller -> PlayGameGui -> GuiDirectionButton
   // when this button is clicked, the current location value will be sent back to
   // controller so that controller knows which door the user is knocking.
-  public void updateButton(String location){
+  public void updateDirectionButtons(String location){
     panelForDirectionButtonsWithOtherButtons.removeAll();
     JButton knockButton = new JButton(location);
-//    knockButton.setActionCommand();
     knockButton.setBounds(180, 160, 90, 40);
     knockButton.setFocusable(false);
     panelForDirectionButtonsWithOtherButtons.add(knockButton);
     knockButton.addActionListener(e ->
         knockListener.accept(location));
+
   }
+
+
 
   public JPanel getPanelForDirectionButtonsWithOtherButtons() {
     return panelForDirectionButtonsWithOtherButtons;
@@ -169,8 +152,10 @@ public class GuiDirectionButton {
 
   public void setKnockListener(Consumer<String> listener) {
     knockListener = listener;
+  }
 
-
+  public void setDirectionListener(Consumer<String> listener) {
+    directionListener = listener;
   }
 
 

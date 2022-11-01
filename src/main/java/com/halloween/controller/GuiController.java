@@ -1,5 +1,6 @@
 package com.halloween.controller;
 
+import com.halloween.model.House;
 import com.halloween.model.Neighborhood;
 import com.halloween.model.Player;
 import com.halloween.view.PlayGameGUI;
@@ -55,11 +56,18 @@ public class GuiController {
 
   public void setUpHandlers() {
 
-
     playGameGUI.getDirectionButton().setKnockListener(
         location -> {
           game.knockOnDoor(location);
+          House house = neighborhood.getNeighborhood().get(location);
+          house.setKnocked(true);
         });
+    playGameGUI.getDirectionButton().setDirectionListener(
+        direction-> {
+          game.movePlayer(direction, currentLocation);
+        }
+    );
+
     }
 
   public void knockOnDoor(){

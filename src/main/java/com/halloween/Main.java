@@ -14,7 +14,7 @@ public class Main {
 //    Player player = new Player();
     System.out.println(guiController.getCurrentLocation());
 
-    guiController.updateGuiView(guiController.getCurrentLocation());
+//    guiController.updateGuiView(guiController.getCurrentLocation());
     guiController.setUpHandlers();
 
     }
