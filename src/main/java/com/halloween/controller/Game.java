@@ -7,6 +7,7 @@ import com.halloween.model.House;
 import com.halloween.model.Neighborhood;
 import com.halloween.model.Player;
 import com.halloween.model.State;
+import com.halloween.view.GuiScript;
 import com.halloween.view.PlayMusic;
 import com.halloween.view.View;
 import java.io.BufferedReader;
@@ -25,9 +26,11 @@ public class Game {
   private Neighborhood neighborhood = new Neighborhood();
   private StoreGame storeGame = new StoreGame();
   private PlayMusic musicPlayer = new PlayMusic();
+  GuiScript guiScript = new GuiScript();
 
   public Game(){
     player.setPosition("your house");
+    System.out.println(player.getPosition());
   }
 
   public Game(State state, Player player, Neighborhood neighborhood) {
@@ -35,17 +38,20 @@ public class Game {
     this.player = player;
     this.neighborhood = neighborhood;
   }
+  public String currentLocation(){
+    return player.getPosition();
+  }
 
   // Greeting user by displaying welcome message and ask name. user can quit the game by typing "quit"
   public void greetPlayer() throws IOException {
     if (player.getName() != null) {
-      System.out.printf(display.getNpcResponse("welcome_back") + "\n", player.getName());
+      System.out.println(display.getNpcResponse("welcome_back") + "\n" + player.getName());
     } else {
       BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
       System.out.println(display.getNpcResponse("ask_name"));
       player.setName(buffer.readLine().trim());
       if (player.getName().equals("quit")) quitGame();
-      System.out.printf(display.getNpcResponse("welcome"), player.getName());
+      System.out.println(display.getNpcResponse("welcome"));
     }
   }
 
@@ -106,9 +112,10 @@ public class Game {
   }
 
   // Update user's current location
-  public void movePlayer(String direction) {
-    House currentPosition =  neighborhood.getNeighborhood().get(player.getPosition());
+  public String movePlayer(String direction, String location) {
+    House currentPosition =  neighborhood.getNeighborhood().get(location);
     String playersMove = neighborhood.isValidDirection(direction, currentPosition);
+    System.out.println("player move is " + playersMove);
     // set the previous house knocked to false before moving
     currentPosition.setKnocked(false);
     if (playersMove.isEmpty()){
@@ -119,6 +126,7 @@ public class Game {
       System.out.printf( display.getNpcResponse("players_move"), player.getName(), direction, player.getPosition());
       playSound("/footsteps.wav");
     }
+    return playersMove;
   }
 
   // User get item, and save it to the inventory
@@ -139,10 +147,11 @@ public class Game {
     house.setKnocked(false);
   }
 
+//  GuiScript guiScript = new GuiScript();
   // set knocked value to true when user knocks. also checks user's inventory when user knocks on Karen's house or Saw house.
-  public void knockOnDoor() {
-    House house =  neighborhood.getNeighborhood().get(player.getPosition());
-    house.setKnocked(true);
+  public void knockOnDoor(String location) {
+    House house =  neighborhood.getNeighborhood().get(location);
+//    house.setKnocked(true);
 
     String knock = "/door-knock.wav";
     playSound(knock);
@@ -158,6 +167,9 @@ public class Game {
       knockOnSawHouse(playerItems);
       // for all other houses (besides karen's house and saw house) we do the following
     } else if (house.getHouseItems().isEmpty()) {
+      System.out.println(player.getPosition());
+
+      guiScript.displayKnock(display.noItem(player.getPosition()));
       display.noItem(player.getPosition());
     } else {
       display.greet(player.getPosition());

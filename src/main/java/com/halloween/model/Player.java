@@ -3,13 +3,15 @@ package com.halloween.model;
 import java.util.ArrayList;
 
 public class Player {
+
   private String name;
   private String position;
   private ArrayList<String> items;
 
   // player constructor with name, current location, and inventory
-  public Player(String name, String position, ArrayList<String> items) {
-    this.name = name;
+//  public Player(String name, String position, ArrayList<String> items) {
+  public Player(String position, ArrayList<String> items) {
+//    this.name = name;
     this.position = position;
     this.items = new ArrayList<>();
   }
@@ -43,7 +45,7 @@ public class Player {
   }
 
   // add item to inventory
-  public void addItem(String item){
+  public void addItem(String item) {
     items.add(item);
   }
 
