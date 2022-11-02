@@ -55,13 +55,11 @@ public class GuiButtons {
       public void actionPerformed(ActionEvent e) {
         if (muteButton.getText().equals("Mute")) {
 //        game.stopMusic();
-          // muteSoundEffects method may need to change to a non-static method
-//          soundEffects.muteSoundEffects();
+          soundEffects.muteSoundEffects();
           muteButton.setText("Unmute");
         } else {
 //          game.startMusic();
-          // unmuteSoundEffects method may need to change to a non-static method
-//          soundEffects.unmuteSoundEffects();
+          soundEffects.unmuteSoundEffects();
           muteButton.setText("Mute");
         }
       }
