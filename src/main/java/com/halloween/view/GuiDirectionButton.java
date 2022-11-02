@@ -22,8 +22,6 @@ public class GuiDirectionButton {
 
   GuiUserLocationInventoryMove guiForInventory = new GuiUserLocationInventoryMove();
 
-
-
   public GuiDirectionButton() {
 
     panelForDirectionButtonsWithOtherButtons = new JPanel();
@@ -78,15 +76,9 @@ public class GuiDirectionButton {
     JButton useButton = new JButton("Use");
     useButton.setBounds(180, 100, 90, 40);
     useButton.setFocusable(false);
-//    useButton.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        game.useItem();
-//      }
-//    });
+
 
     JButton knockButton = new JButton("Knock");
-    knockButton.setActionCommand("your house");
     knockButton.setBounds(180, 160, 90, 40);
     knockButton.setFocusable(false);
 
@@ -95,26 +87,6 @@ public class GuiDirectionButton {
     });
 
 
-//    String currentLocation = controller.getCurrentLocation();
-//    knockButton.addActionListener(game.knockOnDoor(currentLocation));
-//    knockButton.addActionListener(e -> {
-//      String location = e.getActionCommand();
-//      knockListener.accept(location);
-
-//    });
-
-
-
-//    Consumer<String> consumer = (String text) -> {
-//
-//    }
-
-//    knockButton.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        game.knockOnDoor();
-//      }
-//    });
 
     panelForDirectionButton.add(northButton);
     panelForDirectionButton.add(southButton);

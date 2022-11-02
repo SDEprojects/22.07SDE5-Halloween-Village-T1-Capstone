@@ -112,7 +112,7 @@ public class PlayGameGUI implements ActionListener {
   }
 
   public void setInventoryConsumer(Consumer<String> listener) {
-    userLocationInventoryMove.setInventoryListener(item -> listener.accept(item));
+    userLocationInventoryMove.setUseItemListener(item -> listener.accept(item));
   }
 
 

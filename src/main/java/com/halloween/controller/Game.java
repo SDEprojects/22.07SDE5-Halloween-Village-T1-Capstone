@@ -265,23 +265,28 @@ public class Game {
     this.state = state;
   }
 
+ public Boolean validateItemToUse(ArrayList<String> inventory, String item){
+    if (inventory.contains(item)){
+      return true;
+    }else{
+      return false;
+    }
+ }
 
   // user uses item. if the item was used in proper places, run the associated function.
-  public void useItem(String item) {
-    // get the house the player is currently at
-    House house = neighborhood.getNeighborhood().get(player.getPosition());
-    boolean successfullyUsedItem = player.removeItem(item);
+  public ArrayList<String> useItem(House house, String item, ArrayList<String> inventory) {
+    boolean successfullyUsedItem = inventory.remove(item);
     // if the house is knocked then try to use the item
     if (house.isKnocked()) {
-      showInventory();
+//      showInventory();
       String response = successfullyUsedItem ? "remove_item" : "warning_remove_item";
       System.out.printf(display.getNpcResponse(response), item);
       if (!successfullyUsedItem) {
-        return;
+        return inventory;
       }
     } else {
       System.out.println(display.getNpcResponse("knock_to_use_item"));
-      return;
+      return inventory;
     }
     // if we use the badge at karen's house then we win the game
     if (house.getHouseName().equals("karen's house")) {
@@ -290,16 +295,19 @@ public class Game {
       System.out.println(display.getNpcResponse("draculas_tooth"));
       // added dracula's ruby to our inventory
       // NOTE: dracula's tooth is a hidden item, so we don't store it in the house
-      player.addItem("ruby");
+      inventory.add("ruby");
+      return inventory;
     } else if (house.getHouseName().equals("witch's den")) {
-      witchUseItem(item, house);
+      String exchangedItem = witchUseItem(item, house);
+      inventory.add(exchangedItem);
     }
+    return inventory;
   }
 
   // if user knocks on the witch's house, and user has cat-hair or beer or dentures in the inventory,
   // the witch will take the items to make a potion.
   // if all the items are collected by the witch, user will get the potion.
-  private void witchUseItem(String item, House house) {
+  private String witchUseItem(String item, House house) {
     if (item.equals("cat-hair") || item.equals("beer") || item.equals("dentures")) {
       System.out.printf(display.getNpcResponse("give_witch_ingredient"), item);
       playSound("/bubbles.wav");
@@ -312,9 +320,11 @@ public class Game {
         && witchHouseItems.contains("dentures")) {
       System.out.println(display.getNpcResponse("complete_witch_potion"));
       // NOTE: potion is a hidden item, so we don't store it in the house
-      player.addItem("potion");
+      String exchangedItem = "potion";
       playSound("/witch.wav");
+      return exchangedItem;
     }
+    return null;
   }
 
   // WIN condition

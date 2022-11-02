@@ -1,14 +1,11 @@
 package com.halloween.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -16,7 +13,7 @@ public class GuiUserLocationInventoryMove {
   JPanel panelForLocationInventoryMOve;
   JPanel itemPanel;
   JButton itemBtn;
-  Consumer<String> inventoryListener;
+  Consumer<String> useItemListener;
 
   public GuiUserLocationInventoryMove() {
 
@@ -64,11 +61,14 @@ public class GuiUserLocationInventoryMove {
       itemBtn.setActionCommand(inventory.get(i));
       itemPanel.add(itemBtn);
       itemBtn.setVisible(true);
+      itemBtn.addActionListener(e -> {
+        useItemListener.accept(itemBtn.getText());
+      });
     }
   }
 
-  public void setInventoryListener(Consumer<String> listener){
-    inventoryListener = listener;
+  public void setUseItemListener(Consumer<String> listener){
+    useItemListener = listener;
   }
 
 }
