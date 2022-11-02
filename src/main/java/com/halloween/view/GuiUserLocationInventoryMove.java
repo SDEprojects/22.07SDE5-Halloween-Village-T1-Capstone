@@ -1,6 +1,9 @@
 package com.halloween.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.BorderFactory;
@@ -26,11 +29,12 @@ public class GuiUserLocationInventoryMove {
 
 
     //inventory
+//    itemPanel = new JPanel(new BorderLayout());
     itemPanel = new JPanel();
-    itemPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+//    itemPanel.setBorder(BorderFactory.createLineBorder(Color.black));
     itemPanel.setBounds(222, 2, 215, 245);
-    itemPanel.setLayout(null);
-    itemPanel.setBackground(Color.blue);
+    itemPanel.setLayout(new GridLayout(2,2));
+//    itemPanel.setBackground(Color.blue);
 
 
 
@@ -54,18 +58,47 @@ public class GuiUserLocationInventoryMove {
 
 
   public void updateInventory(List<String> inventory) {
-      itemPanel.invalidate();
+      itemPanel.removeAll();
+      itemPanel.revalidate();
+//      itemPanel.repaint();
       itemPanel.setBackground(Color.red);
+//      JButton[] itemBtn = new JButton[inventory.size()];
+
+
+//      JButton itemButton = new JButton(item);
+//      itemButton.setSize(200, 30);
+//      itemButton.setActionCommand(item);
+
+//      itemPanel.add(itemButton);
+//      itemButton.addActionListener((e -> inventoryListener.accept(itemButton.getActionCommand())));
+//      itemPanel.setLayout(new GridLayout(2,2));
+//    JPanel panel = new JPanel();
+//    System.out.println(inventory + "here 59" + inventory.size());
 
     for (int i = 0; i < inventory.size(); i++) {
-      JButton itemButton = new JButton(inventory.get(i));
-      itemButton.setSize(90, 40);
-      itemButton.setFocusable(false);
-      itemButton.setActionCommand(inventory.get(i));
-      itemPanel.add(itemButton);
-      itemButton.addActionListener((e ->
-          inventoryListener.accept(itemButton.getActionCommand())));
+      System.out.println(i);
+      itemBtn = new JButton(inventory.get(i));
+//      itemBtn = new JButton(inventory.get(i));
+      itemBtn.setSize( 200, 30);
+//      itemButton.setSize(200,30);
+      itemBtn.setFocusable(false);
+      itemBtn.setActionCommand(inventory.get(i));
+      itemPanel.add(itemBtn);
+      itemBtn.setVisible(true);
     }
+
+
+
+//
+//
+//      itemButton.setActionCommand(inventory.get(i));
+//      System.out.println(itemButton.getActionCommand());
+//
+//      itemPanel.add(itemButton);
+//      itemButton.addActionListener((e ->
+//          inventoryListener.accept(itemButton.getActionCommand())));
+//    }
+
   }
 
   public void setInventoryListener(Consumer<String> listener){

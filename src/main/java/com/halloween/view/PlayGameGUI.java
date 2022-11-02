@@ -41,6 +41,7 @@ public class PlayGameGUI implements ActionListener {
     frame.getContentPane().setBackground(Color.cyan);
     frame.setSize(new Dimension(1000, 800));
     frame.setLayout(null);
+//    frame.setVisible(true);
 
     panelForGameWindow = new JPanel();
     panelForGameWindow.setLayout(null);
