@@ -19,14 +19,11 @@ public class PlayGameGUI implements ActionListener {
   GuiScript script = new GuiScript();
   GuiButtons defaultButton = new GuiButtons();
   GuiForUserInput userInput = new GuiForUserInput();
-
   GuiDirectionButton directionButtonPanel = new GuiDirectionButton();
   GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
-
   StartGameGUI startGameGui = new StartGameGUI();
-
   JPanel panelForGameWindow;
-  PlayGameGUI guiScript;
+  View view = new View();
 
   private Consumer<String> knockListener;
 
@@ -82,6 +79,10 @@ public class PlayGameGUI implements ActionListener {
     return directionButtonPanel;
   }
 
+  public GuiUserLocationInventoryMove getUserLocationInventoryMove() {
+    return userLocationInventoryMove;
+  }
+
   public void updateKnockButton(String location){
     directionButtonPanel.updateDirectionButtons(location);
   }
@@ -90,8 +91,7 @@ public class PlayGameGUI implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     startGameGui.getPanelForStartWindow().setVisible(false);
     panelForGameWindow.setVisible(true);
-    script.printScript("backstory");
-
+    script.displayKnock(view.getImportantDisplay("backstory"));
   }
 
   public void setKnockConsumer(Consumer<String> listener) {
@@ -110,6 +110,11 @@ public class PlayGameGUI implements ActionListener {
   public void setGetConsumer(Consumer<String> listener) {
     directionButtonPanel.setGetListener(item -> listener.accept(item));
   }
+
+  public void setInventoryConsumer(Consumer<String> listener) {
+    userLocationInventoryMove.setInventoryListener(item -> listener.accept(item));
+  }
+
 
 
   public static void main(String[] args) {

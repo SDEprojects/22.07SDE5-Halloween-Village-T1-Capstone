@@ -1,18 +1,22 @@
 package com.halloween.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.util.List;
+import java.util.function.Consumer;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class GuiUserLocationInventoryMove {
   JPanel panelForLocationInventoryMOve;
-
-  public JTextArea getTextAreaForInventory() {
-    return textAreaForInventory;
-  }
-
-  JTextArea textAreaForInventory;
+  JPanel itemPanel;
+  JButton itemBtn;
+  Consumer<String> inventoryListener;
 
   public GuiUserLocationInventoryMove() {
 
@@ -22,9 +26,11 @@ public class GuiUserLocationInventoryMove {
     textAreaForLocation.setBounds(2, 2, 215, 245);
 
 
-    textAreaForInventory = new JTextArea("Inventory:");
-    textAreaForInventory.setBorder(BorderFactory.createLineBorder(Color.black));
-    textAreaForInventory.setBounds(222, 2, 215, 245);
+    //inventory
+    itemPanel = new JPanel();
+    itemPanel.setBounds(222, 2, 215, 245);
+    itemPanel.setLayout(new GridLayout(2,2));
+
 
     JTextArea textAreaForPossibleMove = new JTextArea("Possible Moves:");
     textAreaForPossibleMove.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -36,7 +42,7 @@ public class GuiUserLocationInventoryMove {
     panelForLocationInventoryMOve.setLayout(null);
 
     panelForLocationInventoryMOve.add(textAreaForLocation);
-    panelForLocationInventoryMOve.add(textAreaForInventory);
+    panelForLocationInventoryMOve.add(itemPanel);
     panelForLocationInventoryMOve.add(textAreaForPossibleMove);
   }
 
@@ -44,4 +50,30 @@ public class GuiUserLocationInventoryMove {
     return panelForLocationInventoryMOve;
   }
 
+
+  public void updateInventory(List<String> inventory) {
+      itemPanel.removeAll();
+      itemPanel.revalidate();
+      itemPanel.setBackground(Color.red);
+
+    for (int i = 0; i < inventory.size(); i++) {
+      System.out.println(i);
+      itemBtn = new JButton(inventory.get(i));
+      itemBtn.setSize( 200, 30);
+      itemBtn.setFocusable(false);
+      itemBtn.setActionCommand(inventory.get(i));
+      itemPanel.add(itemBtn);
+      itemBtn.setVisible(true);
+    }
+  }
+
+  public void setInventoryListener(Consumer<String> listener){
+    inventoryListener = listener;
+  }
+
 }
+
+
+
+
+
