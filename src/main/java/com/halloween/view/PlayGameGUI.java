@@ -1,5 +1,6 @@
 package com.halloween.view;
 
+import com.halloween.controller.Game;
 import com.halloween.model.Neighborhood;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,6 +20,8 @@ public class PlayGameGUI implements ActionListener {
   GuiScript script = new GuiScript();
   GuiButtons defaultButton = new GuiButtons();
   GuiForUserInput userInput = new GuiForUserInput();
+//  Game game = new Game();
+//  GuiButtons guiButtons = new GuiButtons();
 
   GuiDirectionButton directionButtonPanel = new GuiDirectionButton();
   GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
@@ -74,7 +77,6 @@ public class PlayGameGUI implements ActionListener {
 
   }
 
-
   public GuiScript getScript() {
     return script;
   }
@@ -96,8 +98,9 @@ public class PlayGameGUI implements ActionListener {
     startGameGui.getPanelForStartWindow().setVisible(false);
     panelForGameWindow.setVisible(true);
     script.printScript("backstory");
-
   }
+
+
 
   public void setKnockConsumer(Consumer<String> listener) {
 
