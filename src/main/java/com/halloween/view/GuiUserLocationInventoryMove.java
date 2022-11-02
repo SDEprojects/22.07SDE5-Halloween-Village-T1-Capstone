@@ -15,9 +15,7 @@ import javax.swing.JTextArea;
 public class GuiUserLocationInventoryMove {
   JPanel panelForLocationInventoryMOve;
   JPanel itemPanel;
-//  JLabel itemLabel = new JLabel();
   JButton itemBtn;
-
   Consumer<String> inventoryListener;
 
   public GuiUserLocationInventoryMove() {
@@ -29,13 +27,9 @@ public class GuiUserLocationInventoryMove {
 
 
     //inventory
-//    itemPanel = new JPanel(new BorderLayout());
     itemPanel = new JPanel();
-//    itemPanel.setBorder(BorderFactory.createLineBorder(Color.black));
     itemPanel.setBounds(222, 2, 215, 245);
     itemPanel.setLayout(new GridLayout(2,2));
-//    itemPanel.setBackground(Color.blue);
-
 
 
     JTextArea textAreaForPossibleMove = new JTextArea("Possible Moves:");
@@ -60,45 +54,17 @@ public class GuiUserLocationInventoryMove {
   public void updateInventory(List<String> inventory) {
       itemPanel.removeAll();
       itemPanel.revalidate();
-//      itemPanel.repaint();
       itemPanel.setBackground(Color.red);
-//      JButton[] itemBtn = new JButton[inventory.size()];
-
-
-//      JButton itemButton = new JButton(item);
-//      itemButton.setSize(200, 30);
-//      itemButton.setActionCommand(item);
-
-//      itemPanel.add(itemButton);
-//      itemButton.addActionListener((e -> inventoryListener.accept(itemButton.getActionCommand())));
-//      itemPanel.setLayout(new GridLayout(2,2));
-//    JPanel panel = new JPanel();
-//    System.out.println(inventory + "here 59" + inventory.size());
 
     for (int i = 0; i < inventory.size(); i++) {
       System.out.println(i);
       itemBtn = new JButton(inventory.get(i));
-//      itemBtn = new JButton(inventory.get(i));
       itemBtn.setSize( 200, 30);
-//      itemButton.setSize(200,30);
       itemBtn.setFocusable(false);
       itemBtn.setActionCommand(inventory.get(i));
       itemPanel.add(itemBtn);
       itemBtn.setVisible(true);
     }
-
-
-
-//
-//
-//      itemButton.setActionCommand(inventory.get(i));
-//      System.out.println(itemButton.getActionCommand());
-//
-//      itemPanel.add(itemButton);
-//      itemButton.addActionListener((e ->
-//          inventoryListener.accept(itemButton.getActionCommand())));
-//    }
-
   }
 
   public void setInventoryListener(Consumer<String> listener){
