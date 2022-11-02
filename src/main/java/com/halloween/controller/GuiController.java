@@ -53,6 +53,7 @@ public class GuiController {
   }
 
 
+
   public void setUpHandlers() {
 
     playGameGUI.getDirectionButton().setKnockListener(
@@ -62,27 +63,34 @@ public class GuiController {
           house.setKnocked(true);
           setCurrentLocation(house.getHouseName());
 
+          if(house.getHouseName() != null) {
+            setCurrentLocation(house.getHouseName());
+          }
         });
 
     playGameGUI.getDirectionButton().setDirectionListener(
-        direction -> {
+        direction-> {
           String newLocation = game.movePlayer(direction, currentLocation);
-          setCurrentLocation(newLocation);
+          if(!newLocation.isEmpty()) {
+            setCurrentLocation(newLocation);
+          }
         }
     );
 
     playGameGUI.getDirectionButton().setGetListener(
-        item -> {
+        item-> {
           House house = neighborhood.getNeighborhood().get(currentLocation);
           inventory = game.getItem(house, inventory);
-          if (house.isKnocked() && !house.getHouseItems().isEmpty()) {
+          playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
+          if (house.isKnocked() && !house.getHouseItems().isEmpty()){
             house.removeItem();
             house.setKnocked(false);
             System.out.println(inventory);
           }
         }
     );
-  }
+
+    }
 
   public void knockOnDoor() {
     game.knockOnDoor(currentLocation);
@@ -91,6 +99,7 @@ public class GuiController {
   public Game getGame() {
     return game;
   }
+
 
 
 }

@@ -18,19 +18,6 @@ import javax.swing.JPanel;
 
 public class StartGameGUI {
 
-  //  private static JFrame frame;
-//  private static JPanel panel;
-//  private static JPanel redPanel;
-//  private static JPanel bluePanel;
-//
-//  private static JLabel userLabel;
-//  private static JLabel passwordLabel;
-//  private static JLabel successfulLogin;
-//  private static JLabel titleLabel;
-//
-//  private static JTextField userText;
-//  private static JPasswordField passwordText;
-//  private static JButton button;
   JButton newGameBtn;
   JPanel panelForStartWindow;
   JLabel labelForRedPanel;
@@ -62,7 +49,6 @@ public class StartGameGUI {
     menu.setPreferredSize(new Dimension(1200, 400));
 
     JPanel redPanel = new JPanel();
-//    redPanel.setBackground(Color.red);
     redPanel.setBounds(0, 0, 1000, 800);
 //    redPanel.setLayout(new FlowLayout());
     redPanel.setLayout(new BorderLayout());
