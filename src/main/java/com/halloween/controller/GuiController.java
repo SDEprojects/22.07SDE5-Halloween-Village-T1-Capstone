@@ -73,11 +73,12 @@ public class GuiController {
             System.out.println(inventory);
           }
         });
+
     playGameGUI.getUserLocationInventoryMove().setUseItemListener(
         item-> {
           House house = neighborhood.getNeighborhood().get(currentLocation);
           inventory = game.useItem(house, item, inventory);
-
+          System.out.println(item + " gui controller got this item");
           playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
         });
 

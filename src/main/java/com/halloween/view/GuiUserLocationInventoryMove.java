@@ -1,6 +1,7 @@
 package com.halloween.view;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.List;
 import java.util.function.Consumer;
@@ -26,7 +27,7 @@ public class GuiUserLocationInventoryMove {
     //inventory
     itemPanel = new JPanel();
     itemPanel.setBounds(222, 2, 215, 245);
-    itemPanel.setLayout(new GridLayout(2,2));
+    itemPanel.setLayout(new FlowLayout());
 
 
     JTextArea textAreaForPossibleMove = new JTextArea("Possible Moves:");
@@ -51,19 +52,25 @@ public class GuiUserLocationInventoryMove {
   public void updateInventory(List<String> inventory) {
       itemPanel.removeAll();
       itemPanel.revalidate();
-      itemPanel.setBackground(Color.red);
+      itemPanel.repaint();
+      itemPanel.setBackground(Color.white);
 
     for (int i = 0; i < inventory.size(); i++) {
-      System.out.println(i);
+      System.out.println(inventory.get(i) + " inventory i printing ");
       itemBtn = new JButton(inventory.get(i));
       itemBtn.setSize( 200, 30);
       itemBtn.setFocusable(false);
       itemBtn.setActionCommand(inventory.get(i));
+      System.out.println(itemBtn.getActionCommand() + " getting action command right away");
       itemPanel.add(itemBtn);
       itemBtn.setVisible(true);
       itemBtn.addActionListener(e -> {
-        useItemListener.accept(itemBtn.getText());
+        System.out.println(e.getActionCommand() + " action comand");
+        useItemListener.accept(e.getActionCommand());
+
       });
+
+
     }
   }
 

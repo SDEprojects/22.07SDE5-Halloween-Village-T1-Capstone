@@ -275,7 +275,7 @@ public class Game {
 
   // user uses item. if the item was used in proper places, run the associated function.
   public ArrayList<String> useItem(House house, String item, ArrayList<String> inventory) {
-    boolean successfullyUsedItem = inventory.remove(item);
+    boolean successfullyUsedItem = validateItemToUse(inventory, item);
     // if the house is knocked then try to use the item
     if (house.isKnocked()) {
 //      showInventory();
@@ -283,6 +283,8 @@ public class Game {
       System.out.printf(display.getNpcResponse(response), item);
       if (!successfullyUsedItem) {
         return inventory;
+      }else{
+        inventory.remove(item);
       }
     } else {
       System.out.println(display.getNpcResponse("knock_to_use_item"));
@@ -290,11 +292,12 @@ public class Game {
     }
     // if we use the badge at karen's house then we win the game
     if (house.getHouseName().equals("karen's house")) {
-      karenUseItem(item);
+      inventory = karenUseItem(item, inventory);
     } else if (house.getHouseName().equals("dracula's mansion") && item.equals("tooth")) {
       System.out.println(display.getNpcResponse("draculas_tooth"));
       // added dracula's ruby to our inventory
       // NOTE: dracula's tooth is a hidden item, so we don't store it in the house
+      inventory.remove(item);
       inventory.add("ruby");
       return inventory;
     } else if (house.getHouseName().equals("witch's den")) {
@@ -329,18 +332,22 @@ public class Game {
 
   // WIN condition
 // if user use one of the items(badge, potion, ruby) to Karen, user wins the game.
-  public void karenUseItem(String item) {
+  public ArrayList<String> karenUseItem(String item, ArrayList<String> inventory) {
     if (item.equals("badge")) {
       System.out.println(display.getNpcResponse("karen_defeated_badge"));
       playSound("/girl_scream.wav");
+      inventory.remove(item);
     } else if (item.equals("potion")) {
       System.out.println(display.getNpcResponse("karen_defeated_potion"));
+      inventory.remove(item);
     } else if (item.equals("ruby")) {
       System.out.println(display.getNpcResponse("karen_defeated_ruby"));
-    } else {
-      return;
+      inventory.remove(item);
+    } else{
+      return inventory;
     }
     setState(State.WIN);
+    return inventory;
   }
 
   public void startMusic() {

@@ -37,7 +37,6 @@ public class GuiScript {
 //  }
   public void displayKnock(String dialogue){
 //    GuiScript gui = new GuiScript();
-    System.out.println(dialogue + " from line 38 in guiscript");
     textAreaForScript.removeAll();
     textAreaForScript.revalidate();
     textAreaForScript.repaint();
