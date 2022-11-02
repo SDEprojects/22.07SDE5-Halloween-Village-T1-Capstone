@@ -133,13 +133,11 @@ public class Game {
   }
 
   // User get item, and save it to the inventory
-  public void getItem() {
-    House house =  neighborhood.getNeighborhood().get(player.getPosition());
+  public ArrayList<String> getItem(House house, ArrayList<String> inventory ) {
     if (house.isKnocked() && house.getHouseItems().size() > 0) {
         String temp = house.getHouseItems().get(0);
-        player.addItem(temp);
-        house.removeItem();
-        display.getItem(player.getPosition());
+        inventory.add(temp);
+        player.setPosition(house.getHouseName());
         System.out.printf(display.getNpcResponse("get_items"), temp);
     } else if (house.isKnocked()){
         System.out.println(display.getNpcResponse("no_item_error"));
@@ -147,7 +145,7 @@ public class Game {
       System.out.println(display.getNpcResponse("knock_door_first"));
       System.out.println(display.getNpcResponse("knock_door"));
     }
-    house.setKnocked(false);
+    return inventory;
   }
 
 //  GuiScript guiScript = new GuiScript();

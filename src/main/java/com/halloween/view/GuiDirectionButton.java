@@ -13,6 +13,8 @@ public class GuiDirectionButton {
 
   private Consumer<String> knockListener;
   private Consumer<String> directionListener;
+
+  private Consumer<String> getListener;
   JPanel panelForDirectionButtonsWithOtherButtons;
 
   GuiController controller;
@@ -68,12 +70,10 @@ public class GuiDirectionButton {
     JButton getButton = new JButton("Get");
     getButton.setBounds(180, 40, 90, 40);
     getButton.setFocusable(false);
-//    getButton.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        game.getItem();
-//      }
-//    });
+    getButton.addActionListener(e -> {
+      getListener.accept(getButton.getActionCommand());
+    });
+
 
     JButton useButton = new JButton("Use");
     useButton.setBounds(180, 100, 90, 40);
@@ -156,6 +156,12 @@ public class GuiDirectionButton {
   public void setDirectionListener(Consumer<String> listener) {
     directionListener = listener;
   }
+
+  public void setGetListener(Consumer<String> listener) {
+    getListener = listener;
+  }
+
+
 
 
 }
