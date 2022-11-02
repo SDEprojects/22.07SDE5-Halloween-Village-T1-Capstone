@@ -76,6 +76,7 @@ public class GuiController {
         item-> {
           House house = neighborhood.getNeighborhood().get(currentLocation);
           inventory = game.getItem(house, inventory);
+          playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
           if (house.isKnocked() && !house.getHouseItems().isEmpty()){
             house.removeItem();
             house.setKnocked(false);
@@ -83,7 +84,12 @@ public class GuiController {
           }
         }
     );
-
+//
+//    playGameGUI.getUserLocationInventoryMove(
+//        item -> {
+//
+//        }
+//    )
 
 
     }
