@@ -8,6 +8,7 @@ import com.halloween.model.Neighborhood;
 import com.halloween.model.Player;
 import com.halloween.model.State;
 import com.halloween.view.GuiScript;
+import com.halloween.view.PlayGameGUI;
 import com.halloween.view.PlayMusic;
 import com.halloween.view.View;
 import java.io.BufferedReader;
@@ -26,11 +27,13 @@ public class Game {
   private Neighborhood neighborhood = new Neighborhood();
   private StoreGame storeGame = new StoreGame();
   private PlayMusic musicPlayer = new PlayMusic();
-  GuiScript guiScript = new GuiScript();
+
+
 
   public Game(){
     player.setPosition("your house");
     System.out.println(player.getPosition());
+
   }
 
   public Game(State state, Player player, Neighborhood neighborhood) {
@@ -151,6 +154,7 @@ public class Game {
   // set knocked value to true when user knocks. also checks user's inventory when user knocks on Karen's house or Saw house.
   public void knockOnDoor(String location) {
     House house =  neighborhood.getNeighborhood().get(location);
+
 //    house.setKnocked(true);
 
     String knock = "/door-knock.wav";
@@ -167,9 +171,7 @@ public class Game {
       knockOnSawHouse(playerItems);
       // for all other houses (besides karen's house and saw house) we do the following
     } else if (house.getHouseItems().isEmpty()) {
-      System.out.println(player.getPosition());
-
-      guiScript.displayKnock(display.noItem(player.getPosition()));
+//      PlayGameGUI.getScript().displayKnock(display.noItem(player.getPosition()));
       display.noItem(player.getPosition());
     } else {
       display.greet(player.getPosition());

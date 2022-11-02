@@ -109,7 +109,6 @@ public class GuiDirectionButton {
 //    Consumer<String> consumer = (String text) -> {
 //
 //    }
-//    knockButton.addActionListener(new ActionHandler(consumer));
 
 //    knockButton.addActionListener(new ActionListener() {
 //      @Override

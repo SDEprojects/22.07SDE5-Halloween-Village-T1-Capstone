@@ -73,6 +73,10 @@ public class PlayGameGUI implements ActionListener {
   }
 
 
+  public GuiScript getScript() {
+    return script;
+  }
+
   public GuiDirectionButton getDirectionButton() {
     return directionButton;
   }

@@ -59,7 +59,7 @@ public class GuiController {
 
     playGameGUI.getDirectionButton().setKnockListener(
         location -> {
-          game.knockOnDoor(location);
+          game.knockOnDoor(currentLocation);
           House house = neighborhood.getNeighborhood().get(location);
           house.setKnocked(true);
           setCurrentLocation(house.getHouseName());
