@@ -5,9 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,14 +19,11 @@ public class PlayGameGUI implements ActionListener {
   GuiScript script = new GuiScript();
   GuiButtons defaultButton = new GuiButtons();
   GuiForUserInput userInput = new GuiForUserInput();
-
   GuiDirectionButton directionButtonPanel = new GuiDirectionButton();
   GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
-
   StartGameGUI startGameGui = new StartGameGUI();
-
   JPanel panelForGameWindow;
-  PlayGameGUI guiScript;
+  View view = new View();
 
   private Consumer<String> knockListener;
 
@@ -64,13 +61,9 @@ public class PlayGameGUI implements ActionListener {
     ImageIcon imgIcon = new ImageIcon(iconLocation);
     frame.setIconImage(imgIcon.getImage());
     frame.setVisible(true);
-
-
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
-
     currentLocation = "your house";
-
   }
 
 
@@ -82,7 +75,7 @@ public class PlayGameGUI implements ActionListener {
     return directionButtonPanel;
   }
 
-  public void updateKnockButton(String location){
+  public void updateKnockButton(String location) {
     directionButtonPanel.updateDirectionButtons(location);
   }
 
@@ -90,22 +83,17 @@ public class PlayGameGUI implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     startGameGui.getPanelForStartWindow().setVisible(false);
     panelForGameWindow.setVisible(true);
-    script.printScript("backstory");
-
+    script.displayKnock(view.getImportantDisplay("backstory"));
   }
 
   public void setKnockConsumer(Consumer<String> listener) {
-
     directionButtonPanel.setKnockListener(location -> listener.accept(location));
 //    knockListener = listener;
-
-}
-
+  }
 
   public void setDirectionConsumer(Consumer<String> listener) {
     directionButtonPanel.setDirectionListener(direction -> listener.accept(direction));
   }
-
 
   public void setGetConsumer(Consumer<String> listener) {
     directionButtonPanel.setGetListener(item -> listener.accept(item));

@@ -7,6 +7,7 @@ import com.halloween.view.PlayGameGUI;
 import java.util.ArrayList;
 
 public class GuiController {
+
   PlayGameGUI playGameGUI;
   Player player;
   Game game;
@@ -15,9 +16,7 @@ public class GuiController {
   Neighborhood neighborhood;
 
 
-
-
-  public GuiController(){
+  public GuiController() {
     playGameGUI = new PlayGameGUI();
     game = new Game();
     neighborhood = new Neighborhood();
@@ -49,52 +48,49 @@ public class GuiController {
 
   }
 
-  public void updateGuiView(String location){
+  public void updateGuiView(String location) {
     playGameGUI.updateKnockButton(location);
   }
-
 
 
   public void setUpHandlers() {
 
     playGameGUI.getDirectionButton().setKnockListener(
         location -> {
-          game.knockOnDoor(currentLocation);
+          playGameGUI.getScript().displayKnock(game.knockOnDoor(currentLocation));
           House house = neighborhood.getNeighborhood().get(currentLocation);
           house.setKnocked(true);
           setCurrentLocation(house.getHouseName());
+
         });
 
     playGameGUI.getDirectionButton().setDirectionListener(
-        direction-> {
+        direction -> {
           String newLocation = game.movePlayer(direction, currentLocation);
           setCurrentLocation(newLocation);
         }
     );
 
     playGameGUI.getDirectionButton().setGetListener(
-        item-> {
+        item -> {
           House house = neighborhood.getNeighborhood().get(currentLocation);
           inventory = game.getItem(house, inventory);
-          if (house.isKnocked() && !house.getHouseItems().isEmpty()){
+          if (house.isKnocked() && !house.getHouseItems().isEmpty()) {
             house.removeItem();
             house.setKnocked(false);
             System.out.println(inventory);
           }
         }
     );
+  }
 
-
-
-    }
-
-  public void knockOnDoor(){
+  public void knockOnDoor() {
     game.knockOnDoor(currentLocation);
   }
+
   public Game getGame() {
     return game;
   }
-
 
 
 }
