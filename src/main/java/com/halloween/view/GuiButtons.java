@@ -27,6 +27,7 @@ public class GuiButtons {
 
   public GuiButtons() {
     game.startMusic();
+    SoundEffects.playSound("/silent_quarter_second.wav");
 
     panelForDefaultButtons = new JPanel();
     panelForDefaultButtons.setBackground(Color.lightGray);
