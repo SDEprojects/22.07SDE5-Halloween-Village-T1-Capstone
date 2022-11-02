@@ -19,7 +19,8 @@ public class PlayGameGUI implements ActionListener {
   GuiScript script = new GuiScript();
   GuiButtons defaultButton = new GuiButtons();
   GuiForUserInput userInput = new GuiForUserInput();
-  GuiDirectionButton directionButton = new GuiDirectionButton();
+
+  GuiDirectionButton directionButtonPanel = new GuiDirectionButton();
   GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
 
   StartGameGUI startGameGui = new StartGameGUI();
@@ -48,7 +49,7 @@ public class PlayGameGUI implements ActionListener {
     panelForGameWindow.add(script.getPanelForScript());
     panelForGameWindow.add(defaultButton.getPanelForDefaultButtons());
     panelForGameWindow.add(userInput.getPanelForUserInput());
-    panelForGameWindow.add(directionButton.getPanelForDirectionButtonsWithOtherButtons());
+    panelForGameWindow.add(directionButtonPanel.getPanelForDirectionButtonsWithOtherButtons());
     panelForGameWindow.add(userLocationInventoryMove.getPanelForLocationInventoryMOve());
     panelForGameWindow.setBackground(Color.cyan);
     panelForGameWindow.setBounds(0, 0, 1000, 800);
@@ -73,12 +74,16 @@ public class PlayGameGUI implements ActionListener {
   }
 
 
+  public GuiScript getScript() {
+    return script;
+  }
+
   public GuiDirectionButton getDirectionButton() {
-    return directionButton;
+    return directionButtonPanel;
   }
 
   public void updateKnockButton(String location){
-    directionButton.updateDirectionButtons(location);
+    directionButtonPanel.updateDirectionButtons(location);
   }
 
   @Override
@@ -91,15 +96,22 @@ public class PlayGameGUI implements ActionListener {
 
   public void setKnockConsumer(Consumer<String> listener) {
 
-    directionButton.setKnockListener(location -> listener.accept(location));
+    directionButtonPanel.setKnockListener(location -> listener.accept(location));
 //    knockListener = listener;
 
 }
 
 
   public void setDirectionConsumer(Consumer<String> listener) {
-    directionButton.setDirectionListener(direction -> listener.accept(direction));
+    directionButtonPanel.setDirectionListener(direction -> listener.accept(direction));
   }
+
+
+  public void setGetConsumer(Consumer<String> listener) {
+    directionButtonPanel.setGetListener(item -> listener.accept(item));
+  }
+
+
   public static void main(String[] args) {
     new PlayGameGUI();
   }

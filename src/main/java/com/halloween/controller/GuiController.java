@@ -59,17 +59,32 @@ public class GuiController {
 
     playGameGUI.getDirectionButton().setKnockListener(
         location -> {
-          game.knockOnDoor(location);
-          House house = neighborhood.getNeighborhood().get(location);
+          game.knockOnDoor(currentLocation);
+          House house = neighborhood.getNeighborhood().get(currentLocation);
           house.setKnocked(true);
           setCurrentLocation(house.getHouseName());
         });
+
     playGameGUI.getDirectionButton().setDirectionListener(
         direction-> {
           String newLocation = game.movePlayer(direction, currentLocation);
           setCurrentLocation(newLocation);
         }
     );
+
+    playGameGUI.getDirectionButton().setGetListener(
+        item-> {
+          House house = neighborhood.getNeighborhood().get(currentLocation);
+          inventory = game.getItem(house, inventory);
+          if (house.isKnocked() && !house.getHouseItems().isEmpty()){
+            house.removeItem();
+            house.setKnocked(false);
+            System.out.println(inventory);
+          }
+        }
+    );
+
+
 
     }
 
