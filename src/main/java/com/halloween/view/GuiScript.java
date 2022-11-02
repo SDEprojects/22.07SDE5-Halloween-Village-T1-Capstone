@@ -39,14 +39,6 @@ public class GuiScript {
 
 
 
-  public void greetPlayer(){
-    textAreaForScript.append(view.getImportantDisplay("backstory"));
-//        textAreaForScript.append(view.getImportantDisplay("title"));
-//    textAreaForScript.append(view.getImportantDisplay("instruction"));
-//    textAreaForScript.append(view.getNpcResponse("welcome"));
-//    textAreaForScript.append(view.getImportantDisplay("help"));
-  }
-
   public void printScript(String key){
 
     Consumer<String> print = x -> textAreaForScript.append(x);
