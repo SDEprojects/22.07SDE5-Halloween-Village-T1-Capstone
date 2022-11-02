@@ -19,14 +19,11 @@ public class PlayGameGUI implements ActionListener {
   GuiScript script = new GuiScript();
   GuiButtons defaultButton = new GuiButtons();
   GuiForUserInput userInput = new GuiForUserInput();
-
   GuiDirectionButton directionButtonPanel = new GuiDirectionButton();
   GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
-
   StartGameGUI startGameGui = new StartGameGUI();
-
   JPanel panelForGameWindow;
-  PlayGameGUI guiScript;
+  View view = new View();
 
   private Consumer<String> knockListener;
 
@@ -41,7 +38,6 @@ public class PlayGameGUI implements ActionListener {
     frame.getContentPane().setBackground(Color.cyan);
     frame.setSize(new Dimension(1000, 800));
     frame.setLayout(null);
-//    frame.setVisible(true);
 
     panelForGameWindow = new JPanel();
     panelForGameWindow.setLayout(null);
@@ -95,8 +91,7 @@ public class PlayGameGUI implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     startGameGui.getPanelForStartWindow().setVisible(false);
     panelForGameWindow.setVisible(true);
-    script.printScript("backstory");
-
+    script.displayKnock(view.getImportantDisplay("backstory"));
   }
 
   public void setKnockConsumer(Consumer<String> listener) {

@@ -34,8 +34,8 @@ public class View {
     npcResponse = ResourceBundle.getBundle("npcResponse");
   }
 
-  public void greet(String currentPosition) {
-    System.out.println(dialogue.get(currentPosition).get("greet"));
+  public String greet(String currentPosition) {
+    return dialogue.get(currentPosition).get("greet");
   }
 
   public String noItem(String currentPosition) {

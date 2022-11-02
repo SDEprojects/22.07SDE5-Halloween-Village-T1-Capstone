@@ -3,6 +3,7 @@ package com.halloween.view;
 import com.halloween.controller.Game;
 import com.halloween.controller.GuiController;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Consumer;
@@ -18,8 +19,7 @@ public class GuiDirectionButton {
   JPanel panelForDirectionButtonsWithOtherButtons;
 
   GuiController controller;
-  Game game = new Game();
-//  Player player = new Player();
+
   GuiUserLocationInventoryMove guiForInventory = new GuiUserLocationInventoryMove();
 
 
@@ -93,7 +93,6 @@ public class GuiDirectionButton {
     knockButton.addActionListener(e -> {
       knockListener.accept(knockButton.getActionCommand());
     });
-
 
 
 //    String currentLocation = controller.getCurrentLocation();
