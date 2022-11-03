@@ -20,6 +20,7 @@ public class GuiUserLocationInventoryMove {
   JPanel panelForInventory;
   JPanel panelForLocationInventoryMove;
   JButton itemBtn;
+  Consumer<String> inventoryListener;
   Consumer<String> useItemListener;
 
   Consumer<String> inventoryListener;
