@@ -64,26 +64,24 @@ public class GuiController {
             House house = neighborhood.getNeighborhood().get(currentLocation);
             house.setKnocked(true);
             setCurrentLocation(house.getHouseName());
-
-            if (house.getHouseName() != null) {
-              setCurrentLocation(house.getHouseName());
-            }
+       
           });
 
-      // move to different direction
-      playGameGUI.getDirectionButton().setDirectionListener(
-          direction -> {
-            String newLocation = game.movePlayer(direction, currentLocation);
-            playGameGUI.getUserLocationInventoryMove()
-                .updatePossibleMove(game.showValidMoves(currentLocation));
-            if (!newLocation.isEmpty()) {
-              setCurrentLocation(newLocation);
-//            playGameGUI.getUserLocationInventoryMove().updateLocation(currentLocation);
-              playGameGUI.getUserLocationInventoryMove()
-                  .updateLocation(game.showStatus(currentLocation));
-            }
+
+    // move to different direction
+    playGameGUI.getDirectionButton().setDirectionListener(
+        direction-> {
+          String newLocation = game.movePlayer(direction, currentLocation);
+          playGameGUI.getScript().displayKnock(game.checkValidDirection(direction, newLocation));
+
+          if(!newLocation.isEmpty()) {
+            setCurrentLocation(newLocation);
+            playGameGUI.getUserLocationInventoryMove().updateLocation(currentLocation);
+            playGameGUI.getUserLocationInventoryMove().updatePossibleMove(game.showValidMoves(currentLocation));
           }
-      );
+        }
+    );
+
 
       //get item
       playGameGUI.getDirectionButton().setGetListener(
@@ -108,6 +106,7 @@ public class GuiController {
           });
       state = game.getState();
     }
+    
     public void displayGameResult(){
 
       if(game.getState().equals(State.WIN)){
@@ -117,6 +116,7 @@ public class GuiController {
         playGameGUI.getScript().displayDialogue(game.showLose());
       }
     }
+    
     public void quitGame(){
     game.quitGame();
     }

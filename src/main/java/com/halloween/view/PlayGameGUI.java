@@ -1,6 +1,7 @@
 package com.halloween.view;
 
 import com.halloween.model.Neighborhood;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -10,6 +11,7 @@ import java.util.function.Consumer;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PlayGameGUI implements ActionListener {
@@ -24,6 +26,7 @@ public class PlayGameGUI implements ActionListener {
   GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
   StartGameGUI startGameGui = new StartGameGUI();
   JPanel panelForGameWindow;
+  JLabel labelPanelForGameWindow;
   View view = new View();
 
   private Consumer<String> knockListener;
@@ -41,7 +44,8 @@ public class PlayGameGUI implements ActionListener {
     frame.setLayout(null);
 
     panelForGameWindow = new JPanel();
-    panelForGameWindow.setLayout(null);
+//    panelForGameWindow.setLayout(null);
+    panelForGameWindow.setLayout(new BorderLayout());
 
     panelForGameWindow.add(title.getPanelForTitleWithImg());
     panelForGameWindow.add(script.getPanelForScript());
@@ -49,7 +53,8 @@ public class PlayGameGUI implements ActionListener {
     panelForGameWindow.add(userInput.getPanelForUserInput());
     panelForGameWindow.add(directionButtonPanel.getPanelForDirectionButtonsWithOtherButtons());
     panelForGameWindow.add(userLocationInventoryMove.getPanelForLocationInventoryMove());
-    panelForGameWindow.setBackground(Color.cyan);
+    panelForGameWindow.setBackground(Color.red);
+//    panelForGameWindow.setOpaque(true);
     panelForGameWindow.setBounds(0, 0, 1000, 800);
     frame.add(panelForGameWindow);
     panelForGameWindow.setVisible(false);
@@ -57,6 +62,14 @@ public class PlayGameGUI implements ActionListener {
     frame.add(startGameGui.getPanelForStartWindow());
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     startGameGui.newGameBtn.addActionListener(this);
+
+    // add background image to panelForGameWindow
+//    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("halloween-village-image.png");
+    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("halloween-village-spooky-castle1.png");
+    ImageIcon img = new ImageIcon(imageLoc);
+    labelPanelForGameWindow = new JLabel();
+    labelPanelForGameWindow.setIcon(img);
+    panelForGameWindow.add(labelPanelForGameWindow);
 
     // set window icon
     URL iconLocation = StartGameGUI.class.getClassLoader().getResource("pumpkinIcon1.png");
@@ -91,9 +104,7 @@ public class PlayGameGUI implements ActionListener {
     panelForGameWindow.setVisible(true);
     script.displayDialogue(view.getImportantDisplay("backstory"));
     getUserLocationInventoryMove().updateLocation("your house");
-    getUserLocationInventoryMove().updatePossibleMove("\n\nnorth: neighbor's house\n"
-        + "\neast: freddy & jason's house\n"
-        + "\nwest: mayor's house");
+    getUserLocationInventoryMove().updatePossibleMove(view.getPossibleMoveForYourHouse());
   }
 
 

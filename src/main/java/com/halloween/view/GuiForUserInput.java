@@ -19,9 +19,11 @@ public class GuiForUserInput {
     panelForUserInput.setBounds(5, 695, 970, 60);
     panelForUserInput.setLayout(null);
     panelForUserInput.setBackground(Color.lightGray);
+    panelForUserInput.setOpaque(false);
 
     labelForUserInput = new JLabel();
     labelForUserInput.setText("User Input");
+    labelForUserInput.setForeground(Color.white);
     labelForUserInput.setBounds(15, 0, 100, 25);
 
     userTextField = new JTextField();

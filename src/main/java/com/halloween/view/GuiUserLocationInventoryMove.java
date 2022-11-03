@@ -15,13 +15,12 @@ import javax.swing.JTextArea;
 
 public class GuiUserLocationInventoryMove {
 
-  JLabel labelForLocation;
   JTextArea textAreaForLocation;
-  JLabel labelForPossibleMoves;
   JTextArea textAreaForPossibleMoves;
   JPanel panelForInventory;
   JPanel panelForLocationInventoryMove;
   JButton itemBtn;
+  Consumer<String> inventoryListener;
   Consumer<String> useItemListener;
 
   Consumer<String> inventoryListener;
@@ -36,7 +35,7 @@ public class GuiUserLocationInventoryMove {
     textAreaForLocation.setLineWrap(true);
     textAreaForLocation.setWrapStyleWord(true);
     textAreaForLocation.setForeground(Color.blue);
-    textAreaForLocation.setLayout(new BorderLayout());
+    textAreaForLocation.setLayout(new FlowLayout());
 
     textAreaForPossibleMoves = new JTextArea("Possible Moves:");
     textAreaForPossibleMoves.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -71,7 +70,7 @@ public class GuiUserLocationInventoryMove {
     panelForLocationInventoryMove.setLayout(new GridLayout(1, 3));
 
     panelForLocationInventoryMove.add(textAreaForLocation);
-    panelForLocationInventoryMove.add(textAreaForPossibleMove);
+    panelForLocationInventoryMove.add(textAreaForPossibleMoves);
     panelForLocationInventoryMove.add(panelForInventory);
   }
 
@@ -135,13 +134,10 @@ public class GuiUserLocationInventoryMove {
 
   public void setInventoryListener(Consumer<String> listener) {
     inventoryListener = listener;
-
   }
   public void setUseItemListener(Consumer<String> listener){
     useItemListener = listener;
   }
-
-
 }
 
 
