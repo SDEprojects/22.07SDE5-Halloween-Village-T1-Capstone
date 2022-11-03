@@ -15,9 +15,7 @@ import javax.swing.JTextArea;
 
 public class GuiUserLocationInventoryMove {
 
-  JLabel labelForLocation;
   JTextArea textAreaForLocation;
-  JLabel labelForPossibleMoves;
   JTextArea textAreaForPossibleMoves;
   JPanel panelForInventory;
   JPanel panelForLocationInventoryMove;
@@ -71,7 +69,7 @@ public class GuiUserLocationInventoryMove {
     panelForLocationInventoryMove.setLayout(new GridLayout(1, 3));
 
     panelForLocationInventoryMove.add(textAreaForLocation);
-    panelForLocationInventoryMove.add(textAreaForPossibleMove);
+    panelForLocationInventoryMove.add(textAreaForPossibleMoves);
     panelForLocationInventoryMove.add(panelForInventory);
   }
 

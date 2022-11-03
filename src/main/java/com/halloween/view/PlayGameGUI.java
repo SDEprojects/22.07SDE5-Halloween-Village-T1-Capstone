@@ -91,9 +91,7 @@ public class PlayGameGUI implements ActionListener {
     panelForGameWindow.setVisible(true);
     script.displayKnock(view.getImportantDisplay("backstory"));
     getUserLocationInventoryMove().updateLocation("your house");
-    getUserLocationInventoryMove().updatePossibleMove("\n\nnorth: neighbor's house\n"
-        + "\neast: freddy & jason's house\n"
-        + "\nwest: mayor's house");
+    getUserLocationInventoryMove().updatePossibleMove(view.getPossibleMoveForYourHouse());
   }
 
 

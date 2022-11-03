@@ -51,6 +51,11 @@ public class View {
   public String getNpcResponse(String key){
     return npcResponse.getString(key) + "\n";
   }
+  public String getPossibleMoveForYourHouse(){
+    return  "\n\nnorth: neighbor's house\n"
+        + "\neast: freddy & jason's house\n"
+        + "\nwest: mayor's house";
+  }
 
   public static void main(String[] args) {
     View view = new View();
