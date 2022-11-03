@@ -27,14 +27,12 @@ public class GuiScript {
     return panelForScript;
   }
 
-//  public void printScript(String key){
-//    Consumer<String> print = x -> textAreaForScript.append(x);
-//    print.accept(view.getImportantDisplay("backstory"));
-////    textAreaForScript.append(view.getImportantDisplay("backstory"));
-////        textAreaForScript.append(view.getImportantDisplay("title"));
-////    textAreaForScript.append(view.getImportantDisplay("instruction"));
-////    textAreaForScript.append(view.getNpcResponse("welcome"));
-//  }
+
+
+
+
+  }
+
   public void displayKnock(String dialogue){
 //    GuiScript gui = new GuiScript();
     textAreaForScript.removeAll();

@@ -18,6 +18,7 @@ public class GuiButtons {
   GuiScript guiScript = new GuiScript();
   HelpGui helpGui = new HelpGui();
   SoundEffects soundEffects = new SoundEffects();
+  Game game = new Game();
 
 
   public JPanel getPanelForDefaultButtons() {
@@ -25,6 +26,8 @@ public class GuiButtons {
   }
 
   public GuiButtons() {
+    game.startMusic();
+    SoundEffects.playSound("/silent_quarter_second.wav");
 
     panelForDefaultButtons = new JPanel();
     panelForDefaultButtons.setBackground(Color.lightGray);
@@ -54,14 +57,12 @@ public class GuiButtons {
       @Override
       public void actionPerformed(ActionEvent e) {
         if (muteButton.getText().equals("Mute")) {
-//        game.stopMusic();
-          // muteSoundEffects method may need to change to a non-static method
-//          soundEffects.muteSoundEffects();
+          game.stopMusic();
+          soundEffects.muteSoundEffects();
           muteButton.setText("Unmute");
         } else {
-//          game.startMusic();
-          // unmuteSoundEffects method may need to change to a non-static method
-//          soundEffects.unmuteSoundEffects();
+          game.startMusic();
+          soundEffects.unmuteSoundEffects();
           muteButton.setText("Mute");
         }
       }
