@@ -18,9 +18,6 @@ public class GuiDirectionButton {
   private Consumer<String> getListener;
   JPanel panelForDirectionButtonsWithOtherButtons;
 
-  GuiController controller;
-
-  GuiUserLocationInventoryMove guiForInventory = new GuiUserLocationInventoryMove();
 
   public GuiDirectionButton() {
 

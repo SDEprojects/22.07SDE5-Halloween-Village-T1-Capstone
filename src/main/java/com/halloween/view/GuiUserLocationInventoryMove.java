@@ -86,8 +86,6 @@ public class GuiUserLocationInventoryMove {
 
 //        itemBtn.getParent().remove(itemBtn);
       });
-
-
     }
   }
 

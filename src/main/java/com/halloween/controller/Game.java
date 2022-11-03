@@ -37,7 +37,6 @@ public class Game {
     this.state = state;
     this.player = player;
     this.neighborhood = neighborhood;
-    this.playGameGUI = playGameGUI;
   }
 
   public String currentLocation() {
