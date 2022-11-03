@@ -65,21 +65,21 @@ public class GuiDirectionButton {
         directionListener.accept(eastButton.getActionCommand()));
 
 
-    JButton getButton = new JButton("Get");
-    getButton.setBounds(180, 40, 90, 40);
+    JButton getButton = new JButton("Get Item");
+    getButton.setBounds(180, 60, 90, 40);
     getButton.setFocusable(false);
     getButton.addActionListener(e -> {
       getListener.accept(getButton.getActionCommand());
     });
 
 
-    JButton useButton = new JButton("Use");
-    useButton.setBounds(180, 100, 90, 40);
-    useButton.setFocusable(false);
+//    JButton useButton = new JButton("Use");
+//    useButton.setBounds(180, 100, 90, 40);
+//    useButton.setFocusable(false);
 
 
     JButton knockButton = new JButton("Knock");
-    knockButton.setBounds(180, 160, 90, 40);
+    knockButton.setBounds(180, 120, 90, 40);
     knockButton.setFocusable(false);
 
     knockButton.addActionListener(e -> {
@@ -93,7 +93,6 @@ public class GuiDirectionButton {
     panelForDirectionButton.add(westButton);
     panelForDirectionButton.add(eastButton);
     panelForDirectionButtonsWithOtherButtons.add(getButton);
-    panelForDirectionButtonsWithOtherButtons.add(useButton);
     panelForDirectionButtonsWithOtherButtons.add(knockButton);
     panelForDirectionButtonsWithOtherButtons.add(panelForDirectionButton);
   }
