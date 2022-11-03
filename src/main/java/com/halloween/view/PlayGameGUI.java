@@ -55,6 +55,7 @@ public class PlayGameGUI implements ActionListener {
     panelForGameWindow.setVisible(false);
 
     frame.add(startGameGui.getPanelForStartWindow());
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     startGameGui.newGameBtn.addActionListener(this);
 
     // set window icon
