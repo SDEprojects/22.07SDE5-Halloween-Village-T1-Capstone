@@ -8,21 +8,11 @@ import java.io.IOException;
 public class Main {
 
   public static void main(String[] args) throws IOException {
-//    PlayGameGUI guiGame = new PlayGameGUI();
-    GuiController guiController = new GuiController();
-//    playGame();
-//    Player player = new Player();
-    System.out.println(guiController.getCurrentLocation());
 
-//    guiController.updateGuiView(guiController.getCurrentLocation());
+    GuiController guiController = new GuiController();
     guiController.setUpHandlers();
 
     }
-
-//    public static void setGame(Game game){
-//
-//
-//  }
 }
 //    Game game = new Game();
 //    TextParser textParser = new TextParser();

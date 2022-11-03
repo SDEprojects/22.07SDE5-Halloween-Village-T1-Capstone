@@ -26,15 +26,13 @@ public class GuiScript {
   public JPanel getPanelForScript() {
     return panelForScript;
   }
+
   public void displayKnock(String dialogue) {
     System.out.println(dialogue + " from line 38 in guiscript");
+
     textAreaForScript.removeAll();
     textAreaForScript.revalidate();
     textAreaForScript.repaint();
     textAreaForScript.setText(dialogue);
   }
-  //  public void printScript(String key){
-//    Consumer<String> print = x -> textAreaForScript.append(x);
-//    print.accept(view.getImportantDisplay("backstory"));
-//  }
 }

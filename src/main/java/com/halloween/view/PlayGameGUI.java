@@ -19,6 +19,7 @@ public class PlayGameGUI implements ActionListener {
   GuiScript script = new GuiScript();
   GuiButtons defaultButton = new GuiButtons();
   GuiForUserInput userInput = new GuiForUserInput();
+
   GuiDirectionButton directionButtonPanel = new GuiDirectionButton();
   GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
   StartGameGUI startGameGui = new StartGameGUI();
@@ -47,7 +48,7 @@ public class PlayGameGUI implements ActionListener {
     panelForGameWindow.add(defaultButton.getPanelForDefaultButtons());
     panelForGameWindow.add(userInput.getPanelForUserInput());
     panelForGameWindow.add(directionButtonPanel.getPanelForDirectionButtonsWithOtherButtons());
-    panelForGameWindow.add(userLocationInventoryMove.getPanelForLocationInventoryMOve());
+    panelForGameWindow.add(userLocationInventoryMove.getPanelForLocationInventoryMove());
     panelForGameWindow.setBackground(Color.cyan);
     panelForGameWindow.setBounds(0, 0, 1000, 800);
     frame.add(panelForGameWindow);
@@ -66,6 +67,7 @@ public class PlayGameGUI implements ActionListener {
     currentLocation = "your house";
 
   }
+
   public GuiScript getScript() {
     return script;
   }
@@ -93,6 +95,8 @@ public class PlayGameGUI implements ActionListener {
         + "\nwest: mayor's house");
   }
 
+
+
   public void setKnockConsumer(Consumer<String> listener) {
 
     directionButtonPanel.setKnockListener(location -> listener.accept(location));
@@ -111,7 +115,7 @@ public class PlayGameGUI implements ActionListener {
   }
 
   public void setInventoryConsumer(Consumer<String> listener) {
-    userLocationInventoryMove.setInventoryListener(item -> listener.accept(item));
+    userLocationInventoryMove.setUseItemListener(item -> listener.accept(item));
   }
 
 

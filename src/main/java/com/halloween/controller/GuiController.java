@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class GuiController {
 
   PlayGameGUI playGameGUI;
+
   Player player;
   Game game;
   String currentLocation;
@@ -22,14 +23,10 @@ public class GuiController {
     neighborhood = new Neighborhood();
     currentLocation = "your house";
     inventory = new ArrayList<>();
-//    playGameGUI.setKnockListener(location -> {
-//      System.out.println("knocked");
-//    });
   }
 
   public void setCurrentLocation(String currentLocation) {
     this.currentLocation = currentLocation;
-    System.out.println("your current Location isss " + currentLocation);
   }
 
   public String getCurrentLocation() {
@@ -39,19 +36,6 @@ public class GuiController {
   public void setGame(Game game) {
     this.game = game;
   }
-
-
-  public static void playGame(Game game) {
-    System.out.println("GuiController");
-    game.currentLocation();
-
-
-  }
-
-  public void updateGuiView(String location) {
-    playGameGUI.updateKnockButton(location);
-  }
-
 
 
   public void setUpHandlers() {
@@ -90,19 +74,15 @@ public class GuiController {
             house.setKnocked(false);
             System.out.println(inventory);
           }
-        }
-    );
+        });
+
+    playGameGUI.getUserLocationInventoryMove().setUseItemListener(
+        item-> {
+          House house = neighborhood.getNeighborhood().get(currentLocation);
+          inventory = game.useItem(house, item, inventory);
+          playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
+        });
 
     }
-
-  public void knockOnDoor() {
-    game.knockOnDoor(currentLocation);
-  }
-
-  public Game getGame() {
-    return game;
-  }
-
-
 
 }

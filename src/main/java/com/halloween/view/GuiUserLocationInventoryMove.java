@@ -1,6 +1,5 @@
 package com.halloween.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -9,20 +8,19 @@ import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class GuiUserLocationInventoryMove {
 
-  JPanel panelForLocationInventoryMOve;
   JLabel labelForLocation;
   JTextArea textAreaForLocation;
   JLabel labelForPossibleMoves;
   JTextArea textAreaForPossibleMoves;
   JPanel panelForInventory;
+  JPanel panelForLocationInventoryMove;
   JButton itemBtn;
-  Consumer<String> inventoryListener;
+  Consumer<String> useItemListener;
 
   public GuiUserLocationInventoryMove() {
 
@@ -51,39 +49,71 @@ public class GuiUserLocationInventoryMove {
     panelForInventory.setSize(215, 245);
     panelForInventory.setBorder(BorderFactory.createLineBorder(Color.black));
     panelForInventory.setLayout(new GridLayout());
-    panelForInventory.setLayout(new GridLayout(4, 2));
+//    panelForInventory.setLayout(new GridLayout(4, 2));
 
-    panelForLocationInventoryMOve = new JPanel();
-    panelForLocationInventoryMOve.setBackground(Color.LIGHT_GRAY);
-    panelForLocationInventoryMOve.setBounds(5, 435, 660, 250);
-    panelForLocationInventoryMOve.setLayout(new GridLayout(1, 3));
+//    JTextArea titleForLocation = new JTextArea("Inventory");
+//    titleForLocation.setBounds(2,2,215,20);
+//    itemPanel.add(titleForLocation);
 
-    panelForLocationInventoryMOve.add(textAreaForLocation);
-    panelForLocationInventoryMOve.add(textAreaForPossibleMoves);
-    panelForLocationInventoryMOve.add(panelForInventory);
+
+
+    JTextArea textAreaForPossibleMove = new JTextArea("Possible Moves:");
+    textAreaForPossibleMove.setBorder(BorderFactory.createLineBorder(Color.black));
+    textAreaForPossibleMove.setBounds(442, 2, 215, 245);
+
+    panelForLocationInventoryMove = new JPanel();
+    panelForLocationInventoryMove.setBackground(Color.LIGHT_GRAY);
+    panelForLocationInventoryMove.setBounds(5, 435, 660, 250);
+    panelForLocationInventoryMove.setLayout(new GridLayout(1, 3));
+
+    panelForLocationInventoryMove.add(textAreaForLocation);
+    panelForLocationInventoryMove.add(textAreaForPossibleMove);
+    panelForLocationInventoryMove.add(panelForInventory);
   }
 
-
-  public JPanel getPanelForLocationInventoryMOve() {
-    return panelForLocationInventoryMOve;
+  public JPanel getPanelForLocationInventoryMove() {
+    return panelForLocationInventoryMove;
   }
 
 
   public void updateInventory(List<String> inventory) {
+
     panelForInventory.removeAll();
     panelForInventory.revalidate();
     panelForInventory.setBackground(Color.red);
 
+//    itemPanel.removeAll();
+//      itemPanel.revalidate();
+//      itemPanel.repaint();
+//      JTextArea titleForLocation = new JTextArea("Inventory");
+//      titleForLocation.setBounds(2,2,215,20);
+//      itemPanel.add(titleForLocation);
+
+
     for (int i = 0; i < inventory.size(); i++) {
-      System.out.println(i);
       itemBtn = new JButton(inventory.get(i));
-      itemBtn.setSize(200, 30);
+      itemBtn.setBounds(30, (i+1)*25, 160, 30);
       itemBtn.setFocusable(false);
       itemBtn.setActionCommand(inventory.get(i));
       panelForInventory.add(itemBtn);
       itemBtn.setVisible(true);
+     if (itemBtn.getActionCommand().isEmpty()){
+//      itemBtn.setVisible(false);
+        itemBtn.getParent().remove(itemBtn);
+        itemBtn.setVisible(false);
+      }else{
+        itemBtn.setVisible(true);
+      }
+//      itemBtn.setVisible(true);
+      itemBtn.addActionListener(e -> {
+        System.out.println(e.getActionCommand() + " action comand");
+        useItemListener.accept(e.getActionCommand());
+
+//        itemBtn.getParent().remove(itemBtn);
+      });
     }
   }
+
 
   public void updateLocation(String dialogue) {
     System.out.println(dialogue + " from line 86 in GuiLOcationInventoryMove");
@@ -102,7 +132,12 @@ public class GuiUserLocationInventoryMove {
 
   public void setInventoryListener(Consumer<String> listener) {
     inventoryListener = listener;
+
   }
+    public void setUseItemListener(Consumer<String> listener){
+    useItemListener = listener;
+  }
+
 
 }
 

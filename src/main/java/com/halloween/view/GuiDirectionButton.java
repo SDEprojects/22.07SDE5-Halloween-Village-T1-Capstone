@@ -18,11 +18,6 @@ public class GuiDirectionButton {
   private Consumer<String> getListener;
   JPanel panelForDirectionButtonsWithOtherButtons;
 
-  GuiController controller;
-
-  GuiUserLocationInventoryMove guiForInventory = new GuiUserLocationInventoryMove();
-
-
 
   public GuiDirectionButton() {
 
@@ -67,27 +62,21 @@ public class GuiDirectionButton {
         directionListener.accept(eastButton.getActionCommand()));
 
 
-    JButton getButton = new JButton("Get");
-    getButton.setBounds(180, 40, 90, 40);
+    JButton getButton = new JButton("Get Item");
+    getButton.setBounds(180, 60, 90, 40);
     getButton.setFocusable(false);
     getButton.addActionListener(e -> {
       getListener.accept(getButton.getActionCommand());
     });
 
 
-    JButton useButton = new JButton("Use");
-    useButton.setBounds(180, 100, 90, 40);
-    useButton.setFocusable(false);
-//    useButton.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        game.useItem();
-//      }
-//    });
+//    JButton useButton = new JButton("Use");
+//    useButton.setBounds(180, 100, 90, 40);
+//    useButton.setFocusable(false);
+
 
     JButton knockButton = new JButton("Knock");
-    knockButton.setActionCommand("your house");
-    knockButton.setBounds(180, 160, 90, 40);
+    knockButton.setBounds(180, 120, 90, 40);
     knockButton.setFocusable(false);
 
     knockButton.addActionListener(e -> {
@@ -95,33 +84,12 @@ public class GuiDirectionButton {
     });
 
 
-//    String currentLocation = controller.getCurrentLocation();
-//    knockButton.addActionListener(game.knockOnDoor(currentLocation));
-//    knockButton.addActionListener(e -> {
-//      String location = e.getActionCommand();
-//      knockListener.accept(location);
-
-//    });
-
-
-
-//    Consumer<String> consumer = (String text) -> {
-//
-//    }
-
-//    knockButton.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        game.knockOnDoor();
-//      }
-//    });
 
     panelForDirectionButton.add(northButton);
     panelForDirectionButton.add(southButton);
     panelForDirectionButton.add(westButton);
     panelForDirectionButton.add(eastButton);
     panelForDirectionButtonsWithOtherButtons.add(getButton);
-    panelForDirectionButtonsWithOtherButtons.add(useButton);
     panelForDirectionButtonsWithOtherButtons.add(knockButton);
     panelForDirectionButtonsWithOtherButtons.add(panelForDirectionButton);
   }
