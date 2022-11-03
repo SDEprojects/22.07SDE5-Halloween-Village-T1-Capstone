@@ -71,8 +71,11 @@ public class GuiController {
     playGameGUI.getDirectionButton().setDirectionListener(
         direction-> {
           String newLocation = game.movePlayer(direction, currentLocation);
+          playGameGUI.getUserLocationInventoryMove().updatePossibleMove(game.showValidMoves(newLocation));
           if(!newLocation.isEmpty()) {
             setCurrentLocation(newLocation);
+//            playGameGUI.getUserLocationInventoryMove().updateLocation(currentLocation);
+            playGameGUI.getUserLocationInventoryMove().updateLocation(game.showStatus(currentLocation));
           }
         }
     );

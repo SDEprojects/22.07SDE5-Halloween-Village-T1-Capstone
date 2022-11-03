@@ -61,16 +61,11 @@ public class PlayGameGUI implements ActionListener {
     ImageIcon imgIcon = new ImageIcon(iconLocation);
     frame.setIconImage(imgIcon.getImage());
     frame.setVisible(true);
-
-
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
-
     currentLocation = "your house";
 
   }
-
-
   public GuiScript getScript() {
     return script;
   }
@@ -92,6 +87,10 @@ public class PlayGameGUI implements ActionListener {
     startGameGui.getPanelForStartWindow().setVisible(false);
     panelForGameWindow.setVisible(true);
     script.displayKnock(view.getImportantDisplay("backstory"));
+    getUserLocationInventoryMove().updateLocation("your house");
+    getUserLocationInventoryMove().updatePossibleMove("\n\nnorth: neighbor's house\n"
+        + "\neast: freddy & jason's house\n"
+        + "\nwest: mayor's house");
   }
 
   public void setKnockConsumer(Consumer<String> listener) {
