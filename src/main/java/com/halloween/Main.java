@@ -18,9 +18,7 @@ public class Main {
       guiController.quitGame();
     }
 }
-//    Game game = new Game();
-//    TextParser textParser = new TextParser();
-//
+
 //    boolean startGame = false;
 //    while (!startGame) {
 //
