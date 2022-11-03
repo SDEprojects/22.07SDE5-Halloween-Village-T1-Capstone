@@ -2,6 +2,7 @@ package com.halloween;
 
 import com.halloween.controller.GuiController;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -15,7 +16,12 @@ public class Main {
     }while (run);
       System.out.println("Thank you for playing");
       guiController.displayGameResult();
-      guiController.quitGame();
+    try {
+      TimeUnit.SECONDS.sleep(2);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+    guiController.quitGame();
     }
 }
 

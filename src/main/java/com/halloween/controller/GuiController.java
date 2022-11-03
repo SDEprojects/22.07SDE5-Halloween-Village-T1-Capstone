@@ -6,6 +6,8 @@ import com.halloween.model.Player;
 import com.halloween.model.State;
 import com.halloween.view.PlayGameGUI;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 public class GuiController {
 
@@ -102,8 +104,10 @@ public class GuiController {
 
     }
     public void displayGameResult(){
+
       if(game.getState().equals(State.WIN)){
         game.showWin();
+
       }else{
         game.showLose();
       }
