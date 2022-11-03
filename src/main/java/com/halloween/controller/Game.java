@@ -30,11 +30,12 @@ public class Game {
 
   public Game() {
     player.setPosition("your house");
+    state = State.PLAY;
 //    System.out.println(player.getPosition());
   }
 
   public Game(State state, Player player, Neighborhood neighborhood) {
-    this.state = state;
+    this.state = State.PLAY;
     this.player = player;
     this.neighborhood = neighborhood;
   }
@@ -222,6 +223,7 @@ public class Game {
     else {
 //      System.out.println(display.greet(player.getPosition()));
       setState(State.LOSE);
+      System.out.println(getState() + "  this is state update from Game 226");
       playSound("/evil-shreik.wav");
       try {
         TimeUnit.SECONDS.sleep(3);  // Wait 2 seconds

@@ -1,5 +1,6 @@
 package com.halloween.view;
 
+import com.halloween.controller.Game;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
