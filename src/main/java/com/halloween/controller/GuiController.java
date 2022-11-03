@@ -6,8 +6,6 @@ import com.halloween.model.Player;
 import com.halloween.model.State;
 import com.halloween.view.PlayGameGUI;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
 
 public class GuiController {
 
@@ -43,7 +41,13 @@ public class GuiController {
     this.game = game;
   }
 
+  public void setState(State state) {
+    this.state = state;
+  }
 
+  public State getState() {
+    return state;
+  }
   public Boolean runGame(){
     if (!game.getState().equals(State.PLAY)){
       return false;
@@ -53,19 +57,16 @@ public class GuiController {
   }
 
   public void setUpHandlers() {
-    // knock
-    playGameGUI.getDirectionButton().setKnockListener(
-        location -> {
-          playGameGUI.getScript().displayKnock(game.knockOnDoor(currentLocation));
-          House house = neighborhood.getNeighborhood().get(currentLocation);
-          house.setKnocked(true);
-          setCurrentLocation(house.getHouseName());
-          System.out.println(game.getState() + "this is from handler 61");
-
-          if(house.getHouseName() != null) {
+      // knock
+      playGameGUI.getDirectionButton().setKnockListener(
+          location -> {
+            playGameGUI.getScript().displayDialogue(game.knockOnDoor(currentLocation));
+            House house = neighborhood.getNeighborhood().get(currentLocation);
+            house.setKnocked(true);
             setCurrentLocation(house.getHouseName());
-          }
-        });
+       
+          });
+
 
     // move to different direction
     playGameGUI.getDirectionButton().setDirectionListener(
@@ -81,38 +82,41 @@ public class GuiController {
         }
     );
 
-    //get item
-    playGameGUI.getDirectionButton().setGetListener(
-        item-> {
-          House house = neighborhood.getNeighborhood().get(currentLocation);
-          inventory = game.getItem(house, inventory);
-          playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
-          if (house.isKnocked() && !house.getHouseItems().isEmpty()){
-            house.removeItem();
-            house.setKnocked(false);
-            System.out.println(inventory);
-          }
-        });
 
-    //use item
-    playGameGUI.getUserLocationInventoryMove().setUseItemListener(
-        item-> {
-          House house = neighborhood.getNeighborhood().get(currentLocation);
-          inventory = game.useItem(house, item, inventory);
-          playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
+      //get item
+      playGameGUI.getDirectionButton().setGetListener(
+          item -> {
+            House house = neighborhood.getNeighborhood().get(currentLocation);
+            inventory = game.getItem(house, inventory);
+            playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
+            if (house.isKnocked() && !house.getHouseItems().isEmpty()) {
+              house.removeItem();
+              house.setKnocked(false);
+              System.out.println(inventory);
+            }
+          });
+
+      //use item
+      playGameGUI.getUserLocationInventoryMove().setUseItemListener(
+          item -> {
+            House house = neighborhood.getNeighborhood().get(currentLocation);
+            inventory = game.useItem(house, item, inventory);
+            playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
 //          state = game.getState();
-        });
-
+          });
+      state = game.getState();
     }
+    
     public void displayGameResult(){
 
       if(game.getState().equals(State.WIN)){
-        game.showWin();
+        playGameGUI.getScript().displayDialogue(game.showWin());
 
       }else{
-        game.showLose();
+        playGameGUI.getScript().displayDialogue(game.showLose());
       }
     }
+    
     public void quitGame(){
     game.quitGame();
     }

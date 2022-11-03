@@ -51,8 +51,8 @@ public class GuiUserLocationInventoryMove {
     panelForInventory = new JPanel();
     panelForInventory.setSize(215, 245);
     panelForInventory.setBorder(BorderFactory.createLineBorder(Color.black));
-    panelForInventory.setLayout(new GridLayout());
-//    panelForInventory.setLayout(new GridLayout(4, 2));
+//    panelForInventory.setLayout(new GridLayout());
+    panelForInventory.setLayout(new GridLayout(4, 2));
 
 //    JTextArea titleForLocation = new JTextArea("Inventory");
 //    titleForLocation.setBounds(2,2,215,20);
@@ -83,7 +83,8 @@ public class GuiUserLocationInventoryMove {
 
     panelForInventory.removeAll();
     panelForInventory.revalidate();
-    panelForInventory.setBackground(Color.red);
+    panelForInventory.repaint();
+    panelForInventory.setBackground(Color.white);
 
 //    itemPanel.removeAll();
 //      itemPanel.revalidate();
@@ -109,7 +110,6 @@ public class GuiUserLocationInventoryMove {
       }
 //      itemBtn.setVisible(true);
       itemBtn.addActionListener(e -> {
-        System.out.println(e.getActionCommand() + " action comand");
         useItemListener.accept(e.getActionCommand());
 
 //        itemBtn.getParent().remove(itemBtn);
@@ -119,14 +119,13 @@ public class GuiUserLocationInventoryMove {
 
 
   public void updateLocation(String dialogue) {
-    System.out.println(dialogue + " from line 86 in GuiLOcationInventoryMove");
     textAreaForLocation.removeAll();
     textAreaForLocation.revalidate();
     textAreaForLocation.repaint();
     textAreaForLocation.setText("\nYour Current Location:\n\n" + dialogue);
   }
   public void updatePossibleMove(String dialogue) {
-    System.out.println(dialogue + " from line 93 in GuiLOcationInventoryMove");
+
     textAreaForPossibleMoves.removeAll();
     textAreaForPossibleMoves.revalidate();
     textAreaForPossibleMoves.repaint();
@@ -136,7 +135,7 @@ public class GuiUserLocationInventoryMove {
   public void setInventoryListener(Consumer<String> listener) {
     inventoryListener = listener;
   }
-    public void setUseItemListener(Consumer<String> listener){
+  public void setUseItemListener(Consumer<String> listener){
     useItemListener = listener;
   }
 }

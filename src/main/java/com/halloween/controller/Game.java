@@ -117,13 +117,13 @@ public class Game {
   }
 
   // Display win message
-  public void showWin() {
-    System.out.println(display.getImportantDisplay("win"));
+  public String showWin() {
+    return display.getImportantDisplay("win");
   }
 
   //Display lose message
-  public void showLose() {
-    System.out.println(display.getImportantDisplay("lose"));
+  public String showLose() {
+    return display.getImportantDisplay("lose");
   }
 
   // Update user's current location
@@ -226,14 +226,14 @@ public class Game {
     // if we don't have a badge, potion, or ruby we lose the game
     else {
 //      System.out.println(display.greet(player.getPosition()));
-      setState(State.LOSE);
-      System.out.println(getState() + "  this is state update from Game 226");
-      playSound("/evil-shreik.wav");
+
       try {
-        TimeUnit.SECONDS.sleep(3);  // Wait 2 seconds
+        TimeUnit.SECONDS.sleep(2);  // Wait 2 seconds
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
+      playSound("/evil-shreik.wav");
+      setState(State.LOSE);
       return (display.greet(player.getPosition()) + display.getNpcResponse("player_arrested"));
     }
   }
@@ -351,6 +351,7 @@ public class Game {
     } else{
       return inventory;
     }
+    showWin();
     setState(State.WIN);
     return inventory;
   }
