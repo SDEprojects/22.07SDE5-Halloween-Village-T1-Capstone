@@ -1,6 +1,9 @@
 package com.halloween.view;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.BorderFactory;
@@ -9,29 +12,48 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class GuiUserLocationInventoryMove {
+
+  JLabel labelForLocation;
+  JTextArea textAreaForLocation;
+  JLabel labelForPossibleMoves;
+  JTextArea textAreaForPossibleMoves;
+  JPanel panelForInventory;
   JPanel panelForLocationInventoryMove;
-  JPanel itemPanel;
   JButton itemBtn;
   Consumer<String> useItemListener;
 
   public GuiUserLocationInventoryMove() {
 
-    JTextArea textAreaForLocation = new JTextArea("Location:");
-    textAreaForLocation.setEditable(false);
+    textAreaForLocation = new JTextArea("Your Current Location:");
     textAreaForLocation.setBorder(BorderFactory.createLineBorder(Color.black));
-    textAreaForLocation.setBounds(2, 2, 215, 245);
+    textAreaForLocation.setSize(215, 245);
+    textAreaForLocation.setEditable(false);
+    textAreaForLocation.setFont(new Font("Bold", Font.ITALIC, 16));
+    textAreaForLocation.setLineWrap(true);
+    textAreaForLocation.setWrapStyleWord(true);
+    textAreaForLocation.setForeground(Color.blue);
+    textAreaForLocation.setLayout(new BorderLayout());
 
+    textAreaForPossibleMoves = new JTextArea("Possible Moves:");
+    textAreaForPossibleMoves.setBorder(BorderFactory.createLineBorder(Color.black));
+    textAreaForPossibleMoves.setSize(215, 245);
+    textAreaForPossibleMoves.setEditable(false);
+    textAreaForPossibleMoves.setFont(new Font("Bold", Font.ITALIC, 16));
+    textAreaForPossibleMoves.setLineWrap(true);
+    textAreaForPossibleMoves.setWrapStyleWord(true);
+    textAreaForPossibleMoves.setForeground(Color.blue);
+    textAreaForPossibleMoves.setLayout(new FlowLayout());
 
     //inventory
-    itemPanel = new JPanel();
-    itemPanel.setBounds(222, 2, 215, 245);
-//    itemPanel.setLayout(new GridLayout(2,2));
-    itemPanel.setLayout(null);
-    itemPanel.setBackground(Color.white);
+    panelForInventory = new JPanel();
+    panelForInventory.setSize(215, 245);
+    panelForInventory.setBorder(BorderFactory.createLineBorder(Color.black));
+    panelForInventory.setLayout(new GridLayout());
+//    panelForInventory.setLayout(new GridLayout(4, 2));
 
-    JTextArea titleForLocation = new JTextArea("Inventory");
-    titleForLocation.setBounds(2,2,215,20);
-    itemPanel.add(titleForLocation);
+//    JTextArea titleForLocation = new JTextArea("Inventory");
+//    titleForLocation.setBounds(2,2,215,20);
+//    itemPanel.add(titleForLocation);
 
 
 
@@ -42,11 +64,11 @@ public class GuiUserLocationInventoryMove {
     panelForLocationInventoryMove = new JPanel();
     panelForLocationInventoryMove.setBackground(Color.LIGHT_GRAY);
     panelForLocationInventoryMove.setBounds(5, 435, 660, 250);
-    panelForLocationInventoryMove.setLayout(null);
+    panelForLocationInventoryMove.setLayout(new GridLayout(1, 3));
 
     panelForLocationInventoryMove.add(textAreaForLocation);
-    panelForLocationInventoryMove.add(itemPanel);
     panelForLocationInventoryMove.add(textAreaForPossibleMove);
+    panelForLocationInventoryMove.add(panelForInventory);
   }
 
   public JPanel getPanelForLocationInventoryMove() {
@@ -55,21 +77,28 @@ public class GuiUserLocationInventoryMove {
 
 
   public void updateInventory(List<String> inventory) {
-      itemPanel.removeAll();
-      itemPanel.revalidate();
-      itemPanel.repaint();
-      JTextArea titleForLocation = new JTextArea("Inventory");
-      titleForLocation.setBounds(2,2,215,20);
-      itemPanel.add(titleForLocation);
+
+    panelForInventory.removeAll();
+    panelForInventory.revalidate();
+    panelForInventory.setBackground(Color.red);
+
+//    itemPanel.removeAll();
+//      itemPanel.revalidate();
+//      itemPanel.repaint();
+//      JTextArea titleForLocation = new JTextArea("Inventory");
+//      titleForLocation.setBounds(2,2,215,20);
+//      itemPanel.add(titleForLocation);
+
 
     for (int i = 0; i < inventory.size(); i++) {
       itemBtn = new JButton(inventory.get(i));
       itemBtn.setBounds(30, (i+1)*25, 160, 30);
       itemBtn.setFocusable(false);
       itemBtn.setActionCommand(inventory.get(i));
-      itemPanel.add(itemBtn);
-      if (itemBtn.getActionCommand().isEmpty()){
-//        itemBtn.setVisible(false);
+      panelForInventory.add(itemBtn);
+      itemBtn.setVisible(true);
+     if (itemBtn.getActionCommand().isEmpty()){
+//      itemBtn.setVisible(false);
         itemBtn.getParent().remove(itemBtn);
         itemBtn.setVisible(false);
       }else{
@@ -85,9 +114,30 @@ public class GuiUserLocationInventoryMove {
     }
   }
 
-  public void setUseItemListener(Consumer<String> listener){
+
+  public void updateLocation(String dialogue) {
+    System.out.println(dialogue + " from line 86 in GuiLOcationInventoryMove");
+    textAreaForLocation.removeAll();
+    textAreaForLocation.revalidate();
+    textAreaForLocation.repaint();
+    textAreaForLocation.setText("\nYour Current Location:\n\n" + dialogue);
+  }
+  public void updatePossibleMove(String dialogue) {
+    System.out.println(dialogue + " from line 93 in GuiLOcationInventoryMove");
+    textAreaForPossibleMoves.removeAll();
+    textAreaForPossibleMoves.revalidate();
+    textAreaForPossibleMoves.repaint();
+    textAreaForPossibleMoves.setText("\nPossible Moves:" + dialogue);
+  }
+
+  public void setInventoryListener(Consumer<String> listener) {
+    inventoryListener = listener;
+
+  }
+    public void setUseItemListener(Consumer<String> listener){
     useItemListener = listener;
   }
+
 
 }
 

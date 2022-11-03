@@ -59,23 +59,22 @@ public class Game {
   }
 
   // Display user status including user's current location, inventory items, and item in house.
-  public void showStatus() {
-    House currentPosition = neighborhood.getNeighborhood().get(player.getPosition());
+  public String showStatus(String location) {
+    House currentPosition = neighborhood.getNeighborhood().get(location);
     String playerItems = player.getItems().isEmpty() ? "nothing" : player.getItems().toString();
     String houseItems = currentPosition.getHouseItems().isEmpty() ? "a whole lot of nothing"
         : currentPosition.getHouseItems().toString();
-
-    System.out.printf(display.getNpcResponse("house_item"), currentPosition.getHouseName(),
-        houseItems);
-    System.out.printf(display.getNpcResponse("item_in_inventory"), player.getName(),
-        player.getPosition(), playerItems);
-    showValidMoves();
+    return (currentPosition.getHouseName() + "\n\nIt looks like this house has " + houseItems);
+//    return (display.getNpcResponse("house_item") + currentPosition.getHouseName() +
+//        houseItems);
+//    System.out.printf(display.getNpcResponse("item_in_inventory"), player.getName(),
+//        player.getPosition(), playerItems);
+//    showValidMoves();
   }
 
   // Display user menu
   public void showMenu() {
     System.out.println(display.getImportantDisplay("menu"));
-    ;
   }
 
   public void showTitle() {
@@ -104,15 +103,16 @@ public class Game {
   }
 
   // Display valid moves from user's current location
-  public void showValidMoves() {
-    House currentPosition = neighborhood.getNeighborhood().get(player.getPosition());
+  public String showValidMoves(String location) {
+    House currentPosition = neighborhood.getNeighborhood().get(location);
     String north =
-        currentPosition.getNorth() != null ? "\nnorth: " + currentPosition.getNorth() : "";
-    String east = currentPosition.getEast() != null ? "\neast: " + currentPosition.getEast() : "";
+        currentPosition.getNorth() != null ? "\n\nnorth: " + currentPosition.getNorth() : "";
+    String east = currentPosition.getEast() != null ? "\n\neast: " + currentPosition.getEast() : "";
     String south =
-        currentPosition.getSouth() != null ? "\nsouth: " + currentPosition.getSouth() : "";
-    String west = currentPosition.getWest() != null ? "\nwest: " + currentPosition.getWest() : "";
-    System.out.println(north + east + south + west);
+        currentPosition.getSouth() != null ? "\n\nsouth: " + currentPosition.getSouth() : "";
+    String west = currentPosition.getWest() != null ? "\n\nwest: " + currentPosition.getWest() : "";
+//    System.out.println(north + east + south + west);
+    return (north + east + south + west);
   }
 
   // Display win message
@@ -134,7 +134,7 @@ public class Game {
     currentPosition.setKnocked(false);
     if (playersMove.isEmpty()) {
       System.out.printf(display.getNpcResponse("invalid_direction"), direction);
-      showValidMoves();
+//      showValidMoves(location);
     } else {
       player.setPosition(playersMove);
       System.out.printf(display.getNpcResponse("players_move"), direction,
