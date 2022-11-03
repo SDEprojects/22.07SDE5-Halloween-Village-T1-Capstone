@@ -1,11 +1,13 @@
 package com.halloween.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -27,7 +29,14 @@ public class GuiUserLocationInventoryMove {
     //inventory
     itemPanel = new JPanel();
     itemPanel.setBounds(222, 2, 215, 245);
-    itemPanel.setLayout(new FlowLayout());
+//    itemPanel.setLayout(new GridLayout(2,2));
+    itemPanel.setLayout(null);
+    itemPanel.setBackground(Color.white);
+
+    JTextArea titleForLocation = new JTextArea("Inventory");
+    titleForLocation.setBounds(2,2,215,20);
+    itemPanel.add(titleForLocation);
+
 
 
     JTextArea textAreaForPossibleMove = new JTextArea("Possible Moves:");
@@ -53,21 +62,31 @@ public class GuiUserLocationInventoryMove {
       itemPanel.removeAll();
       itemPanel.revalidate();
       itemPanel.repaint();
-      itemPanel.setBackground(Color.white);
+      JTextArea titleForLocation = new JTextArea("Inventory");
+      titleForLocation.setBounds(2,2,215,20);
+      itemPanel.add(titleForLocation);
 
     for (int i = 0; i < inventory.size(); i++) {
       System.out.println(inventory.get(i) + " inventory i printing ");
       itemBtn = new JButton(inventory.get(i));
-      itemBtn.setSize( 200, 30);
+      itemBtn.setBounds(30, (i+1)*25, 160, 30);
       itemBtn.setFocusable(false);
       itemBtn.setActionCommand(inventory.get(i));
       System.out.println(itemBtn.getActionCommand() + " getting action command right away");
       itemPanel.add(itemBtn);
-      itemBtn.setVisible(true);
+      if (itemBtn.getActionCommand().isEmpty()){
+//        itemBtn.setVisible(false);
+        itemBtn.getParent().remove(itemBtn);
+        itemBtn.setVisible(false);
+      }else{
+        itemBtn.setVisible(true);
+      }
+//      itemBtn.setVisible(true);
       itemBtn.addActionListener(e -> {
         System.out.println(e.getActionCommand() + " action comand");
         useItemListener.accept(e.getActionCommand());
 
+//        itemBtn.getParent().remove(itemBtn);
       });
 
 
