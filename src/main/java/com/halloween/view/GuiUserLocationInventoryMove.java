@@ -34,7 +34,7 @@ public class GuiUserLocationInventoryMove {
     textAreaForLocation.setLineWrap(true);
     textAreaForLocation.setWrapStyleWord(true);
     textAreaForLocation.setForeground(Color.blue);
-    textAreaForLocation.setLayout(new BorderLayout());
+    textAreaForLocation.setLayout(new FlowLayout());
 
     textAreaForPossibleMoves = new JTextArea("Possible Moves:");
     textAreaForPossibleMoves.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -134,13 +134,10 @@ public class GuiUserLocationInventoryMove {
 
   public void setInventoryListener(Consumer<String> listener) {
     inventoryListener = listener;
-
   }
     public void setUseItemListener(Consumer<String> listener){
     useItemListener = listener;
   }
-
-
 }
 
 

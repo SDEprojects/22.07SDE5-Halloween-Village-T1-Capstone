@@ -139,7 +139,7 @@ public class Game {
 
   public String checkValidDirection(String direction, String playersMove) {
     if (playersMove.isEmpty()) {
-      return ("WARNING: " + direction + " is an invalid direction. Please choose one of the following.");
+      return ("WARNING: " + direction + " is an invalid direction. Please choose one of the possible moves.");
 //      showValidMoves(location);
     } else {
       player.setPosition(playersMove);

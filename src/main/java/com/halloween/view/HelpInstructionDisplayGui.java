@@ -1,5 +1,6 @@
 package com.halloween.view;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JDialog;
@@ -13,20 +14,17 @@ public class HelpInstructionDisplayGui {
   JDialog helpDialog;
   JTextArea helpText;
   public HelpInstructionDisplayGui() {
-    helpDialog = new JDialog();
     helpDialog = new JDialog(new JFrame(), true);
     helpDialog.setBounds(50, 50, 800, 700);
-    JPanel helpPanel = new JPanel(new GridLayout(1, 0));
+    JPanel helpPanel = new JPanel(new GridLayout());
     helpText = new JTextArea();
     helpText.setEditable(false);
     helpText.setFont(new Font("Bold", Font.ITALIC, 18));
     helpText.setLineWrap(true);
     helpText.setWrapStyleWord(true);
-    helpPanel.add(helpText);
-    JScrollPane scrollPane1 = new JScrollPane();
-    scrollPane1.add(helpPanel);
-    helpDialog.add(helpPanel);
-
+    helpPanel.add(helpText, BorderLayout.CENTER);
+    JScrollPane scrollPane1 = new JScrollPane(helpPanel);
+    helpDialog.add(scrollPane1);
   }
 
   public void updateDialogBox(String dialogue) {
