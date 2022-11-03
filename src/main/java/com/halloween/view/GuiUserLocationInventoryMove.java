@@ -1,5 +1,6 @@
 package com.halloween.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -20,6 +22,7 @@ public class GuiUserLocationInventoryMove {
   JPanel panelForInventory;
   JPanel panelForLocationInventoryMove;
   JButton itemBtn;
+  Consumer<String> inventoryListener;
   Consumer<String> useItemListener;
 
   public GuiUserLocationInventoryMove() {

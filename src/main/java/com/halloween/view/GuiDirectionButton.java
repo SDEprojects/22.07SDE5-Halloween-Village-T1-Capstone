@@ -24,11 +24,13 @@ public class GuiDirectionButton {
     panelForDirectionButtonsWithOtherButtons = new JPanel();
     panelForDirectionButtonsWithOtherButtons.setBackground(Color.lightGray);
     panelForDirectionButtonsWithOtherButtons.setBounds(675, 435, 300, 250);
+    panelForDirectionButtonsWithOtherButtons.setOpaque(false);
     panelForDirectionButtonsWithOtherButtons.setLayout(null);
 
     JPanel panelForDirectionButton = new JPanel();
     panelForDirectionButton.setBackground(Color.lightGray);
     panelForDirectionButton.setBounds(20, 60, 136, 136);
+    panelForDirectionButton.setOpaque(false);
     panelForDirectionButton.setLayout(null);
 
     JButton northButton = new JButton("N");
