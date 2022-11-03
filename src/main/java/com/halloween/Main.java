@@ -1,17 +1,21 @@
 package com.halloween;
 
-import com.halloween.controller.Game;
 import com.halloween.controller.GuiController;
-import com.halloween.model.Player;
 import java.io.IOException;
 
 public class Main {
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args){
 
     GuiController guiController = new GuiController();
-    guiController.setUpHandlers();
-
+    boolean run;
+    do {
+      guiController.setUpHandlers();
+      run = guiController.runGame();
+    }while (run);
+      System.out.println("Thank you for playing");
+      guiController.displayGameResult();
+      guiController.quitGame();
     }
 }
 //    Game game = new Game();
