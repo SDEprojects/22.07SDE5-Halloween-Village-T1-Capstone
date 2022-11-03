@@ -23,7 +23,6 @@ public class GuiUserLocationInventoryMove {
   Consumer<String> inventoryListener;
   Consumer<String> useItemListener;
 
-  Consumer<String> inventoryListener;
 
   public GuiUserLocationInventoryMove() {
 
