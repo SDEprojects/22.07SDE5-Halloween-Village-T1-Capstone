@@ -30,7 +30,7 @@ public class Game {
 
   public Game() {
     player.setPosition("your house");
-    System.out.println(player.getPosition());
+//    System.out.println(player.getPosition());
   }
 
   public Game(State state, Player player, Neighborhood neighborhood) {
@@ -138,7 +138,7 @@ public class Game {
       showValidMoves();
     } else {
       player.setPosition(playersMove);
-      System.out.printf(display.getNpcResponse("players_move"), player.getName(), direction,
+      System.out.printf(display.getNpcResponse("players_move"), direction,
           player.getPosition());
       playSound("/footsteps.wav");
     }

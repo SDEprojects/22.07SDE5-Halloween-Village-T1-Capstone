@@ -27,7 +27,6 @@ public class GuiController {
 
   public void setCurrentLocation(String currentLocation) {
     this.currentLocation = currentLocation;
-    System.out.println("your current Location isss " + currentLocation);
   }
 
   public String getCurrentLocation() {
@@ -78,7 +77,6 @@ public class GuiController {
         item-> {
           House house = neighborhood.getNeighborhood().get(currentLocation);
           inventory = game.useItem(house, item, inventory);
-          System.out.println(item + " gui controller got this item");
           playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
         });
 

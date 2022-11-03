@@ -67,12 +67,10 @@ public class GuiUserLocationInventoryMove {
       itemPanel.add(titleForLocation);
 
     for (int i = 0; i < inventory.size(); i++) {
-      System.out.println(inventory.get(i) + " inventory i printing ");
       itemBtn = new JButton(inventory.get(i));
       itemBtn.setBounds(30, (i+1)*25, 160, 30);
       itemBtn.setFocusable(false);
       itemBtn.setActionCommand(inventory.get(i));
-      System.out.println(itemBtn.getActionCommand() + " getting action command right away");
       itemPanel.add(itemBtn);
       if (itemBtn.getActionCommand().isEmpty()){
 //        itemBtn.setVisible(false);

@@ -30,9 +30,6 @@ public class GuiScript {
 
 
 
-
-  }
-
   public void displayKnock(String dialogue){
 //    GuiScript gui = new GuiScript();
     textAreaForScript.removeAll();
