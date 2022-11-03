@@ -133,16 +133,20 @@ public class Game {
     System.out.println("player move is " + playersMove);
     // set the previous house knocked to false before moving
     currentPosition.setKnocked(false);
+    checkValidDirection(direction, playersMove);
+    return playersMove;
+  }
+
+  public String checkValidDirection(String direction, String playersMove) {
     if (playersMove.isEmpty()) {
-      System.out.printf(display.getNpcResponse("invalid_direction"), direction);
+      return ("WARNING: " + direction + " is an invalid direction. Please choose one of the possible moves.");
 //      showValidMoves(location);
     } else {
       player.setPosition(playersMove);
-      System.out.printf(display.getNpcResponse("players_move"), direction,
-          player.getPosition());
       playSound("/footsteps.wav");
+      return ("You moved to "+ direction + ".");
+
     }
-    return playersMove;
   }
 
   // User get item, and save it to the inventory

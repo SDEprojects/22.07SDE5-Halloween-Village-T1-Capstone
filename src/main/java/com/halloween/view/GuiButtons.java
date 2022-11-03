@@ -2,6 +2,7 @@ package com.halloween.view;
 
 import com.halloween.controller.Game;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,14 +30,18 @@ public class GuiButtons {
   public GuiButtons() {
     game.startMusic();
     SoundEffects.playSound("/silent_quarter_second.wav");
+    GridLayout gridLayout = new GridLayout();
+    gridLayout.setColumns(1);
+    gridLayout.setRows(4);
+    gridLayout.setVgap(20);
 
-    panelForDefaultButtons = new JPanel();
+    panelForDefaultButtons = new JPanel(gridLayout);
     panelForDefaultButtons.setBackground(Color.lightGray);
-    panelForDefaultButtons.setBounds(825, 130, 150, 280);
-    panelForDefaultButtons.setLayout(new GridLayout(5, 1));
+    panelForDefaultButtons.setBounds(840, 130, 130, 280);
+//    panelForDefaultButtons.setLayout(new GridLayout(4, 1));
 
     JButton mapButton = new JButton("Map");
-//    mapButton.setSize(100, 40);
+    mapButton.setSize(140, 40);
 //    mapButton.setBounds(30, 30, 90, 40);
     mapButton.setFocusable(false);
 
@@ -70,14 +75,6 @@ public class GuiButtons {
       }
     });
 
-
-    help = new JButton("Help");
-//    help.setBounds(30, 150, 90, 40);
-    help.setFocusable(false);
-    help.addActionListener(e -> helpInstructionGui.updateDialogBox("help"));
-
-    
-
     JButton quitButton = new JButton("Quit");
 //    quitButton.setBounds(30, 210, 90, 40);
     quitButton.setFocusable(false);
@@ -97,7 +94,6 @@ public class GuiButtons {
 
     panelForDefaultButtons.add(mapButton);
     panelForDefaultButtons.add(muteButton);
-    panelForDefaultButtons.add(help);
     panelForDefaultButtons.add(instructionButton);
     panelForDefaultButtons.add(quitButton);
   }
