@@ -27,8 +27,7 @@ public class GuiScript {
     return panelForScript;
   }
 
-  public void displayKnock(String dialogue) {
-    System.out.println(dialogue + " from line 38 in guiscript");
+  public void displayDialogue(String dialogue) {
 
     textAreaForScript.removeAll();
     textAreaForScript.revalidate();

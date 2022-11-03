@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args){
 
     GuiController guiController = new GuiController();
     Thread thread = new Thread();
@@ -14,11 +14,19 @@ public class Main {
     do {
       guiController.setUpHandlers();
       run = guiController.runGame();
-//      TimeUnit.SECONDS.sleep(3);
-//      run = guiController.runGame();
     }while (run);
-    thread.sleep(1000);
+    try {
+      thread.sleep(5000);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
     guiController.displayGameResult();
+    try {
+      thread.sleep(5000);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }guiController.quitGame();
+
 
 
 

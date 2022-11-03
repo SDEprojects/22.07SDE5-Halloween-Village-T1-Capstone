@@ -117,13 +117,13 @@ public class Game {
   }
 
   // Display win message
-  public void showWin() {
-    System.out.println(display.getImportantDisplay("win"));
+  public String showWin() {
+    return display.getImportantDisplay("win");
   }
 
   //Display lose message
-  public void showLose() {
-    System.out.println(display.getImportantDisplay("lose"));
+  public String showLose() {
+    return display.getImportantDisplay("lose");
   }
 
   // Update user's current location
