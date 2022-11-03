@@ -1,27 +1,31 @@
 package com.halloween;
 
 import com.halloween.controller.GuiController;
-import java.io.IOException;
+import com.halloween.model.State;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-  public static void main(String[] args){
+  public static void main(String[] args) throws InterruptedException {
 
     GuiController guiController = new GuiController();
+    Thread thread = new Thread();
     boolean run;
     do {
       guiController.setUpHandlers();
       run = guiController.runGame();
+//      TimeUnit.SECONDS.sleep(3);
+//      run = guiController.runGame();
     }while (run);
-      System.out.println("Thank you for playing");
-      guiController.displayGameResult();
-    try {
-      TimeUnit.SECONDS.sleep(2);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
-    guiController.quitGame();
+    thread.sleep(1000);
+    guiController.displayGameResult();
+
+
+
+
+//    TimeUnit.SECONDS.sleep(3);
+//      guiController.displayGameResult();
+//    guiController.quitGame();
     }
 }
 

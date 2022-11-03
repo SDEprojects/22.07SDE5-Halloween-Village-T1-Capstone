@@ -110,7 +110,6 @@ public class GuiUserLocationInventoryMove {
       }
 //      itemBtn.setVisible(true);
       itemBtn.addActionListener(e -> {
-        System.out.println(e.getActionCommand() + " action comand");
         useItemListener.accept(e.getActionCommand());
 
 //        itemBtn.getParent().remove(itemBtn);
@@ -120,14 +119,13 @@ public class GuiUserLocationInventoryMove {
 
 
   public void updateLocation(String dialogue) {
-    System.out.println(dialogue + " from line 86 in GuiLOcationInventoryMove");
     textAreaForLocation.removeAll();
     textAreaForLocation.revalidate();
     textAreaForLocation.repaint();
     textAreaForLocation.setText("\nYour Current Location:\n\n" + dialogue);
   }
   public void updatePossibleMove(String dialogue) {
-    System.out.println(dialogue + " from line 93 in GuiLOcationInventoryMove");
+
     textAreaForPossibleMoves.removeAll();
     textAreaForPossibleMoves.revalidate();
     textAreaForPossibleMoves.repaint();

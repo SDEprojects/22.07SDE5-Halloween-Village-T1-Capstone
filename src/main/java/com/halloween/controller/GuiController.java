@@ -43,7 +43,13 @@ public class GuiController {
     this.game = game;
   }
 
+  public void setState(State state) {
+    this.state = state;
+  }
 
+  public State getState() {
+    return state;
+  }
   public Boolean runGame(){
     if (!game.getState().equals(State.PLAY)){
       return false;
@@ -60,7 +66,6 @@ public class GuiController {
           House house = neighborhood.getNeighborhood().get(currentLocation);
           house.setKnocked(true);
           setCurrentLocation(house.getHouseName());
-          System.out.println(game.getState() + "this is from handler 61");
 
           if(house.getHouseName() != null) {
             setCurrentLocation(house.getHouseName());
@@ -101,7 +106,7 @@ public class GuiController {
           playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
 //          state = game.getState();
         });
-
+    state =game.getState();
     }
     public void displayGameResult(){
 
