@@ -1,6 +1,5 @@
 package com.halloween.view;
 
-import com.halloween.controller.Game;
 import com.halloween.model.Neighborhood;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -49,7 +48,7 @@ public class PlayGameGUI implements ActionListener {
     panelForGameWindow.add(defaultButton.getPanelForDefaultButtons());
     panelForGameWindow.add(userInput.getPanelForUserInput());
     panelForGameWindow.add(directionButtonPanel.getPanelForDirectionButtonsWithOtherButtons());
-    panelForGameWindow.add(userLocationInventoryMove.getPanelForLocationInventoryMOve());
+    panelForGameWindow.add(userLocationInventoryMove.getPanelForLocationInventoryMove());
     panelForGameWindow.setBackground(Color.cyan);
     panelForGameWindow.setBounds(0, 0, 1000, 800);
     frame.add(panelForGameWindow);

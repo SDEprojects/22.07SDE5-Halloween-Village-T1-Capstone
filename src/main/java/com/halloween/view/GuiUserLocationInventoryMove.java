@@ -1,19 +1,15 @@
 package com.halloween.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class GuiUserLocationInventoryMove {
-  JPanel panelForLocationInventoryMOve;
+  JPanel panelForLocationInventoryMove;
   JPanel itemPanel;
   JButton itemBtn;
   Consumer<String> useItemListener;
@@ -43,18 +39,18 @@ public class GuiUserLocationInventoryMove {
     textAreaForPossibleMove.setBorder(BorderFactory.createLineBorder(Color.black));
     textAreaForPossibleMove.setBounds(442, 2, 215, 245);
 
-    panelForLocationInventoryMOve = new JPanel();
-    panelForLocationInventoryMOve.setBackground(Color.LIGHT_GRAY);
-    panelForLocationInventoryMOve.setBounds(5, 435, 660, 250);
-    panelForLocationInventoryMOve.setLayout(null);
+    panelForLocationInventoryMove = new JPanel();
+    panelForLocationInventoryMove.setBackground(Color.LIGHT_GRAY);
+    panelForLocationInventoryMove.setBounds(5, 435, 660, 250);
+    panelForLocationInventoryMove.setLayout(null);
 
-    panelForLocationInventoryMOve.add(textAreaForLocation);
-    panelForLocationInventoryMOve.add(itemPanel);
-    panelForLocationInventoryMOve.add(textAreaForPossibleMove);
+    panelForLocationInventoryMove.add(textAreaForLocation);
+    panelForLocationInventoryMove.add(itemPanel);
+    panelForLocationInventoryMove.add(textAreaForPossibleMove);
   }
 
-  public JPanel getPanelForLocationInventoryMOve() {
-    return panelForLocationInventoryMOve;
+  public JPanel getPanelForLocationInventoryMove() {
+    return panelForLocationInventoryMove;
   }
 
 
