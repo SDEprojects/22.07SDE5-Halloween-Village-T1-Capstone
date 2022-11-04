@@ -134,7 +134,6 @@ public class Game {
     // set the previous house knocked to false before moving
     currentPosition.setKnocked(false);
     checkValidDirection(direction, playersMove);
-    System.out.println(playersMove);
     return playersMove;
   }
 
