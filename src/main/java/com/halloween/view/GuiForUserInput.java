@@ -30,6 +30,10 @@ public class GuiForUserInput {
 
     userTextField = new JTextField();
     userTextField.setBounds(15, 25, 230, 25);
+    userTextField.addActionListener(e -> {
+      userInputListener.accept(buttonForUserInput.getActionCommand());
+      userTextField.setText("");
+    });
     panelForUserInput.add(userTextField);
 
     buttonForUserInput = new JButton();
