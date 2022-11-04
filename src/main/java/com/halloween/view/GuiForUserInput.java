@@ -34,8 +34,6 @@ public class GuiForUserInput {
     userTextField.setBounds(15, 25, 230, 25);
     userTextField.addActionListener(e -> {
       userInputListener.accept(userTextField.getText());
-      System.out.println(userTextField.getText());
-//      guiScript.displayDialogue(view.getImportantDisplay("backstory"));
       userTextField.setText("");
     });
     panelForUserInput.add(userTextField);
@@ -46,9 +44,7 @@ public class GuiForUserInput {
     buttonForUserInput.setFocusable(false);
     buttonForUserInput.addActionListener(e -> {
       userInputListener.accept(userTextField.getText());
-      System.out.println(userTextField.getText());
       userTextField.setText("");
-//      guiScript.displayDialogue(view.getImportantDisplay("backstory"));
     });
     panelForUserInput.add(labelForUserInput);
     panelForUserInput.add(buttonForUserInput);
