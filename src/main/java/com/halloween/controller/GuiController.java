@@ -12,7 +12,7 @@ public class GuiController {
   public static final String STARTING_HOUSE = "your house";
   PlayGameGUI playGameGUI;
 
-  Player player;
+  Player player = new Player();
   Game game;
   String currentLocation;
   ArrayList<String> inventory;
@@ -27,6 +27,7 @@ public class GuiController {
     currentLocation = STARTING_HOUSE;
     inventory = new ArrayList<>();
     state = game.getState();
+    player.setPosition(STARTING_HOUSE);
   }
 
   public void setCurrentLocation(String currentLocation) {
@@ -60,8 +61,8 @@ public class GuiController {
       // knock
       playGameGUI.getDirectionButton().setKnockListener(
           location -> {
-            playGameGUI.getScript().displayDialogue(game.knockOnDoor(currentLocation));
-            House house = neighborhood.getNeighborhood().get(currentLocation);
+            House house = neighborhood.getNeighborhood().get(player.getPosition());
+            playGameGUI.getScript().displayDialogue(game.knockOnDoor(house));
             house.setKnocked(true);
             setCurrentLocation(house.getHouseName());
        
@@ -71,13 +72,13 @@ public class GuiController {
     // move to different direction
     playGameGUI.getDirectionButton().setDirectionListener(
         direction-> {
-          String newLocation = game.movePlayer(direction, currentLocation);
+          String newLocation = game.movePlayer(direction, player.getPosition());
           playGameGUI.getScript().displayDialogue(game.checkValidDirection(direction, newLocation));
 
           if(!newLocation.isEmpty()) {
-            setCurrentLocation(newLocation);
-            playGameGUI.getUserLocationInventoryMove().updateLocation(currentLocation);
-            playGameGUI.getUserLocationInventoryMove().updatePossibleMove(game.showValidMoves(currentLocation));
+            player.setPosition(newLocation);
+            playGameGUI.getUserLocationInventoryMove().updateLocation(player.getPosition());
+            playGameGUI.getUserLocationInventoryMove().updatePossibleMove(game.showValidMoves(player.getPosition()));
           }
         }
     );
