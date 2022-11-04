@@ -1,6 +1,7 @@
 package com.halloween.view;
 
 import java.awt.Color;
+import java.util.function.Consumer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,6 +13,7 @@ public class GuiForUserInput {
   JLabel labelForUserInput;
   JTextField userTextField;
   JButton buttonForUserInput;
+  private Consumer<String> userInputListener;
 
   public GuiForUserInput() {
 
@@ -34,14 +36,24 @@ public class GuiForUserInput {
     buttonForUserInput.setText("Go");
     buttonForUserInput.setBounds(250, 25, 55, 25);
     buttonForUserInput.setFocusable(false);
-    buttonForUserInput.addActionListener(e -> System.out.println(userTextField.getText()));
-
+    buttonForUserInput.addActionListener(e -> {
+      userInputListener.accept(buttonForUserInput.getActionCommand());
+    });
     panelForUserInput.add(labelForUserInput);
     panelForUserInput.add(buttonForUserInput);
+  }
+
+  public String userInput() {
+    return userTextField.getText();
+  }
+  public void setUserInputListener(Consumer<String> listener) {
+    userInputListener = listener;
   }
 
   public JPanel getPanelForUserInput() {
     return panelForUserInput;
   }
+
+
 
 }
