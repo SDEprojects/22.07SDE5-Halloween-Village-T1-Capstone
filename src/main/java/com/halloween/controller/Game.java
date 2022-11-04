@@ -134,6 +134,7 @@ public class Game {
     // set the previous house knocked to false before moving
     currentPosition.setKnocked(false);
     checkValidDirection(direction, playersMove);
+    System.out.println(playersMove);
     return playersMove;
   }
 
@@ -167,8 +168,8 @@ public class Game {
 
   //  GuiScript guiScript = new GuiScript();
   // set knocked value to true when user knocks. also checks user's inventory when user knocks on Karen's house or Saw house.
-  public String knockOnDoor(String location) {
-    House house = neighborhood.getNeighborhood().get(location);
+  public String knockOnDoor(House house) {
+//    House house = neighborhood.getNeighborhood().get(location);
 
 //    house.setKnocked(true);
 
