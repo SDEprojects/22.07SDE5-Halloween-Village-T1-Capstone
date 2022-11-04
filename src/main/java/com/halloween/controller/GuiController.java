@@ -105,7 +105,14 @@ public class GuiController {
 //          state = game.getState();
           });
       state = game.getState();
+
+      playGameGUI.getUserInput().setUserInputListener(
+          userInput -> {
+            playGameGUI.getScript().displayDialogue(playGameGUI.getUserInput().userInput());
+          }
+      );
     }
+
     
     public void displayGameResult(){
 
