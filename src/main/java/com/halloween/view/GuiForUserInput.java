@@ -35,6 +35,7 @@ public class GuiForUserInput {
     userTextField.addActionListener(e -> {
       userInputListener.accept(userTextField.getText());
       userTextField.setText("");
+      panelForUserInput.setVisible(false);
     });
     panelForUserInput.add(userTextField);
 
@@ -45,6 +46,7 @@ public class GuiForUserInput {
     buttonForUserInput.addActionListener(e -> {
       userInputListener.accept(userTextField.getText());
       userTextField.setText("");
+      panelForUserInput.setVisible(false);
     });
     panelForUserInput.add(labelForUserInput);
     panelForUserInput.add(buttonForUserInput);
