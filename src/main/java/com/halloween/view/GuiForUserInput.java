@@ -13,6 +13,8 @@ public class GuiForUserInput {
   JLabel labelForUserInput;
   JTextField userTextField;
   JButton buttonForUserInput;
+  GuiScript guiScript;
+  View view;
   private Consumer<String> userInputListener;
 
   public GuiForUserInput() {
@@ -31,17 +33,22 @@ public class GuiForUserInput {
     userTextField = new JTextField();
     userTextField.setBounds(15, 25, 230, 25);
     userTextField.addActionListener(e -> {
-      userInputListener.accept(buttonForUserInput.getActionCommand());
+      userInputListener.accept(userTextField.getText());
+      System.out.println(userTextField.getText());
+//      guiScript.displayDialogue(view.getImportantDisplay("backstory"));
       userTextField.setText("");
     });
     panelForUserInput.add(userTextField);
 
     buttonForUserInput = new JButton();
-    buttonForUserInput.setText("Go");
+    buttonForUserInput.setText("");
     buttonForUserInput.setBounds(250, 25, 55, 25);
     buttonForUserInput.setFocusable(false);
     buttonForUserInput.addActionListener(e -> {
-      userInputListener.accept(buttonForUserInput.getActionCommand());
+      userInputListener.accept(userTextField.getText());
+      System.out.println(userTextField.getText());
+      userTextField.setText("");
+//      guiScript.displayDialogue(view.getImportantDisplay("backstory"));
     });
     panelForUserInput.add(labelForUserInput);
     panelForUserInput.add(buttonForUserInput);

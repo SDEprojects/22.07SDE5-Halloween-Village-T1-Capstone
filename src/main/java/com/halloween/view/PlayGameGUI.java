@@ -30,6 +30,7 @@ public class PlayGameGUI implements ActionListener {
   JLabel labelPanelForGameWindow;
   View view = new View();
 
+
   private Consumer<String> knockListener;
 
   public String currentLocation;
@@ -107,7 +108,7 @@ public class PlayGameGUI implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     startGameGui.getPanelForStartWindow().setVisible(false);
     panelForGameWindow.setVisible(true);
-    script.displayDialogue(view.getImportantDisplay("backstory"));
+    script.displayDialogue(view.getNpcResponse("ask_name"));
     getUserLocationInventoryMove().updateLocation("your house");
     getUserLocationInventoryMove().updatePossibleMove(view.getPossibleMoveForYourHouse());
   }

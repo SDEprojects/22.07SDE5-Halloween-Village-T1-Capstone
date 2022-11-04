@@ -2,14 +2,18 @@ package com.halloween;
 
 import com.halloween.controller.GuiController;
 import com.halloween.model.State;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-  public static void main(String[] args){
+  public static void main(String[] args) throws IOException {
 
     GuiController guiController = new GuiController();
     Thread thread = new Thread();
+
+
+    guiController.greetPlayer();
     boolean run;
     do {
       guiController.setUpHandlers();
@@ -36,6 +40,10 @@ public class Main {
 //    guiController.quitGame();
     }
 }
+
+//  Game game = new Game();
+//  TextParser textParser = new TextParser();
+
 
 //    boolean startGame = false;
 //    while (!startGame) {

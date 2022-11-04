@@ -5,12 +5,17 @@ import com.halloween.model.Neighborhood;
 import com.halloween.model.Player;
 import com.halloween.model.State;
 import com.halloween.view.PlayGameGUI;
+import com.halloween.view.View;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class GuiController {
 
   public static final String STARTING_HOUSE = "your house";
   PlayGameGUI playGameGUI;
+  private View display = new View();
 
   Player player = new Player();
   Game game;
@@ -24,7 +29,7 @@ public class GuiController {
     playGameGUI = new PlayGameGUI();
     game = new Game();
     neighborhood = new Neighborhood();
-    currentLocation = STARTING_HOUSE;
+//    currentLocation = STARTING_HOUSE;
     inventory = new ArrayList<>();
     state = game.getState();
     player.setPosition(STARTING_HOUSE);
@@ -109,9 +114,30 @@ public class GuiController {
 
       playGameGUI.getUserInput().setUserInputListener(
           userInput -> {
-            playGameGUI.getScript().displayDialogue(playGameGUI.getUserInput().userInput());
+            player.setName(userInput);
+            playGameGUI.getScript().displayDialogue("Hi! " + userInput + display.getImportantDisplay("backstory") + "\n" + player.getName());
           }
       );
+    }
+
+    public void greetPlayer() throws IOException {
+//      if (player.getName() != null) {
+//        playGameGUI.getScript().displayDialogue(display.getNpcResponse("welcome_back") + "\n" + player.getName());
+//      } else {
+//        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+//        playGameGUI.getScript().displayDialogue(display.getNpcResponse("ask_name"));
+        playGameGUI.getUserInput().setUserInputListener(
+          userInput -> {
+            playGameGUI.getScript().displayDialogue(playGameGUI.getUserInput().userInput());
+            player.setName(userInput);
+          }
+      );
+//        player.setName(buffer.readLine().trim());
+//        if (player.getName().equals("quit")) {
+//          quitGame();
+//        }
+        System.out.println(display.getNpcResponse("welcome"));
+//      }
     }
 
     
