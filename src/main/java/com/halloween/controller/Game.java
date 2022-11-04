@@ -45,19 +45,19 @@ public class Game {
   }
 
   // Greeting user by displaying welcome message and ask name. user can quit the game by typing "quit"
-  public void greetPlayer() throws IOException {
-    if (player.getName() != null) {
-      System.out.println(display.getNpcResponse("welcome_back") + "\n" + player.getName());
-    } else {
-      BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-      System.out.println(display.getNpcResponse("ask_name"));
-      player.setName(buffer.readLine().trim());
-      if (player.getName().equals("quit")) {
-        quitGame();
-      }
-      System.out.println(display.getNpcResponse("welcome"));
-    }
-  }
+//  public void greetPlayer() throws IOException {
+//    if (player.getName() != null) {
+//      System.out.println(display.getNpcResponse("welcome_back") + "\n" + player.getName());
+//    } else {
+//      BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+//      System.out.println(display.getNpcResponse("ask_name"));
+//      player.setName(buffer.readLine().trim());
+//      if (player.getName().equals("quit")) {
+//        quitGame();
+//      }
+//      System.out.println(display.getNpcResponse("welcome"));
+//    }
+//  }
 
   // Display user status including user's current location, inventory items, and item in house.
   public String showStatus(String location) {

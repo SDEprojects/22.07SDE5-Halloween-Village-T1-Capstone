@@ -48,8 +48,8 @@ public class View {
   public String getImportantDisplay(String key) {
     return instructions.getString(key) + "\n";
   }
-  public String getNpcResponse(String key){
-    return npcResponse.getString(key) + "\n";
+  public String getNpcResponse(String name){
+    return npcResponse.getString(name) + "\n";
   }
   public String getPossibleMoveForYourHouse(){
     return  "\n\nnorth: neighbor's house\n"
