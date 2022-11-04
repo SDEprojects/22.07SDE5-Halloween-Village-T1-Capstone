@@ -25,26 +25,10 @@ public class GuiUserLocationInventoryMove {
 
 
   public GuiUserLocationInventoryMove() {
-
-    textAreaForLocation = new JTextArea("Your Current Location:");
-    textAreaForLocation.setBorder(BorderFactory.createLineBorder(Color.black));
-    textAreaForLocation.setSize(215, 245);
-    textAreaForLocation.setEditable(false);
-    textAreaForLocation.setFont(new Font("Bold", Font.ITALIC, 16));
-    textAreaForLocation.setLineWrap(true);
-    textAreaForLocation.setWrapStyleWord(true);
-    textAreaForLocation.setForeground(Color.blue);
-    textAreaForLocation.setLayout(new FlowLayout());
-
-    textAreaForPossibleMoves = new JTextArea("Possible Moves:");
-    textAreaForPossibleMoves.setBorder(BorderFactory.createLineBorder(Color.black));
-    textAreaForPossibleMoves.setSize(215, 245);
-    textAreaForPossibleMoves.setEditable(false);
-    textAreaForPossibleMoves.setFont(new Font("Bold", Font.ITALIC, 16));
-    textAreaForPossibleMoves.setLineWrap(true);
-    textAreaForPossibleMoves.setWrapStyleWord(true);
-    textAreaForPossibleMoves.setForeground(Color.blue);
-    textAreaForPossibleMoves.setLayout(new FlowLayout());
+    //text area for current location
+    textAreaForLocation = createTextArea("Your Current Location:");
+    //text area for possible moves
+    textAreaForPossibleMoves = createTextArea("Possible Moves:");
 
     //inventory
     panelForInventory = new JPanel();
@@ -57,12 +41,6 @@ public class GuiUserLocationInventoryMove {
 //    titleForLocation.setBounds(2,2,215,20);
 //    itemPanel.add(titleForLocation);
 
-
-
-    JTextArea textAreaForPossibleMove = new JTextArea("Possible Moves:");
-    textAreaForPossibleMove.setBorder(BorderFactory.createLineBorder(Color.black));
-    textAreaForPossibleMove.setBounds(442, 2, 215, 245);
-
     panelForLocationInventoryMove = new JPanel();
     panelForLocationInventoryMove.setBackground(Color.LIGHT_GRAY);
     panelForLocationInventoryMove.setBounds(5, 435, 660, 250);
@@ -71,6 +49,19 @@ public class GuiUserLocationInventoryMove {
     panelForLocationInventoryMove.add(textAreaForLocation);
     panelForLocationInventoryMove.add(textAreaForPossibleMoves);
     panelForLocationInventoryMove.add(panelForInventory);
+  }
+
+  private JTextArea createTextArea(String text) {
+    JTextArea textArea = new JTextArea(text);
+    textArea.setBorder(BorderFactory.createLineBorder(Color.black));
+    textArea.setSize(215, 245);
+    textArea.setEditable(false);
+    textArea.setFont(new Font("Bold", Font.ITALIC, 16));
+    textArea.setLineWrap(true);
+    textArea.setWrapStyleWord(true);
+    textArea.setForeground(Color.blue);
+    textArea.setLayout(new FlowLayout());
+    return textArea;
   }
 
   public JPanel getPanelForLocationInventoryMove() {

@@ -22,6 +22,7 @@ public class PlayGameGUI implements ActionListener {
   GuiButtons defaultButton = new GuiButtons();
   GuiForUserInput userInput = new GuiForUserInput();
 
+
   GuiDirectionButton directionButtonPanel = new GuiDirectionButton();
   GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
   StartGameGUI startGameGui = new StartGameGUI();
@@ -98,6 +99,10 @@ public class PlayGameGUI implements ActionListener {
     directionButtonPanel.updateDirectionButtons(location);
   }
 
+  public GuiForUserInput getUserInput() {
+    return userInput;
+  }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     startGameGui.getPanelForStartWindow().setVisible(false);
@@ -130,6 +135,9 @@ public class PlayGameGUI implements ActionListener {
     userLocationInventoryMove.setUseItemListener(item -> listener.accept(item));
   }
 
+  public void setUserConsumer(Consumer<String> listener) {
+    userInput.setUserInputListener(userInput -> listener.accept(userInput));
+  }
 
 
   public static void main(String[] args) {
