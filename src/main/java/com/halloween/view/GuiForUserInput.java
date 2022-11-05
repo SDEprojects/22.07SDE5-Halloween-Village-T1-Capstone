@@ -26,7 +26,7 @@ public class GuiForUserInput {
     panelForUserInput.setOpaque(false);
 
     labelForUserInput = new JLabel();
-    labelForUserInput.setText("User Input");
+    labelForUserInput.setText("Type your name");
     labelForUserInput.setForeground(Color.white);
     labelForUserInput.setBounds(15, 0, 100, 25);
 

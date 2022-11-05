@@ -13,7 +13,7 @@ public class Main {
     Thread thread = new Thread();
 
 
-    guiController.greetPlayer();
+//    guiController.greetPlayer();
     boolean run;
     do {
       guiController.setUpHandlers();
