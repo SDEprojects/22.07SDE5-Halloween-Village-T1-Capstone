@@ -20,7 +20,6 @@ public class GuiController {
   Player player = new Player();
   Game game;
   String currentLocation;
-  ArrayList<String> inventory;
   Neighborhood neighborhood;
   State state;
 
@@ -29,8 +28,6 @@ public class GuiController {
     playGameGUI = new PlayGameGUI();
     game = new Game();
     neighborhood = new Neighborhood();
-//    currentLocation = STARTING_HOUSE;
-//    inventory = new ArrayList<>();
     state = game.getState();
     player.setPosition(STARTING_HOUSE);
   }
@@ -107,8 +104,8 @@ public class GuiController {
       playGameGUI.getUserLocationInventoryMove().setUseItemListener(
           item -> {
             House house = neighborhood.getNeighborhood().get(currentLocation);
-            inventory = game.useItem(house, item, inventory);
-            playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
+            player.setItems(game.useItem(house, item, player.getItems()));
+            playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
 //          state = game.getState();
           });
       state = game.getState();
