@@ -46,5 +46,7 @@ public class GuiScript {
     textAreaForScript.revalidate();
     textAreaForScript.repaint();
     textAreaForScript.setText(dialogue);
+
+
   }
 }

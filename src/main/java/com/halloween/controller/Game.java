@@ -144,14 +144,14 @@ public class Game {
     } else {
       player.setPosition(playersMove);
       playSound("/footsteps.wav");
-      return ("You moved to "+ direction + ".");
+      return ("You moved to "+ direction + ". You are at " + player.getPosition());
 
     }
   }
 
   // User get item, and save it to the inventory
   public ArrayList<String> getItem(House house, ArrayList<String> inventory) {
-    if (house.isKnocked() && house.getHouseItems().size() > 0) {
+    if (house.isKnocked() && house.getHouseItems().size() > 0 && !house.getHouseName().equals("witch's den")) {
       String temp = house.getHouseItems().get(0);
       inventory.add(temp);
       player.setPosition(house.getHouseName());
