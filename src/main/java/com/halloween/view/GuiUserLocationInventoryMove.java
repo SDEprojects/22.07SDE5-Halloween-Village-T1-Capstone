@@ -19,6 +19,7 @@ public class GuiUserLocationInventoryMove {
 
   JTextArea textAreaForLocation;
   JTextArea textAreaForPossibleMoves;
+  JTextArea titleForInventory;
   JPanel panelForInventory;
   JPanel panelForLocationInventoryMove;
   JButton itemBtn;
@@ -41,7 +42,7 @@ public class GuiUserLocationInventoryMove {
     textAreaForLocation.setLayout(new BorderLayout());
     textAreaForLocation.setOpaque(false);
 
-    textAreaForPossibleMoves = new JTextArea("Possible Moves:");
+    textAreaForPossibleMoves = new JTextArea("Possible Moves");
 //    textAreaForPossibleMoves.setBorder(BorderFactory.createLineBorder(Color.red));
     textAreaForPossibleMoves.setSize(215, 245);
 //    textAreaForPossibleMoves.setEditable(false);
@@ -64,22 +65,26 @@ public class GuiUserLocationInventoryMove {
     panelForInventory.setSize(215, 245);
 //    panelForInventory.setBorder(BorderFactory.createLineBorder(Color.blue));
 //    panelForInventory.setLayout(new GridLayout());
-    panelForInventory.setLayout(new GridLayout(4, 2));
+    panelForInventory.setLayout(null);
     panelForInventory.setOpaque(false);
     panelForInventory.setBackground(new Color(0, 0, 0, 5));
 //    Border titleForInventory = BorderFactory.createTitledBorder("Inventory");
 //    panelForInventory.setBorder(titleForInventory);
 
 
-//    JTextArea titleForLocation = new JTextArea("Inventory");
-//    titleForLocation.setBounds(2,2,215,20);
-//    itemPanel.add(titleForLocation);
+    titleForInventory = new JTextArea("Inventory:");
+    titleForInventory.setEditable(false);
+//    titleForInventory.setBackground(Color.white);
+    titleForInventory.setFont(new Font("Bold", Font.BOLD, 16));
+    titleForInventory.setOpaque(false);
+    titleForInventory.setBounds(8,18,215,20);
+    titleForInventory.setForeground(Color.YELLOW);
 
+    panelForInventory.add(titleForInventory);
 
-
-    JTextArea textAreaForPossibleMove = new JTextArea("Possible Moves:");
+//    JTextArea textAreaForPossibleMove = new JTextArea("Possible Moves");
 //    textAreaForPossibleMove.setBorder(BorderFactory.createLineBorder(Color.red));
-    textAreaForPossibleMove.setBounds(442, 2, 215, 245);
+//    textAreaForPossibleMove.setBounds(442, 2, 215, 245);
 
 //    panelForLocationInventoryMove = new JPanel();
     panelForLocationInventoryMove = new JPanel() {
@@ -93,8 +98,8 @@ public class GuiUserLocationInventoryMove {
 
 
 
-//    titleForLocation.setOpaque(false);
-//      titleForLocation.setBounds(2,2,215,20);
+//    titleForInventory.setOpaque(false);
+//      titleForInventory.setBounds(2,2,215,20);
 //    panelForInventory.add(titleForInventory);
 //    panelForLocationInventoryMove.setBackground(Color.LIGHT_GRAY);
 //    panelForLocationInventoryMove.setBackground(Color.red);
@@ -121,6 +126,7 @@ public class GuiUserLocationInventoryMove {
     panelForInventory.removeAll();
     panelForInventory.revalidate();
     panelForInventory.repaint();
+    panelForInventory.add(titleForInventory);
 //    panelForInventory.setBackground(Color.red);
 
 //    itemPanel.removeAll();
@@ -131,7 +137,7 @@ public class GuiUserLocationInventoryMove {
 
     for (int i = 0; i < inventory.size(); i++) {
       itemBtn = new JButton(inventory.get(i));
-      itemBtn.setBounds(30, (i+1)*25, 160, 30);
+      itemBtn.setBounds(30, (i+1)*35, 160, 30);
       itemBtn.setFocusable(false);
       itemBtn.setActionCommand(inventory.get(i));
       panelForInventory.add(itemBtn);
