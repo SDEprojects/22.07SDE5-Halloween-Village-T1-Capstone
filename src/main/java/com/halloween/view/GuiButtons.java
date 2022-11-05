@@ -38,7 +38,7 @@ public class GuiButtons {
     panelForDefaultButtons = new JPanel(gridLayout);
     panelForDefaultButtons.setBackground(Color.lightGray);
     panelForDefaultButtons.setOpaque(false);
-    panelForDefaultButtons.setBounds(840, 130, 130, 280);
+    panelForDefaultButtons.setBounds(780, 130, 130, 280);
 //    panelForDefaultButtons.setLayout(new GridLayout(4, 1));
 
     JButton mapButton = new JButton("Map");

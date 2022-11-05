@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.Border;
 
 public class GuiUserLocationInventoryMove {
 
@@ -64,6 +65,9 @@ public class GuiUserLocationInventoryMove {
     panelForInventory.setLayout(new GridLayout(4, 2));
     panelForInventory.setOpaque(false);
     panelForInventory.setBackground(new Color(0, 0, 0, 5));
+//    Border titleForInventory = BorderFactory.createTitledBorder("Inventory");
+//    panelForInventory.setBorder(titleForInventory);
+
 
 //    JTextArea titleForLocation = new JTextArea("Inventory");
 //    titleForLocation.setBounds(2,2,215,20);
@@ -84,10 +88,17 @@ public class GuiUserLocationInventoryMove {
         super.paintComponent(g);
       }
     };
+
+
+
+//    titleForLocation.setOpaque(false);
+//      titleForLocation.setBounds(2,2,215,20);
+//    panelForInventory.add(titleForInventory);
 //    panelForLocationInventoryMove.setBackground(Color.LIGHT_GRAY);
 //    panelForLocationInventoryMove.setBackground(Color.red);
     panelForLocationInventoryMove.setBounds(10, 420, 675, 250);
     panelForLocationInventoryMove.setLayout(new GridLayout(1, 3));
+
 
     panelForLocationInventoryMove.add(textAreaForLocation);
     panelForLocationInventoryMove.add(textAreaForPossibleMoves);
@@ -111,9 +122,7 @@ public class GuiUserLocationInventoryMove {
 //    itemPanel.removeAll();
 //      itemPanel.revalidate();
 //      itemPanel.repaint();
-//      JTextArea titleForLocation = new JTextArea("Inventory");
-//      titleForLocation.setBounds(2,2,215,20);
-//      itemPanel.add(titleForLocation);
+
 
 
     for (int i = 0; i < inventory.size(); i++) {

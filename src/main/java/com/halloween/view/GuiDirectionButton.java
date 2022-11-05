@@ -72,11 +72,6 @@ public class GuiDirectionButton {
     });
 
 
-//    JButton useButton = new JButton("Use");
-//    useButton.setBounds(180, 100, 90, 40);
-//    useButton.setFocusable(false);
-
-
     JButton knockButton = new JButton("Knock");
     knockButton.setBounds(180, 120, 90, 40);
     knockButton.setFocusable(false);

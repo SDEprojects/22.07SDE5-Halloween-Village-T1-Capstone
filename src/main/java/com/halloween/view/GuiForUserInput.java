@@ -31,7 +31,7 @@ public class GuiForUserInput {
     labelForUserInput.setBounds(15, 0, 100, 25);
 
     userTextField = new JTextField();
-    userTextField.setBounds(15, 25, 230, 25);
+    userTextField.setBounds(15, 25, 230, 30);
     userTextField.addActionListener(e -> {
       userInputListener.accept(userTextField.getText());
       userTextField.setText("");
@@ -40,8 +40,8 @@ public class GuiForUserInput {
     panelForUserInput.add(userTextField);
 
     buttonForUserInput = new JButton();
-    buttonForUserInput.setText("");
-    buttonForUserInput.setBounds(250, 25, 55, 25);
+    buttonForUserInput.setText("submit");
+    buttonForUserInput.setBounds(250, 25, 70, 30);
     buttonForUserInput.setFocusable(false);
     buttonForUserInput.addActionListener(e -> {
       userInputListener.accept(userTextField.getText());
