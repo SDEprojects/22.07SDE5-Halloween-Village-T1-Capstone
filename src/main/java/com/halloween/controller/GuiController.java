@@ -110,10 +110,14 @@ public class GuiController {
           });
       state = game.getState();
 
+      // user input
       playGameGUI.getUserInput().setUserInputListener(
           userInput -> {
             player.setName(userInput);
-            playGameGUI.getScript().displayDialogue("Hi! " + userInput + display.getImportantDisplay("backstory") + "\n" + player.getName());
+            playGameGUI.getScript().displayDialogue("Hi, " + userInput + "," + display.getImportantDisplay("backstory") + "\n" + player.getName());
+            playGameGUI.getDirectionButton().getPanelForDirectionButtonsWithOtherButtons().setVisible(true);
+            playGameGUI.getDefaultButton().getPanelForDefaultButtons().setVisible(true);
+            playGameGUI.getUserLocationInventoryMove().getPanelForLocationInventoryMove().setVisible(true);
           }
       );
     }

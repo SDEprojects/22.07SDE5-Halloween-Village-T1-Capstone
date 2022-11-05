@@ -25,6 +25,8 @@ public class GuiUserLocationInventoryMove {
   Consumer<String> inventoryListener;
   Consumer<String> useItemListener;
 
+  GuiForUserInput userInputField = new GuiForUserInput();
+
 
   public GuiUserLocationInventoryMove() {
 
@@ -105,6 +107,8 @@ public class GuiUserLocationInventoryMove {
     panelForLocationInventoryMove.add(panelForInventory);
     panelForLocationInventoryMove.setOpaque(false);
     panelForLocationInventoryMove.setBackground(new Color(0, 0, 0, 120));
+    panelForLocationInventoryMove.setVisible(false);
+
   }
 
   public JPanel getPanelForLocationInventoryMove() {

@@ -9,6 +9,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class GuiScript {
+
+
   JPanel panelForScript = new JPanel() {
     protected void paintComponent(Graphics g)
     {

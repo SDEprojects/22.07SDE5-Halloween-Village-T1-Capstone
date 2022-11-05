@@ -26,6 +26,7 @@ public class GuiDirectionButton {
     panelForDirectionButtonsWithOtherButtons.setBounds(675, 435, 300, 250);
     panelForDirectionButtonsWithOtherButtons.setOpaque(false);
     panelForDirectionButtonsWithOtherButtons.setLayout(null);
+    panelForDirectionButtonsWithOtherButtons.setVisible(false);
 
     JPanel panelForDirectionButton = new JPanel();
     panelForDirectionButton.setBackground(Color.lightGray);
@@ -64,14 +65,6 @@ public class GuiDirectionButton {
         directionListener.accept(eastButton.getActionCommand()));
 
 
-    JButton getButton = new JButton("Get Item");
-    getButton.setBounds(180, 60, 90, 40);
-    getButton.setFocusable(false);
-    getButton.addActionListener(e -> {
-      getListener.accept(getButton.getActionCommand());
-    });
-
-
     JButton knockButton = new JButton("Knock");
     knockButton.setBounds(180, 120, 90, 40);
     knockButton.setFocusable(false);
@@ -81,13 +74,22 @@ public class GuiDirectionButton {
     });
 
 
+    JButton getButton = new JButton("Get Item");
+    getButton.setBounds(180, 60, 90, 40);
+    getButton.setFocusable(false);
+    getButton.addActionListener(e -> {
+      getListener.accept(getButton.getActionCommand());
+    });
+
+
+
 
     panelForDirectionButton.add(northButton);
     panelForDirectionButton.add(southButton);
     panelForDirectionButton.add(westButton);
     panelForDirectionButton.add(eastButton);
-    panelForDirectionButtonsWithOtherButtons.add(getButton);
     panelForDirectionButtonsWithOtherButtons.add(knockButton);
+    panelForDirectionButtonsWithOtherButtons.add(getButton);
     panelForDirectionButtonsWithOtherButtons.add(panelForDirectionButton);
   }
 

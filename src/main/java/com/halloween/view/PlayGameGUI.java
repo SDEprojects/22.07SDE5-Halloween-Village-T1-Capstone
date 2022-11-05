@@ -96,6 +96,10 @@ public class PlayGameGUI implements ActionListener {
     return userLocationInventoryMove;
   }
 
+  public GuiButtons getDefaultButton() {
+    return defaultButton;
+  }
+
   public void updateKnockButton(String location){
     directionButtonPanel.updateDirectionButtons(location);
   }
@@ -138,6 +142,7 @@ public class PlayGameGUI implements ActionListener {
 
   public void setUserConsumer(Consumer<String> listener) {
     userInput.setUserInputListener(userInput -> listener.accept(userInput));
+
   }
 
 
