@@ -20,7 +20,6 @@ public class GuiController {
   Player player = new Player();
   Game game;
   String currentLocation;
-  ArrayList<String> inventory;
   Neighborhood neighborhood;
   State state;
 
@@ -29,8 +28,6 @@ public class GuiController {
     playGameGUI = new PlayGameGUI();
     game = new Game();
     neighborhood = new Neighborhood();
-//    currentLocation = STARTING_HOUSE;
-    inventory = new ArrayList<>();
     state = game.getState();
     player.setPosition(STARTING_HOUSE);
   }
@@ -67,10 +64,11 @@ public class GuiController {
       playGameGUI.getDirectionButton().setKnockListener(
           location -> {
             House house = neighborhood.getNeighborhood().get(player.getPosition());
-            playGameGUI.getScript().displayDialogue(game.knockOnDoor(house));
+            System.out.println(player.getItems() + "1111111");
+            playGameGUI.getScript().displayDialogue(game.knockOnDoor(house, player));
             house.setKnocked(true);
             setCurrentLocation(house.getHouseName());
-       
+
           });
 
 
@@ -93,12 +91,12 @@ public class GuiController {
       playGameGUI.getDirectionButton().setGetListener(
           item -> {
             House house = neighborhood.getNeighborhood().get(currentLocation);
-            inventory = game.getItem(house, inventory);
-            playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
+            player.setItems(game.getItem(house, player.getItems()));
+            playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
             if (house.isKnocked() && !house.getHouseItems().isEmpty()) {
               house.removeItem();
               house.setKnocked(false);
-              System.out.println(inventory);
+              System.out.println(player.getItems());
             }
           });
 
@@ -106,16 +104,20 @@ public class GuiController {
       playGameGUI.getUserLocationInventoryMove().setUseItemListener(
           item -> {
             House house = neighborhood.getNeighborhood().get(currentLocation);
-            inventory = game.useItem(house, item, inventory);
-            playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
+            player.setItems(game.useItem(house, item, player.getItems()));
+            playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
 //          state = game.getState();
           });
       state = game.getState();
 
+      // user input
       playGameGUI.getUserInput().setUserInputListener(
           userInput -> {
             player.setName(userInput);
-            playGameGUI.getScript().displayDialogue("Hi! " + userInput + display.getImportantDisplay("backstory") + "\n" + player.getName());
+            playGameGUI.getScript().displayDialogue("Hi, " + userInput + "," + display.getImportantDisplay("backstory") + "\n" + player.getName());
+            playGameGUI.getDirectionButton().getPanelForDirectionButtonsWithOtherButtons().setVisible(true);
+            playGameGUI.getDefaultButton().getPanelForDefaultButtons().setVisible(true);
+            playGameGUI.getUserLocationInventoryMove().getPanelForLocationInventoryMove().setVisible(true);
           }
       );
     }

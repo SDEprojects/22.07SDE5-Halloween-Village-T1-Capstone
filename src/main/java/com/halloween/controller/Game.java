@@ -144,14 +144,14 @@ public class Game {
     } else {
       player.setPosition(playersMove);
       playSound("/footsteps.wav");
-      return ("You moved to "+ direction + ".");
+      return ("You moved to "+ direction + ". You are at " + player.getPosition());
 
     }
   }
 
   // User get item, and save it to the inventory
   public ArrayList<String> getItem(House house, ArrayList<String> inventory) {
-    if (house.isKnocked() && house.getHouseItems().size() > 0) {
+    if (house.isKnocked() && house.getHouseItems().size() > 0 && !house.getHouseName().equals("witch's den")) {
       String temp = house.getHouseItems().get(0);
       inventory.add(temp);
       player.setPosition(house.getHouseName());
@@ -167,10 +167,7 @@ public class Game {
 
   //  GuiScript guiScript = new GuiScript();
   // set knocked value to true when user knocks. also checks user's inventory when user knocks on Karen's house or Saw house.
-  public String knockOnDoor(House house) {
-//    House house = neighborhood.getNeighborhood().get(location);
-
-//    house.setKnocked(true);
+  public String knockOnDoor(House house, Player player) {
 
     String knock = "/door-knock.wav";
     playSound(knock);

@@ -20,18 +20,19 @@ public class GuiForUserInput {
   public GuiForUserInput() {
 
     panelForUserInput = new JPanel();
-    panelForUserInput.setBounds(5, 695, 970, 60);
+    panelForUserInput.setBounds(50, 500, 970, 60);
     panelForUserInput.setLayout(null);
     panelForUserInput.setBackground(Color.lightGray);
     panelForUserInput.setOpaque(false);
 
+
     labelForUserInput = new JLabel();
-    labelForUserInput.setText("User Input");
+    labelForUserInput.setText("Type your name");
     labelForUserInput.setForeground(Color.white);
-    labelForUserInput.setBounds(15, 0, 100, 25);
+    labelForUserInput.setBounds(15, 0, 100, 30);
 
     userTextField = new JTextField();
-    userTextField.setBounds(15, 25, 230, 25);
+    userTextField.setBounds(15, 25, 300, 50);
     userTextField.addActionListener(e -> {
       userInputListener.accept(userTextField.getText());
       userTextField.setText("");
@@ -40,8 +41,8 @@ public class GuiForUserInput {
     panelForUserInput.add(userTextField);
 
     buttonForUserInput = new JButton();
-    buttonForUserInput.setText("");
-    buttonForUserInput.setBounds(250, 25, 55, 25);
+    buttonForUserInput.setText("Play");
+    buttonForUserInput.setBounds(320, 25, 100, 40);
     buttonForUserInput.setFocusable(false);
     buttonForUserInput.addActionListener(e -> {
       userInputListener.accept(userTextField.getText());
