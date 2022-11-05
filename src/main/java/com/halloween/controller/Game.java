@@ -167,7 +167,7 @@ public class Game {
 
   //  GuiScript guiScript = new GuiScript();
   // set knocked value to true when user knocks. also checks user's inventory when user knocks on Karen's house or Saw house.
-  public String knockOnDoor(House house) {
+  public String knockOnDoor(House house, Player player) {
 //    House house = neighborhood.getNeighborhood().get(location);
 
 //    house.setKnocked(true);
@@ -176,6 +176,7 @@ public class Game {
     playSound(knock);
 
     ArrayList<String> playerItems = player.getItems();
+    System.out.println(player.getItems() + "22222");
     // If we knock on karen's house or the saw house we need to have check for specific items in our inventory
     // If we do not have the items, then we lose the game
     // If we knock on karen's door

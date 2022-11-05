@@ -30,7 +30,7 @@ public class GuiController {
     game = new Game();
     neighborhood = new Neighborhood();
 //    currentLocation = STARTING_HOUSE;
-    inventory = new ArrayList<>();
+//    inventory = new ArrayList<>();
     state = game.getState();
     player.setPosition(STARTING_HOUSE);
   }
@@ -67,10 +67,11 @@ public class GuiController {
       playGameGUI.getDirectionButton().setKnockListener(
           location -> {
             House house = neighborhood.getNeighborhood().get(player.getPosition());
-            playGameGUI.getScript().displayDialogue(game.knockOnDoor(house));
+            System.out.println(player.getItems() + "1111111");
+            playGameGUI.getScript().displayDialogue(game.knockOnDoor(house, player));
             house.setKnocked(true);
             setCurrentLocation(house.getHouseName());
-       
+
           });
 
 
@@ -93,12 +94,12 @@ public class GuiController {
       playGameGUI.getDirectionButton().setGetListener(
           item -> {
             House house = neighborhood.getNeighborhood().get(currentLocation);
-            inventory = game.getItem(house, inventory);
-            playGameGUI.getUserLocationInventoryMove().updateInventory(inventory);
+            player.setItems(game.getItem(house, player.getItems()));
+            playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
             if (house.isKnocked() && !house.getHouseItems().isEmpty()) {
               house.removeItem();
               house.setKnocked(false);
-              System.out.println(inventory);
+              System.out.println(player.getItems());
             }
           });
 
