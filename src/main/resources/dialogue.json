@@ -30,9 +30,9 @@
     },
   {
     "witch's den": {
-      "greet": "Player: Trick or treat! \nWitch: Hehehehe Hi young one… I just used the last of my candies to lure Hansel and Gretel into my kitchen. There’s nothing here \nPlayer: How can you be empty handed this time of year!? \nWitch: I’ll tell you what. I can make you a little potion instead. I won’t tell you what it does until after I make it, it’s a surprise. But in order for me to do this, I need you to gather some ingredients for me: Beer, Dentures, and Cat Hair \nFind Item: Thank you for the ingredients dear! This potion has the power to make people __________________________IDK\nPlayer takes potion from witch\n",
-      "no item": "There's nothing for you here. Sorry!",
-      "get item": ""
+      "greet": "Player: Trick or treat! \nWitch: Hehehehe Hi young one… \nI just used the last of my candies to lure Hansel and Gretel into my kitchen.\nThere’s nothing here... \nPlayer: How can you be empty handed this time of year!? \nWitch: I’ll tell you what. I can make you a little potion instead. \nI won’t tell you what it does until after I make it, it’s a surprise. \nBut in order for me to do this, I need you to gather some ingredients for me: Beer, Dentures, and Cat Hair \n",
+      "no item": "Player: Trick or treat! \nWitch: Hehehehe Hi young one… \nI just used the last of my candies to lure Hansel and Gretel into my kitchen. There’s nothing here... \nPlayer: How can you be empty handed this time of year!? \nWitch: I’ll tell you what. I can make you a little potion instead. \nI won’t tell you what it does until after I make it, it’s a surprise. \nBut in order for me to do this, I need you to gather some ingredients for me: \nBeer, Dentures, and Cat Hair \n",
+      "get item": "Thank you for the ingredients dear! This potion has the power to kill the devil....\""
     }
   },
   {
