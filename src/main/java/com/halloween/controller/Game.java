@@ -10,9 +10,6 @@ import com.halloween.model.State;
 import com.halloween.view.PlayGameGUI;
 import com.halloween.view.PlayMusic;
 import com.halloween.view.View;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -144,7 +141,7 @@ public class Game {
     } else {
       player.setPosition(playersMove);
       playSound("/footsteps.wav");
-      return ("You moved to "+ direction + ". You are at " + player.getPosition());
+      return ("You moved to "+ direction + ". You are at " + player.getPosition() + ".");
 
     }
   }
