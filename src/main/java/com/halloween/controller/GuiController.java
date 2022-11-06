@@ -6,10 +6,7 @@ import com.halloween.model.Player;
 import com.halloween.model.State;
 import com.halloween.view.PlayGameGUI;
 import com.halloween.view.View;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class GuiController {
 
@@ -51,35 +48,37 @@ public class GuiController {
   public State getState() {
     return state;
   }
-  public Boolean runGame(){
-    if (!game.getState().equals(State.PLAY)){
+
+  public Boolean runGame() {
+    if (!game.getState().equals(State.PLAY)) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
 
   public void setUpHandlers() {
-      // knock
-      playGameGUI.getDirectionButton().setKnockListener(
-          location -> {
-            House house = neighborhood.getNeighborhood().get(player.getPosition());
-            playGameGUI.getScript().displayDialogue(game.knockOnDoor(house, player));
-            house.setKnocked(true);
-            setCurrentLocation(house.getHouseName());
 
-          });
-
+    // knock
+    playGameGUI.getDirectionButton().setKnockListener(
+        location -> {
+          House house = neighborhood.getNeighborhood().get(player.getPosition());
+          System.out.println(player.getItems() + "1111111");
+          playGameGUI.getScript().displayDialogue(game.knockOnDoor(house, player));
+          house.setKnocked(true);
+          setCurrentLocation(house.getHouseName());
+        });
 
     // move to different direction
     playGameGUI.getDirectionButton().setDirectionListener(
-        direction-> {
+        direction -> {
           String newLocation = game.movePlayer(direction, player.getPosition());
           playGameGUI.getScript().displayDialogue(game.checkValidDirection(direction, newLocation));
-          if(!newLocation.isEmpty()) {
+        if(!newLocation.isEmpty()) {
             player.setPosition(newLocation);
             playGameGUI.getUserLocationInventoryMove().updateLocation(player.getPosition());
-            playGameGUI.getUserLocationInventoryMove().updatePossibleMove(game.showValidMoves(player.getPosition()));
+            playGameGUI.getUserLocationInventoryMove()
+                .updatePossibleMove(game.showValidMoves(player.getPosition()));
           }
         }
     );
@@ -120,56 +119,64 @@ public class GuiController {
             }else{
               playGameGUI.getScript().displayDialogue(display.getNpcResponse("knock_to_use_item"));
             }
-
 //          state = game.getState();
-          });
-      state = game.getState();
+        });
+    state = game.getState();
 
-      // user input
-      playGameGUI.getUserInput().setUserInputListener(
-          userInput -> {
+    // user input
+    playGameGUI.getUserInput().setUserInputListener(
+        userInput -> {
+          if (userInput.isEmpty()) {
+            player.setName("stranger");
+            playGameGUI.getScript().displayDialogue(
+                "Hi, stranger!" + display.getImportantDisplay("backstory") + "\n"
+                    + player.getName());
+          } else {
             player.setName(userInput);
-            playGameGUI.getScript().displayDialogue("Hi, " + userInput + "!" + display.getImportantDisplay("backstory") + "\n" + player.getName());
-            playGameGUI.getDirectionButton().getPanelForDirectionButtonsWithOtherButtons().setVisible(true);
-            playGameGUI.getDefaultButton().getPanelForDefaultButtons().setVisible(true);
-            playGameGUI.getUserLocationInventoryMove().getPanelForLocationInventoryMove().setVisible(true);
           }
-      );
-    }
+          playGameGUI.getDirectionButton().getPanelForDirectionButtonsWithOtherButtons()
+              .setVisible(true);
+          playGameGUI.getDefaultButton().getPanelForDefaultButtons().setVisible(true);
+          playGameGUI.getUserLocationInventoryMove().getPanelForLocationInventoryMove()
+              .setVisible(true);
 
-    public void greetPlayer() throws IOException {
+        }
+    );
+  }
+
+  public void greetPlayer() throws IOException {
 //      if (player.getName() != null) {
 //        playGameGUI.getScript().displayDialogue(display.getNpcResponse("welcome_back") + "\n" + player.getName());
 //      } else {
 //        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 //        playGameGUI.getScript().displayDialogue(display.getNpcResponse("ask_name"));
-        playGameGUI.getUserInput().setUserInputListener(
-          userInput -> {
-            playGameGUI.getScript().displayDialogue(playGameGUI.getUserInput().userInput());
-            player.setName(userInput);
-          }
-      );
+    playGameGUI.getUserInput().setUserInputListener(
+        userInput -> {
+          playGameGUI.getScript().displayDialogue(playGameGUI.getUserInput().userInput());
+          player.setName(userInput);
+        }
+    );
 //        player.setName(buffer.readLine().trim());
 //        if (player.getName().equals("quit")) {
 //          quitGame();
 //        }
-        System.out.println(display.getNpcResponse("welcome"));
+    System.out.println(display.getNpcResponse("welcome"));
 //      }
+  }
+
+
+  public void displayGameResult() {
+
+    if (game.getState().equals(State.WIN)) {
+      playGameGUI.getScript().displayDialogue(game.showWin());
+
+    } else {
+      playGameGUI.getScript().displayDialogue(game.showLose());
     }
+  }
 
-    
-    public void displayGameResult(){
-
-      if(game.getState().equals(State.WIN)){
-        playGameGUI.getScript().displayDialogue(game.showWin());
-
-      }else{
-        playGameGUI.getScript().displayDialogue(game.showLose());
-      }
-    }
-    
-    public void quitGame(){
+  public void quitGame() {
     game.quitGame();
-    }
+  }
 
 }

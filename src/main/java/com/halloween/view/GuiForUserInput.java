@@ -1,11 +1,16 @@
 package com.halloween.view;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.net.URL;
 import java.util.function.Consumer;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 public class GuiForUserInput {
 
@@ -20,7 +25,7 @@ public class GuiForUserInput {
   public GuiForUserInput() {
 
     panelForUserInput = new JPanel();
-    panelForUserInput.setBounds(50, 500, 970, 60);
+    panelForUserInput.setBounds(50, 500, 970, 75);
     panelForUserInput.setLayout(null);
     panelForUserInput.setBackground(Color.lightGray);
     panelForUserInput.setOpaque(false);
@@ -32,7 +37,9 @@ public class GuiForUserInput {
     labelForUserInput.setBounds(15, 0, 100, 30);
 
     userTextField = new JTextField();
-    userTextField.setBounds(15, 25, 300, 50);
+    userTextField.setBounds(15, 25, 300, 40);
+    userTextField.setBackground(new Color(255,154, 0));
+    userTextField.setForeground(Color.black);
     userTextField.addActionListener(e -> {
       userInputListener.accept(userTextField.getText());
       userTextField.setText("");
@@ -41,9 +48,15 @@ public class GuiForUserInput {
     panelForUserInput.add(userTextField);
 
     buttonForUserInput = new JButton();
-    buttonForUserInput.setText("Play");
-    buttonForUserInput.setBounds(320, 25, 100, 40);
-    buttonForUserInput.setFocusable(false);
+    buttonForUserInput.setBounds(320, 25, 80, 40);
+    URL playImage = GuiButtons.class.getClassLoader().getResource("play.png");
+    ImageIcon playIcon = new ImageIcon(playImage);
+    buttonForUserInput.setIcon(playIcon);
+    buttonForUserInput.setBackground(new Color(0, 0, 0, 120));
+    Border emptyBorder = BorderFactory.createEmptyBorder();
+    buttonForUserInput.setBorder(emptyBorder);
+    buttonForUserInput.setOpaque(false);
+    buttonForUserInput.setFocusPainted(false);
     buttonForUserInput.addActionListener(e -> {
       userInputListener.accept(userTextField.getText());
       userTextField.setText("");
