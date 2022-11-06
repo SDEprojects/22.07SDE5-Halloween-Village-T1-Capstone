@@ -23,7 +23,7 @@ public class GuiScript {
   public GuiScript() {
 //    panelForScript.setBackground(Color.LIGHT_GRAY);
 //    panelForScript.setBounds(10, 120, 800, 300);
-    panelForScript.setBounds(10, 120, 675, 300);
+    panelForScript.setBounds(20, 120, 675, 300);
     panelForScript.setLayout(new BorderLayout());
     panelForScript.setOpaque(false);
     panelForScript.setBackground(new Color(0, 0, 0, 120));

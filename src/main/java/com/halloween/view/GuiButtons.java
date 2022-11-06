@@ -2,25 +2,30 @@ package com.halloween.view;
 
 import com.halloween.controller.Game;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 public class GuiButtons {
 
   JPanel panelForDefaultButtons;
-  JButton help;
-  GuiScript guiScript = new GuiScript();
   HelpInstructionDisplayGui helpInstructionGui = new HelpInstructionDisplayGui();
   SoundEffects soundEffects = new SoundEffects();
+
   Game game = new Game();
+  JButton mapButton;
+  JButton muteButton;
+  JButton quitButton;
+  JButton instructionButton;
+
 
 
   public JPanel getPanelForDefaultButtons() {
@@ -29,7 +34,8 @@ public class GuiButtons {
 
   public GuiButtons() {
     game.startMusic();
-    SoundEffects.playSound("/silent_quarter_second.wav");
+    soundEffects.playSound("/silent_quarter_second.wav");
+
     GridLayout gridLayout = new GridLayout();
     gridLayout.setColumns(1);
     gridLayout.setRows(4);
@@ -38,61 +44,44 @@ public class GuiButtons {
     panelForDefaultButtons = new JPanel(gridLayout);
     panelForDefaultButtons.setBackground(Color.lightGray);
     panelForDefaultButtons.setOpaque(false);
-    panelForDefaultButtons.setBounds(780, 130, 130, 280);
+    panelForDefaultButtons.setBounds(780, 180, 125, 230);
     panelForDefaultButtons.setVisible(false);
-//    panelForDefaultButtons.setLayout(new GridLayout(4, 1));
 
-    JButton mapButton = new JButton("Map");
-    mapButton.setSize(140, 40);
-//    mapButton.setBounds(30, 30, 90, 40);
-    mapButton.setFocusable(false);
+    // map button
+    mapButton = createButton("map.png");
+    mapButton.addActionListener(e -> displayMap());
 
-    mapButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        JFrame mapFrame = new JFrame();
-        URL mapImageLocation = GuiButtons.class.getClassLoader().getResource("halloween-village-map.PNG");
-        mapFrame.add(new JLabel(new ImageIcon(mapImageLocation)));
-        mapFrame.pack();
-        mapFrame.setVisible(true);
-      }
-    });
+    // quit button
+    quitButton = createButton("quit.png");
+    quitButton.addActionListener(e -> System.exit(0));
 
+    // instruction button
+    instructionButton = createButton("instruction.png");
+    instructionButton.addActionListener(e -> helpInstructionGui.updateDialogBox("instruction"));
 
-    JButton muteButton = new JButton("Mute");
-//    muteButton.setBounds(30, 90, 90, 40);
-    muteButton.setFocusable(false);
+    ImageIcon unmuteIcon = createImageIcon("unmute.png");
+    ImageIcon muteIcon = createImageIcon("mute.png");
+    muteButton = new JButton();
+    muteButton.setIcon(muteIcon);
+    muteButton.setBackground(new Color(0, 0, 0, 120));
+    Border emptyBorder = BorderFactory.createEmptyBorder();
+    muteButton.setBorder(emptyBorder);
+    muteButton.setOpaque(false);
+    muteButton.setFocusPainted(false);
     muteButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (muteButton.getText().equals("Mute")) {
+        if(muteButton.getIcon().equals(muteIcon)) {
           game.stopMusic();
           soundEffects.muteSoundEffects();
-          muteButton.setText("Unmute");
+          muteButton.setIcon(unmuteIcon);
         } else {
           game.startMusic();
           soundEffects.unmuteSoundEffects();
-          muteButton.setText("Mute");
+          muteButton.setIcon(muteIcon);
         }
       }
     });
-
-    JButton quitButton = new JButton("Quit");
-//    quitButton.setBounds(30, 210, 90, 40);
-    quitButton.setFocusable(false);
-    quitButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        System.exit(0);
-      }
-    });
-
-    JButton instructionButton = new JButton("Instruction");
-//    quitButton.setBounds(30, 210, 90, 40);
-    instructionButton.setFocusable(false);
-    instructionButton.addActionListener(e -> helpInstructionGui.updateDialogBox("instruction"));
-
-
 
     panelForDefaultButtons.add(mapButton);
     panelForDefaultButtons.add(muteButton);
@@ -100,5 +89,33 @@ public class GuiButtons {
     panelForDefaultButtons.add(quitButton);
   }
 
+  JButton createButton(String imageName) {
+    JButton button = new JButton();
+    ImageIcon imageIcon = createImageIcon(imageName);
+    button.setIcon(imageIcon);
+    button.setBackground(new Color(0, 0, 0, 120));
+    Border emptyBorder = BorderFactory.createEmptyBorder();
+    button.setBorder(emptyBorder);
+    button.setOpaque(false);
+    button.setFocusPainted(false);
+    return button;
+  }
+  private ImageIcon createImageIcon(String name) {
+    URL image = GuiButtons.class.getClassLoader().getResource(name);
+    ImageIcon imageIcon = new ImageIcon(image);
+    return imageIcon;
+  }
 
+  private void displayMap() {
+    JFrame mapFrame = new JFrame();
+    URL mapImageLocation = GuiButtons.class.getClassLoader()
+        .getResource("halloween-village-map.PNG");
+    mapFrame.add(new JLabel(new ImageIcon(mapImageLocation)));
+    mapFrame.pack();
+    mapFrame.setVisible(true);
+  }
+
+  public JButton getMapButton() {
+    return mapButton;
+  }
 }
