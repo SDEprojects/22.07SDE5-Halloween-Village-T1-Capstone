@@ -141,7 +141,7 @@ public class Game {
     } else {
       player.setPosition(playersMove);
       playSound("/footsteps.wav");
-      return ("You moved to "+ direction + ". You are at " + player.getPosition());
+      return ("You moved to "+ direction + ". You are at " + player.getPosition() + ".");
 
     }
   }
