@@ -77,7 +77,6 @@ public class GuiController {
         direction-> {
           String newLocation = game.movePlayer(direction, player.getPosition());
           playGameGUI.getScript().displayDialogue(game.checkValidDirection(direction, newLocation));
-
           if(!newLocation.isEmpty()) {
             player.setPosition(newLocation);
             playGameGUI.getUserLocationInventoryMove().updateLocation(player.getPosition());
@@ -97,7 +96,7 @@ public class GuiController {
               playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
               house.removeItem();
               house.setKnocked(false);
-              System.out.println(player.getItems());
+              playGameGUI.getScript().displayDialogue(display.getNpcResponse("get_items"));
             }else if(house.isKnocked()){
               playGameGUI.getScript().displayDialogue(display.getNpcResponse("no_item_error"));
             }else{
@@ -108,9 +107,21 @@ public class GuiController {
       //use item
       playGameGUI.getUserLocationInventoryMove().setUseItemListener(
           item -> {
-            House house = neighborhood.getNeighborhood().get(currentLocation);
-            player.setItems(game.useItem(house, item, player.getItems()));
-            playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+            House house = neighborhood.getNeighborhood().get(player.getPosition());
+            System.out.println(house.isKnocked());
+            System.out.println(house.getHouseName());
+            if(house.isKnocked() && !house.getHouseName().equals("dracula's mansion")) {
+              player.setItems(game.useItem(house, item, player.getItems()));
+              playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+              playGameGUI.getScript().displayDialogue(display.getNpcResponse("remove_item"));
+            }else if(house.isKnocked() && house.getHouseName().equals("dracula's mansion")){
+              player.setItems(game.useItem(house, item, player.getItems()));
+              playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+              playGameGUI.getScript().displayDialogue(display.getNpcResponse("draculas_tooth"));
+            }else{
+              playGameGUI.getScript().displayDialogue(display.getNpcResponse("knock_to_use_item"));
+            }
+
 //          state = game.getState();
           });
       state = game.getState();
