@@ -1,5 +1,7 @@
 package com.halloween.controller;
 
+import static com.halloween.view.SoundEffects.playSound;
+
 import com.halloween.model.House;
 import com.halloween.model.Neighborhood;
 import com.halloween.model.Player;
@@ -108,17 +110,59 @@ public class GuiController {
             House house = neighborhood.getNeighborhood().get(player.getPosition());
             System.out.println(house.isKnocked());
             System.out.println(house.getHouseName());
-            if(house.isKnocked() && !house.getHouseName().equals("dracula's mansion")) {
+            if(house.isKnocked()){
               player.setItems(game.useItem(house, item, player.getItems()));
               playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
-              playGameGUI.getScript().displayDialogue(display.getNpcResponse("remove_item"));
-            }else if(house.isKnocked() && house.getHouseName().equals("dracula's mansion")){
-              player.setItems(game.useItem(house, item, player.getItems()));
-              playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
-              playGameGUI.getScript().displayDialogue(display.getNpcResponse("draculas_tooth"));
+              if (house.getHouseName().equals("dracula's mansion")){
+//                player.setItems(game.useItem(house, item, player.getItems()));
+//                playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+                playGameGUI.getScript().displayDialogue(display.getNpcResponse("draculas_tooth"));
+              }else if (house.getHouseName().equals("karen's house")){
+//                player.setItems(game.useItem(house, item, player.getItems()));
+//                playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+                if(item.equals("badge")){
+                  playGameGUI.getScript().displayDialogue(display.noItem("karen's house"));
+                }else if(item.equals("potion")){
+                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("karen_defeated_potion"));
+
+                }else if(item.equals("ruby")){
+                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("karen_defeated_ruby"));
+                }
+              }else if (house.getHouseName().equals("witch's den")){
+                if(item.equals("cat-hair") || item.equals("beer") || item.equals("dentures")){
+                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("give_witch_ingredient"));
+                }else{
+                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("incorrect_witch_ingredient"));
+                }if(house.getHouseItems().contains("cat-hair") && house.getHouseItems().contains("beer") && house.getHouseItems().contains("dentures")){
+                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("complete_witch_potion"));
+                }
+              }else{
+                playGameGUI.getScript().displayDialogue(display.getNpcResponse("remove_item"));
+              }
             }else{
               playGameGUI.getScript().displayDialogue(display.getNpcResponse("knock_to_use_item"));
             }
+//              if(house.isKnocked() && !house.getHouseName().equals("dracula's mansion")) {
+//                player.setItems(game.useItem(house, item, player.getItems()));
+//                playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+//                playGameGUI.getScript().displayDialogue(display.getNpcResponse("remove_item"));
+//              }else if(house.isKnocked() && house.getHouseName().equals("dracula's mansion")){
+//                player.setItems(game.useItem(house, item, player.getItems()));
+//                playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+//                playGameGUI.getScript().displayDialogue(display.getNpcResponse("draculas_tooth"));
+//
+//            }
+//            if(house.isKnocked() && !house.getHouseName().equals("dracula's mansion")) {
+//              player.setItems(game.useItem(house, item, player.getItems()));
+//              playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+//              playGameGUI.getScript().displayDialogue(display.getNpcResponse("remove_item"));
+//            }else if(house.isKnocked() && house.getHouseName().equals("dracula's mansion")){
+//              player.setItems(game.useItem(house, item, player.getItems()));
+//              playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+//              playGameGUI.getScript().displayDialogue(display.getNpcResponse("draculas_tooth"));
+//            }else{
+//              playGameGUI.getScript().displayDialogue(display.getNpcResponse("knock_to_use_item"));
+//            }
 //          state = game.getState();
         });
     state = game.getState();
@@ -129,17 +173,17 @@ public class GuiController {
           if (userInput.isEmpty()) {
             player.setName("stranger");
             playGameGUI.getScript().displayDialogue(
-                "Hi, stranger!" + display.getImportantDisplay("backstory") + "\n"
-                    + player.getName());
+                "Hi, stranger!" + display.getImportantDisplay("backstory") + "\n");
           } else {
             player.setName(userInput);
+            playGameGUI.getScript().displayDialogue(
+                "Hi, " + player.getName() + "!" + display.getImportantDisplay("backstory") + "\n");
           }
           playGameGUI.getDirectionButton().getPanelForDirectionButtonsWithOtherButtons()
               .setVisible(true);
           playGameGUI.getDefaultButton().getPanelForDefaultButtons().setVisible(true);
           playGameGUI.getUserLocationInventoryMove().getPanelForLocationInventoryMove()
               .setVisible(true);
-
         }
     );
   }
