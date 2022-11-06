@@ -90,13 +90,18 @@ public class GuiController {
       //get item
       playGameGUI.getDirectionButton().setGetListener(
           item -> {
-            House house = neighborhood.getNeighborhood().get(currentLocation);
-            player.setItems(game.getItem(house, player.getItems()));
-            playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+            House house = neighborhood.getNeighborhood().get(player.getPosition());
+            System.out.println(house.getHouseName() + "house name");
             if (house.isKnocked() && !house.getHouseItems().isEmpty()) {
+              player.setItems(game.getItem(house, player.getItems()));
+              playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
               house.removeItem();
               house.setKnocked(false);
               System.out.println(player.getItems());
+            }else if(house.isKnocked()){
+              playGameGUI.getScript().displayDialogue(display.getNpcResponse("no_item_error"));
+            }else{
+              playGameGUI.getScript().displayDialogue(display.getNpcResponse("knock_door_first"));
             }
           });
 
@@ -114,7 +119,7 @@ public class GuiController {
       playGameGUI.getUserInput().setUserInputListener(
           userInput -> {
             player.setName(userInput);
-            playGameGUI.getScript().displayDialogue("Hi, " + userInput + "," + display.getImportantDisplay("backstory") + "\n" + player.getName());
+            playGameGUI.getScript().displayDialogue("Hi, " + userInput + "!" + display.getImportantDisplay("backstory") + "\n" + player.getName());
             playGameGUI.getDirectionButton().getPanelForDirectionButtonsWithOtherButtons().setVisible(true);
             playGameGUI.getDefaultButton().getPanelForDefaultButtons().setVisible(true);
             playGameGUI.getUserLocationInventoryMove().getPanelForLocationInventoryMove().setVisible(true);
