@@ -36,11 +36,10 @@ public class GuiButtons {
     game.startMusic();
     soundEffects.playSound("/silent_quarter_second.wav");
 
-    GridLayout gridLayout = new GridLayout();
-    gridLayout.setColumns(1);
-    gridLayout.setRows(4);
+    // create new gridlayout
+    GridLayout gridLayout = new GridLayout(4, 1);
     gridLayout.setVgap(20);
-
+    // panel for default buttons with grid layout
     panelForDefaultButtons = new JPanel(gridLayout);
     panelForDefaultButtons.setBackground(Color.lightGray);
     panelForDefaultButtons.setOpaque(false);
@@ -59,9 +58,10 @@ public class GuiButtons {
     instructionButton = createButton("instruction.png");
     instructionButton.addActionListener(e -> helpInstructionGui.updateDialogBox("instruction"));
 
+    // mute unmute button
+    muteButton = new JButton();
     ImageIcon unmuteIcon = createImageIcon("unmute.png");
     ImageIcon muteIcon = createImageIcon("mute.png");
-    muteButton = new JButton();
     muteButton.setIcon(muteIcon);
     muteButton.setBackground(new Color(0, 0, 0, 120));
     Border emptyBorder = BorderFactory.createEmptyBorder();
@@ -83,12 +83,14 @@ public class GuiButtons {
       }
     });
 
+    // add all buttons to panel
     panelForDefaultButtons.add(mapButton);
     panelForDefaultButtons.add(muteButton);
     panelForDefaultButtons.add(instructionButton);
     panelForDefaultButtons.add(quitButton);
   }
 
+  // method to create buttons
   JButton createButton(String imageName) {
     JButton button = new JButton();
     ImageIcon imageIcon = createImageIcon(imageName);
@@ -100,12 +102,15 @@ public class GuiButtons {
     button.setFocusPainted(false);
     return button;
   }
-  private ImageIcon createImageIcon(String name) {
+
+  // method to create image icon
+  public ImageIcon createImageIcon(String name) {
     URL image = GuiButtons.class.getClassLoader().getResource(name);
     ImageIcon imageIcon = new ImageIcon(image);
     return imageIcon;
   }
 
+  // method to display map frame
   private void displayMap() {
     JFrame mapFrame = new JFrame();
     URL mapImageLocation = GuiButtons.class.getClassLoader()

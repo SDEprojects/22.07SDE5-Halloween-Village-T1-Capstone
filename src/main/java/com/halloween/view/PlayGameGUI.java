@@ -67,10 +67,11 @@ public class PlayGameGUI implements ActionListener {
 
     // add background image to panelForGameWindow
 //    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("halloween-village-image.png");
-    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("halloween-village-spooky-castle1.png");
-    ImageIcon img = new ImageIcon(imageLoc);
+//    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("halloween-village-spooky-castle1.png");
+//    ImageIcon img = new ImageIcon(imageLoc);
+    ImageIcon imageIcon = defaultButton.createImageIcon("halloween-village-spooky-castle1.png");
     labelPanelForGameWindow = new JLabel();
-    labelPanelForGameWindow.setIcon(img);
+    labelPanelForGameWindow.setIcon(imageIcon);
     panelForGameWindow.add(labelPanelForGameWindow);
 
     // set window icon
@@ -83,6 +84,7 @@ public class PlayGameGUI implements ActionListener {
     currentLocation = "your house";
 
   }
+
 
   public GuiScript getScript() {
     return script;
