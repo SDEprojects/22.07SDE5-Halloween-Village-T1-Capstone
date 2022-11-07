@@ -35,7 +35,7 @@ public class GameTest {
     String message = game.checkValidDirection("south", "your house");
 
     //assert
-    Assert.assertEquals("You moved to south.", message);
+    Assert.assertEquals("You moved to south. You are at your house.", message);
 
   }
 }
