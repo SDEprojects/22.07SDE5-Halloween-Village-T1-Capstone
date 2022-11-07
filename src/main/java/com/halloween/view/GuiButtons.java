@@ -114,7 +114,7 @@ public class GuiButtons {
   private void displayMap() {
     JFrame mapFrame = new JFrame();
     URL mapImageLocation = GuiButtons.class.getClassLoader()
-        .getResource("halloween-village-map.PNG");
+        .getResource("halloween-village-map.png");
     mapFrame.add(new JLabel(new ImageIcon(mapImageLocation)));
     mapFrame.pack();
     mapFrame.setVisible(true);
