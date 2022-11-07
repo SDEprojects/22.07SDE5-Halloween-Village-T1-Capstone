@@ -82,6 +82,7 @@ public class GuiController {
             player.setPosition(newLocation);
             playGameGUI.getUserLocationInventoryMove().updateLocation(player.getPosition());
             playGameGUI.getUserLocationInventoryMove().updatePossibleMove(game.showValidMoves(player.getPosition()));
+            playGameGUI.setBackgroundImage(player.getPosition());
           }
         }
     );
