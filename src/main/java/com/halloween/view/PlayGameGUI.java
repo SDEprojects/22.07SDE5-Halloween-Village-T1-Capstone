@@ -27,6 +27,7 @@ public class PlayGameGUI implements ActionListener {
   GuiUserLocationInventoryMove userLocationInventoryMove = new GuiUserLocationInventoryMove();
   StartGameGUI startGameGui = new StartGameGUI();
   JPanel panelForGameWindow;
+  JPanel panelForGameResult;
   JLabel labelPanelForGameWindow;
   View view = new View();
 
@@ -193,6 +194,27 @@ public class PlayGameGUI implements ActionListener {
     panelForGameWindow.add(labelPanelForGameWindow);
   }
 
+  public void gameWinBackgroundImage() {
+    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("halloween-village-win.png");
+    ImageIcon img = new ImageIcon(imageLoc);
+    labelPanelForGameWindow.setIcon(img);
+    panelForGameWindow.add(labelPanelForGameWindow);
+    defaultButton.panelForDefaultButtons.setVisible(false);
+    directionButtonPanel.panelForDirectionButtonsWithOtherButtons.setVisible(false);
+    script.panelForScript.setVisible(false);
+    userLocationInventoryMove.panelForLocationInventoryMove.setVisible(false);
+  }
+
+  public void gameLoseBackgroundImage(){
+    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("halloween-village-lose.png");
+    ImageIcon img = new ImageIcon(imageLoc);
+    labelPanelForGameWindow.setIcon(img);
+    panelForGameWindow.add(labelPanelForGameWindow);
+    defaultButton.panelForDefaultButtons.setVisible(false);
+    directionButtonPanel.panelForDirectionButtonsWithOtherButtons.setVisible(false);
+    script.panelForScript.setVisible(false);
+    userLocationInventoryMove.panelForLocationInventoryMove.setVisible(false);
+  }
 
   public static void main(String[] args) {
     new PlayGameGUI();
