@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
@@ -33,7 +32,7 @@ public class GuiUserLocationInventoryMove {
 
     textAreaForLocation = new JTextArea("Your Current Location:");
 //    textAreaForLocation.setBorder(BorderFactory.createLineBorder(Color.green));
-    textAreaForLocation.setSize(215, 245);
+//    textAreaForLocation.setSize(215, 245);
     textAreaForLocation.setEditable(false);
     textAreaForLocation.setFont(new Font("Bold", Font.BOLD, 16));
     textAreaForLocation.setLineWrap(true);
@@ -44,7 +43,7 @@ public class GuiUserLocationInventoryMove {
 
     textAreaForPossibleMoves = new JTextArea("Possible Moves");
 //    textAreaForPossibleMoves.setBorder(BorderFactory.createLineBorder(Color.red));
-    textAreaForPossibleMoves.setSize(215, 245);
+//    textAreaForPossibleMoves.setSize(215, 245);
     textAreaForPossibleMoves.setEditable(false);
     textAreaForPossibleMoves.setFont(new Font("Bold", Font.BOLD, 16));
     textAreaForPossibleMoves.setLineWrap(true);
@@ -55,57 +54,44 @@ public class GuiUserLocationInventoryMove {
 
     //inventory
     panelForInventory = new JPanel() {
-      protected void paintComponent(Graphics g)
-      {
-        g.setColor( getBackground() );
+      protected void paintComponent(Graphics g) {
+        g.setColor(getBackground());
         g.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(g);
       }
     };
-    panelForInventory.setSize(215, 245);
+//    panelForInventory.setSize(215, 245);
 //    panelForInventory.setBorder(BorderFactory.createLineBorder(Color.blue));
-//    panelForInventory.setLayout(new GridLayout());
-    panelForInventory.setLayout(null);
+    panelForInventory.setLayout(new GridLayout(8, 1));
+//    panelForInventory.setLayout(null);
     panelForInventory.setOpaque(false);
     panelForInventory.setBackground(new Color(0, 0, 0, 5));
 //    Border titleForInventory = BorderFactory.createTitledBorder("Inventory");
 //    panelForInventory.setBorder(titleForInventory);
-
 
     titleForInventory = new JTextArea("Inventory:");
     titleForInventory.setEditable(false);
 //    titleForInventory.setBackground(Color.white);
     titleForInventory.setFont(new Font("Bold", Font.BOLD, 16));
     titleForInventory.setOpaque(false);
-    titleForInventory.setBounds(8,18,215,20);
+    titleForInventory.setBounds(0, 0, 215, 15);
     titleForInventory.setForeground(Color.YELLOW);
 
     panelForInventory.add(titleForInventory);
 
-//    JTextArea textAreaForPossibleMove = new JTextArea("Possible Moves");
-//    textAreaForPossibleMove.setBorder(BorderFactory.createLineBorder(Color.red));
-//    textAreaForPossibleMove.setBounds(442, 2, 215, 245);
+
 
 //    panelForLocationInventoryMove = new JPanel();
     panelForLocationInventoryMove = new JPanel() {
-      protected void paintComponent(Graphics g)
-      {
-        g.setColor( getBackground() );
+      protected void paintComponent(Graphics g) {
+        g.setColor(getBackground());
         g.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(g);
       }
     };
 
-
-
-//    titleForInventory.setOpaque(false);
-//      titleForInventory.setBounds(2,2,215,20);
-//    panelForInventory.add(titleForInventory);
-//    panelForLocationInventoryMove.setBackground(Color.LIGHT_GRAY);
-//    panelForLocationInventoryMove.setBackground(Color.red);
-    panelForLocationInventoryMove.setBounds(20, 420, 675, 250);
+    panelForLocationInventoryMove.setBounds(20, 435, 675, 255);
     panelForLocationInventoryMove.setLayout(new GridLayout(1, 3));
-
 
     panelForLocationInventoryMove.add(textAreaForLocation);
     panelForLocationInventoryMove.add(textAreaForPossibleMoves);
@@ -127,58 +113,58 @@ public class GuiUserLocationInventoryMove {
     panelForInventory.revalidate();
     panelForInventory.repaint();
     panelForInventory.add(titleForInventory);
-//    panelForInventory.setBackground(Color.red);
-
-//    itemPanel.removeAll();
-//      itemPanel.revalidate();
-//      itemPanel.repaint();
-
-
-
     for (int i = 0; i < inventory.size(); i++) {
-      itemBtn = new JButton(inventory.get(i));
-      itemBtn.setBounds(30, (i+1)*35, 160, 30);
+      itemBtn = new JButton(inventory.get(i).toUpperCase());
+//      itemBtn.setBounds(30, (i+1)*35, 160, 30);
+      itemBtn.setFont(new Font("serif", Font.BOLD, 16));
+      itemBtn.setForeground(Color.white);
+//      itemBtn.setForeground(Color.YELLOW);
+      itemBtn.setBackground(new Color(0, 0, 0, 120));
+      Border emptyBorder = BorderFactory.createEmptyBorder();
+      itemBtn.setBorder(emptyBorder);
+      itemBtn.setOpaque(false);
+      itemBtn.setFocusPainted(false);
       itemBtn.setFocusable(false);
       itemBtn.setActionCommand(inventory.get(i));
       panelForInventory.add(itemBtn);
       itemBtn.setVisible(true);
-      if (itemBtn.getActionCommand().isEmpty()){
+      if (itemBtn.getActionCommand().isEmpty()) {
 //      itemBtn.setVisible(false);
         itemBtn.getParent().remove(itemBtn);
         itemBtn.setVisible(false);
-      }else{
+      } else {
         itemBtn.setVisible(true);
       }
 //      itemBtn.setVisible(true);
       itemBtn.addActionListener(e -> {
         useItemListener.accept(e.getActionCommand());
-
 //        itemBtn.getParent().remove(itemBtn);
       });
     }
   }
 
-
   public void updateLocation(String dialogue) {
     textAreaForLocation.removeAll();
     textAreaForLocation.revalidate();
     textAreaForLocation.repaint();
-    textAreaForLocation.setText("\nCurrent Location:\n\n" + dialogue);
+    textAreaForLocation.setText("Current Location:\n\n" + dialogue);
     textAreaForLocation.setForeground(Color.RED);
   }
+
   public void updatePossibleMove(String dialogue) {
 
     textAreaForPossibleMoves.removeAll();
     textAreaForPossibleMoves.revalidate();
     textAreaForPossibleMoves.repaint();
-    textAreaForPossibleMoves.setText("\nPossible Moves:" + dialogue);
+    textAreaForPossibleMoves.setText("Possible Moves:" + dialogue);
     textAreaForPossibleMoves.setForeground(Color.ORANGE);
   }
 
   public void setInventoryListener(Consumer<String> listener) {
     inventoryListener = listener;
   }
-  public void setUseItemListener(Consumer<String> listener){
+
+  public void setUseItemListener(Consumer<String> listener) {
     useItemListener = listener;
   }
 }

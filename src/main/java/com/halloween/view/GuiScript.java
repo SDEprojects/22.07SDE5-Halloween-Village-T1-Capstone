@@ -4,11 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class GuiScript {
+  JScrollPane scrollPane;
 
 
   JPanel panelForScript = new JPanel() {
@@ -21,9 +23,7 @@ public class GuiScript {
   };
   JTextArea textAreaForScript = new JTextArea();
   public GuiScript() {
-//    panelForScript.setBackground(Color.LIGHT_GRAY);
-//    panelForScript.setBounds(10, 120, 800, 300);
-    panelForScript.setBounds(20, 120, 675, 300);
+    panelForScript.setBounds(20, 125, 675, 310);
     panelForScript.setLayout(new BorderLayout());
     panelForScript.setOpaque(false);
     panelForScript.setBackground(new Color(0, 0, 0, 120));
@@ -34,9 +34,14 @@ public class GuiScript {
     textAreaForScript.setFont(new Font("Bold", Font.BOLD, 16));
     textAreaForScript.setForeground(Color.white);
     textAreaForScript.setOpaque(false);
-    panelForScript.add(textAreaForScript);
-    JScrollPane scrollPane = new JScrollPane();
-    scrollPane.add(panelForScript);
+
+    scrollPane = new JScrollPane(textAreaForScript);
+    scrollPane.getViewport().setOpaque(false);
+    scrollPane.setBorder(BorderFactory.createEmptyBorder());
+    scrollPane.setOpaque(false);
+    scrollPane.setBackground(new Color(0, 0, 0, 120));
+
+    panelForScript.add(scrollPane);
   }
   public JPanel getPanelForScript() {
     return panelForScript;
