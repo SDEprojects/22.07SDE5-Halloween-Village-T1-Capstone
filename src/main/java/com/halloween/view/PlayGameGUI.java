@@ -44,6 +44,7 @@ public class PlayGameGUI implements ActionListener {
     frame.setTitle("Halloween Village");
     frame.getContentPane().setBackground(Color.cyan);
     frame.setSize(new Dimension(1000, 800));
+    frame.setResizable(false);
     frame.setLayout(null);
 
     panelForGameWindow = new JPanel();
