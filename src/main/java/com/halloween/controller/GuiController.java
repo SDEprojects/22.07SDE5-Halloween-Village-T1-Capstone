@@ -190,26 +190,28 @@ public class GuiController {
     );
   }
 
-  public void greetPlayer() throws IOException {
-//      if (player.getName() != null) {
-//        playGameGUI.getScript().displayDialogue(display.getNpcResponse("welcome_back") + "\n" + player.getName());
-//      } else {
-//        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-//        playGameGUI.getScript().displayDialogue(display.getNpcResponse("ask_name"));
-    playGameGUI.getUserInput().setUserInputListener(
-        userInput -> {
-          playGameGUI.getScript().displayDialogue(playGameGUI.getUserInput().userInput());
-          player.setName(userInput);
-        }
-    );
-//        player.setName(buffer.readLine().trim());
-//        if (player.getName().equals("quit")) {
-//          quitGame();
-//        }
-    System.out.println(display.getNpcResponse("welcome"));
-//      }
-  }
 
+  public void playGame(){
+    Thread thread = new Thread();
+
+    boolean run;
+    do {
+      setUpHandlers();
+      run = runGame();
+    }while (run);
+    try {
+      thread.sleep(5000);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+    displayGameResult();
+    try {
+      thread.sleep(7000);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+    quitGame();
+  }
 
   public void displayGameResult() {
 
