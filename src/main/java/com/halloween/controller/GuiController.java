@@ -112,60 +112,47 @@ public class GuiController {
             House house = neighborhood.getNeighborhood().get(player.getPosition());
             System.out.println(house.isKnocked());
             System.out.println(house.getHouseName());
+//            String newItem = item.toLowerCase();
+            System.out.println(item + player.getItems());
+
             if(house.isKnocked()){
               player.setItems(game.useItem(house, item, player.getItems()));
               playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
+
               if (house.getHouseName().equals("dracula's mansion")){
+                if(item.equals("TOOTH")){
+                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("draculas_tooth"));
+                }else{
+                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("draculas_incorrect_item"));
+                }
+              }
+              else if (house.getHouseName().equals("karen's house")){
 //                player.setItems(game.useItem(house, item, player.getItems()));
 //                playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
-                playGameGUI.getScript().displayDialogue(display.getNpcResponse("draculas_tooth"));
-              }else if (house.getHouseName().equals("karen's house")){
-//                player.setItems(game.useItem(house, item, player.getItems()));
-//                playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
-                if(item.equals("badge")){
+                if(item.equals("BADGE")){
                   playGameGUI.getScript().displayDialogue(display.noItem("karen's house"));
-                }else if(item.equals("potion")){
+                }else if(item.equals("POTION")){
                   playGameGUI.getScript().displayDialogue(display.getNpcResponse("karen_defeated_potion"));
 
-                }else if(item.equals("ruby")){
+                }else if(item.equals("RUBY")){
                   playGameGUI.getScript().displayDialogue(display.getNpcResponse("karen_defeated_ruby"));
+                }else{
+                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("karen_incorrect_item"));
                 }
               }else if (house.getHouseName().equals("witch's den")){
-                if(item.equals("cat-hair") || item.equals("beer") || item.equals("dentures")){
-                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("give_witch_ingredient"));
-                }else{
-                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("incorrect_witch_ingredient"));
-                }if(house.getHouseItems().contains("cat-hair") && house.getHouseItems().contains("beer") && house.getHouseItems().contains("dentures")){
-                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("complete_witch_potion"));
-                }
-              }else{
                 playGameGUI.getScript().displayDialogue(display.getNpcResponse("remove_item"));
-              }
-            }else{
+                if(item.equals("CAT-HAIR") || item.equals("BEER") || item.equals("DENTURES")) {
+                  playGameGUI.getScript()
+                      .displayDialogue(display.getNpcResponse("give_witch_ingredient"));
+                } else{
+                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("incorrect_witch_ingredient"));
+                }
+                if(house.getHouseItems().contains("CAT-HAIR") && house.getHouseItems().contains("BEER") && house.getHouseItems().contains("DETURES")){
+                  playGameGUI.getScript().displayDialogue(display.getNpcResponse("complete_witch_potion"));
+              }}} else{
               playGameGUI.getScript().displayDialogue(display.getNpcResponse("knock_to_use_item"));
             }
-//              if(house.isKnocked() && !house.getHouseName().equals("dracula's mansion")) {
-//                player.setItems(game.useItem(house, item, player.getItems()));
-//                playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
-//                playGameGUI.getScript().displayDialogue(display.getNpcResponse("remove_item"));
-//              }else if(house.isKnocked() && house.getHouseName().equals("dracula's mansion")){
-//                player.setItems(game.useItem(house, item, player.getItems()));
-//                playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
-//                playGameGUI.getScript().displayDialogue(display.getNpcResponse("draculas_tooth"));
-//
-//            }
-//            if(house.isKnocked() && !house.getHouseName().equals("dracula's mansion")) {
-//              player.setItems(game.useItem(house, item, player.getItems()));
-//              playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
-//              playGameGUI.getScript().displayDialogue(display.getNpcResponse("remove_item"));
-//            }else if(house.isKnocked() && house.getHouseName().equals("dracula's mansion")){
-//              player.setItems(game.useItem(house, item, player.getItems()));
-//              playGameGUI.getUserLocationInventoryMove().updateInventory(player.getItems());
-//              playGameGUI.getScript().displayDialogue(display.getNpcResponse("draculas_tooth"));
-//            }else{
-//              playGameGUI.getScript().displayDialogue(display.getNpcResponse("knock_to_use_item"));
-//            }
-//          state = game.getState();
+
         });
     state = game.getState();
 
@@ -200,17 +187,17 @@ public class GuiController {
       run = runGame();
     }while (run);
     try {
-      thread.sleep(5000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
-    displayGameResult();
-    try {
       thread.sleep(7000);
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     }
-    quitGame();
+    displayGameResult();
+//    try {
+//      thread.sleep(7000);
+//    } catch (InterruptedException e) {
+//      throw new RuntimeException(e);
+//    }
+//    quitGame();
   }
 
   public void displayGameResult() {
@@ -218,8 +205,10 @@ public class GuiController {
     if (game.getState().equals(State.WIN)) {
       playGameGUI.getScript().displayDialogue(game.showWin());
 
+
     } else {
       playGameGUI.getScript().displayDialogue(game.showLose());
+
     }
   }
 
