@@ -29,7 +29,7 @@ public class Main {
       thread.sleep(5000);
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
-    }guiController.quitGame();
+    }
 
 
 
