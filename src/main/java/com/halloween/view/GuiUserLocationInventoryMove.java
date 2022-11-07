@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.BorderFactory;
@@ -38,6 +39,7 @@ public class GuiUserLocationInventoryMove {
     textAreaForLocation.setLineWrap(true);
     textAreaForLocation.setWrapStyleWord(true);
     textAreaForLocation.setForeground(Color.white);
+    textAreaForLocation.setMargin(new Insets(10, 10, 0, 0));
     textAreaForLocation.setLayout(new BorderLayout());
     textAreaForLocation.setOpaque(false);
 
@@ -49,6 +51,7 @@ public class GuiUserLocationInventoryMove {
     textAreaForPossibleMoves.setLineWrap(true);
     textAreaForPossibleMoves.setWrapStyleWord(true);
     textAreaForPossibleMoves.setForeground(Color.white);
+    textAreaForPossibleMoves.setMargin(new Insets(10, 0, 0, 0));
     textAreaForPossibleMoves.setLayout(new FlowLayout());
     textAreaForPossibleMoves.setOpaque(false);
 
@@ -76,6 +79,7 @@ public class GuiUserLocationInventoryMove {
     titleForInventory.setOpaque(false);
     titleForInventory.setBounds(0, 0, 215, 15);
     titleForInventory.setForeground(Color.YELLOW);
+    titleForInventory.setMargin(new Insets(8, 0, 0, 0));
 
     panelForInventory.add(titleForInventory);
 
