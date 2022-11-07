@@ -34,8 +34,8 @@ public class View {
     npcResponse = ResourceBundle.getBundle("npcResponse");
   }
 
-  public void greet(String currentPosition) {
-    System.out.println(dialogue.get(currentPosition).get("greet"));
+  public String greet(String currentPosition) {
+    return dialogue.get(currentPosition).get("greet");
   }
 
   public String noItem(String currentPosition) {
@@ -48,8 +48,13 @@ public class View {
   public String getImportantDisplay(String key) {
     return instructions.getString(key) + "\n";
   }
-  public String getNpcResponse(String key){
-    return npcResponse.getString(key) + "\n";
+  public String getNpcResponse(String name){
+    return npcResponse.getString(name) + "\n";
+  }
+  public String getPossibleMoveForYourHouse(){
+    return  "\n\nnorth: neighbor's house\n"
+        + "\neast: freddy & jason's house\n"
+        + "\nwest: mayor's house";
   }
 
   public static void main(String[] args) {

@@ -13,8 +13,9 @@ public class GuiTitle {
     panelForTitleWithImg = new JPanel();
     panelForTitleWithImg.setBackground(Color.LIGHT_GRAY);
     panelForTitleWithImg.setBounds(7, 5, 970, 100);
-    labelForTitle = new JLabel("Title");
+    labelForTitle = new JLabel();
     panelForTitleWithImg.add(labelForTitle);
+    panelForTitleWithImg.setOpaque(false);
   }
 
   public JPanel getPanelForTitleWithImg() {

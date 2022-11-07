@@ -2,7 +2,7 @@
   {
     "houseName": "amityville mansion",
     "houseItems": [
-      "tooth"
+      "TOOTH"
     ],
     "residents": [
       "ghost"
@@ -28,7 +28,7 @@
   {
     "houseName": "neighbor's house",
     "houseItems": [
-      "candy"
+      "CANDY"
     ],
     "residents": [
       "neighbor"
@@ -66,7 +66,7 @@
   {
     "houseName": "grandma's house",
     "houseItems": [
-      "dentures"
+      "DENTURES"
     ],
     "residents": [
       "grandma"
@@ -80,7 +80,7 @@
   {
     "houseName": "addam's family house",
       "houseItems": [
-        "thing"
+        "THING"
       ],
       "residents": [
         "wednesday addams"
@@ -94,7 +94,7 @@
   {
     "houseName": "mayor's house",
     "houseItems": [
-      "badge"
+      "BADGE"
     ],
     "residents": [
       "mayor"
@@ -120,7 +120,7 @@
   {
     "houseName": "freddy & jason's house",
     "houseItems": [
-      "beer"
+      "BEER"
     ],
     "residents": [
       "freddy",
@@ -147,7 +147,7 @@
   {
     "houseName": "haunted house",
     "houseItems": [
-      "cat-hair"
+      "CAT-HAIR"
     ],
     "residents": [
       "zombie"

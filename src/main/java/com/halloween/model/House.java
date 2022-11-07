@@ -26,6 +26,7 @@ public class House {
     this.knocked = false;
   }
 
+//
   public String getHouseName() {
     return houseName;
   }
