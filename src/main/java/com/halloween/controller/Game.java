@@ -10,9 +10,6 @@ import com.halloween.model.State;
 import com.halloween.view.PlayGameGUI;
 import com.halloween.view.PlayMusic;
 import com.halloween.view.View;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -144,7 +141,7 @@ public class Game {
     } else {
       player.setPosition(playersMove);
       playSound("/footsteps.wav");
-      return ("You moved to "+ direction + ". You are at " + player.getPosition());
+      return ("You moved to "+ direction + ". You are at " + player.getPosition() + ".");
 
     }
   }
@@ -177,10 +174,10 @@ public class Game {
     // If we do not have the items, then we lose the game
     // If we knock on karen's door
     if (house.getHouseName().equals("karen's house")) {
-      knockOnKarenHouse(playerItems);
+      return knockOnKarenHouse(playerItems);
       // if knock on the saw house
     } else if (house.getHouseName().equals("saw house")) {
-      knockOnSawHouse(playerItems);
+      return knockOnSawHouse(playerItems);
       // for all other houses (besides karen's house and saw house) we do the following
     } else if (house.getHouseItems().isEmpty()) {
 //      playGameGUI.getScript().displayKnock(display.noItem(player.getPosition()));
@@ -189,7 +186,7 @@ public class Game {
 ////      System.out.println(display.greet(player.getPosition()));
 //      return display.greet(player.getPosition());
     }
-    return display.greet(player.getPosition());
+      return display.greet(player.getPosition());
   }
 
   // LOSE CONDITION 1

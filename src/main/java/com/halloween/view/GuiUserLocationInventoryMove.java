@@ -34,7 +34,7 @@ public class GuiUserLocationInventoryMove {
     textAreaForLocation = new JTextArea("Your Current Location:");
 //    textAreaForLocation.setBorder(BorderFactory.createLineBorder(Color.green));
     textAreaForLocation.setSize(215, 245);
-//    textAreaForLocation.setEditable(false);
+    textAreaForLocation.setEditable(false);
     textAreaForLocation.setFont(new Font("Bold", Font.BOLD, 16));
     textAreaForLocation.setLineWrap(true);
     textAreaForLocation.setWrapStyleWord(true);
@@ -45,7 +45,7 @@ public class GuiUserLocationInventoryMove {
     textAreaForPossibleMoves = new JTextArea("Possible Moves");
 //    textAreaForPossibleMoves.setBorder(BorderFactory.createLineBorder(Color.red));
     textAreaForPossibleMoves.setSize(215, 245);
-//    textAreaForPossibleMoves.setEditable(false);
+    textAreaForPossibleMoves.setEditable(false);
     textAreaForPossibleMoves.setFont(new Font("Bold", Font.BOLD, 16));
     textAreaForPossibleMoves.setLineWrap(true);
     textAreaForPossibleMoves.setWrapStyleWord(true);
@@ -103,7 +103,7 @@ public class GuiUserLocationInventoryMove {
 //    panelForInventory.add(titleForInventory);
 //    panelForLocationInventoryMove.setBackground(Color.LIGHT_GRAY);
 //    panelForLocationInventoryMove.setBackground(Color.red);
-    panelForLocationInventoryMove.setBounds(10, 420, 675, 250);
+    panelForLocationInventoryMove.setBounds(20, 420, 675, 250);
     panelForLocationInventoryMove.setLayout(new GridLayout(1, 3));
 
 

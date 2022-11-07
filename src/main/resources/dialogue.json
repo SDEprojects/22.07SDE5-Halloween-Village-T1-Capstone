@@ -2,7 +2,7 @@
 [
   {
     "amityville mansion": {
-      "greet": "Player: Trick or treat! \nGhost: ooooOOOooooOoO What a brave soul you must be to visit the Amityville Mansion on Halloween night. \nGhost: On second thought, you are not the only brave one visiting the mansion! Someone was here last night causing a ruckus and dropped something. I could’ve sworn it came from his mouth!\n",
+      "greet": "Player: Trick or treat! \n\nGhost: ooooOOOooooOoO What a brave soul you must be to visit the Amityville Mansion on Halloween night.\n\nGhost: On second thought, you are not the only brave one visiting the mansion! \nSomeone was here last night causing a ruckus and dropped something. \nI could’ve sworn it came from his mouth!\n",
       "no item": "Ghost: “Another visitor?! Oh, it’s just you...... *sigh*\n",
       "get item": ""
     }
@@ -10,20 +10,20 @@
   {
     "dracula's mansion": {
       "greet": "Player: Trick or treat! \nDracula: Why hello there human… good timing that you’re here because I am sooo hungry! \nPlayer: Please don’t drink my blood! \nDracula: I would eat you where you stand right now if my tooth didn’t fall out. I can’t find it anywhere. Have you seen it? If you find it for me I will be indebted to you. I pinky promise I won’t eat you! \nFind Item: Wow! You found my fang! Thank you so much. If there is anything I can do to help you please let me know\n",
-      "no item": "Player: Trick or treat! \nDracula: Why hello there human… \n good timing that you’re here because I am sooo hungry! \n\nPlayer: Please don’t drink my blood! \n\nnDracula: I would eat you where you stand right now if my tooth didn’t fall out. I can’t find it anywhere. \n Have you seen it? If you find it for me I will be indebted to you. I pinky promise I won’t eat you! \nFind Item: Wow! You found my fang! Thank you so much. \n If there is anything I can do to help you please let me know\n\"",
+      "no item": "Player: Trick or treat! \n\nDracula: Why hello there human… \ngood timing that you’re here because I am sooo hungry! \n\nPlayer: Please don’t drink my blood! \n\nDracula: I would eat you where you stand right now if my tooth didn’t fall out. I can’t find it anywhere. \nHave you seen it? If you find it for me I will be indebted to you.\nI pinky promise I won’t eat you!\n",
       "get item": ""
     }
   },
     {
       "haunted house": {
-        "greet": "Player: Trick or treat! \nZombie: GRAAHHH Welcome to the Haunted Zombie House where we like to scare the locals and eat their yummy brains!\n\n A black cat: meow….. Meow… \n\nThe cat rubs your leg and a hair falls out.\n",
+        "greet": "Player: Trick or treat! \n\nZombie: GRAAHHH Welcome to the Haunted Zombie House where we like to scare the locals and eat their yummy brains!\n\nA black cat: meow….. Meow… \n\nThe cat rubs your leg and a hair falls out.\n",
         "no item": "Back for more scary fun? No can do, the zombies are on their mandatory union enforced break\n",
         "get item": "Player takes Cat hair\n"
       }
     },
     {
       "addam's family house": {
-        "greet": "Player: Trick or treat! \nWednesday Addams: *rolls eyes* What do you want? \n\nPlayer: Candy!!! \n\nWednesday Addams: We have no candy. The Thing went out to get some this morning and I have not seen him since. \nSo if you want your stupid little candies, I suggest you find him instead! GOODBYE *slams door*\n\nFind Item: Nice of you to finally come back, Thing. \nI am tired of these childish trick or treaters. \nThank you for finding him\n",
+        "greet": "Player: Trick or treat! \n\nWednesday Addams: *rolls eyes* What do you want? \n\nPlayer: Candy!!! \n\nWednesday Addams: We have no candy. The Thing went out to get some this morning and I have not seen him since. \nSo if you want your stupid little candies, I suggest you find him instead! GOODBYE *slams door*\n",
         "no item": "There's nothing for you here. Sorry!",
         "get item": ""
       }
@@ -31,14 +31,14 @@
   {
     "witch's den": {
       "greet": "Player: Trick or treat! \nWitch: Hehehehe Hi young one… \nI just used the last of my candies to lure Hansel and Gretel into my kitchen.\nThere’s nothing here... \n\nPlayer: How can you be empty handed this time of year!? \n\nWitch: I’ll tell you what. I can make you a little potion instead. \nI won’t tell you what it does until after I make it, it’s a surprise. \nBut in order for me to do this, I need you to gather some ingredients for me: Beer, Dentures, and Cat Hair \n",
-      "no item": "Player: Trick or treat! \nWitch: Hehehehe Hi young one… \nI just used the last of my candies to lure Hansel and Gretel into my kitchen.\n There’s nothing here... \n\nPlayer: How can you be empty handed this time of year!? \n\nWitch: I’ll tell you what. I can make you a little potion instead. \nI won’t tell you what it does until after I make it, it’s a surprise. \nBut in order for me to do this, I need you to gather some ingredients for me: \nBeer, Dentures, and Cat Hair \n",
+      "no item": "Player: Trick or treat! \n\nWitch: Hehehehe Hi young one… \nI just used the last of my candies to lure Hansel and Gretel into my kitchen.\nThere’s nothing here... \n\nPlayer: How can you be empty handed this time of year!? \n\nWitch: I’ll tell you what. I can make you a little potion instead. \nI won’t tell you what it does until after I make it, it’s a surprise. \nBut in order for me to do this, \nI need you to gather some ingredients for me.. \n\nBeer, Dentures, and Cat Hair \n",
       "get item": "Thank you for the ingredients dear! This potion has the power to kill the devil....\n You have potion in your inventory."
     }
   },
   {
     "mayor's house": {
-      "greet": "Player: Trick or treat! \nMayor: Ah hello there youngster! You’re in for a special treat, since you’re our first visitor this evening, and obviously full of ambition -  I'm appointing you deputy mayor for the rest of the day! \nConsole: Do you accept the item? \n",
-      "no item": "Player: Trick or treat! \nMayor: You again? Sorry, I don’t have any more treats for you.\n",
+      "greet": "Player: Trick or treat! \n\nMayor: Ah hello there youngster! \nYou’re in for a special treat, since you’re our first visitor this evening, and obviously full of ambition -  \nI'm appointing you deputy mayor for the rest of the day! \nConsole: Do you accept the item? \n",
+      "no item": "Player: Trick or treat! \n\nMayor: You again? Sorry, I don’t have any more treats for you.\n",
       "get item": ""
     }
   },
