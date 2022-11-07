@@ -67,9 +67,9 @@ public class PlayGameGUI implements ActionListener {
 
     // add background image to panelForGameWindow
 //    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("halloween-village-image.png");
-//    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("halloween-village-spooky-castle1.png");
-//    ImageIcon img = new ImageIcon(imageLoc);
-    ImageIcon imageIcon = defaultButton.createImageIcon("halloween-village-spooky-castle1.png");
+
+    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/your-house.png");
+    ImageIcon img = new ImageIcon(imageLoc);
     labelPanelForGameWindow = new JLabel();
     labelPanelForGameWindow.setIcon(imageIcon);
     panelForGameWindow.add(labelPanelForGameWindow);
@@ -145,6 +145,52 @@ public class PlayGameGUI implements ActionListener {
   public void setUserConsumer(Consumer<String> listener) {
     userInput.setUserInputListener(userInput -> listener.accept(userInput));
 
+  }
+
+  public void setBackgroundImage(String houseName) {
+    URL imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/your-house.png.png");
+    // Switch statement
+    switch (houseName) {
+      case "addam's family house":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/addams-family-house.png");
+        break;
+      case "amityville mansion":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/amityville-mansion.png");
+        break;
+      case "dracula's mansion":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/draculas-mansion.png");
+        break;
+      case "freddy & jason's house":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/freddy-and-jasons-house.png");
+        break;
+      case "grandma's house":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/grandmas-house.png");
+        break;
+      case "haunted house":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/haunted-house.png");
+        break;
+      case "karen's house":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/karens-house.png");
+        break;
+      case "mayor's house":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/mayors-house.png");
+        break;
+      case "neighbor's house":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/neighbors-house.png");
+        break;
+      case "saw house":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/saws-house.png");
+        break;
+      case "witch's den":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/witch-den.png");
+        break;
+      case "your house":
+        imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/your-house.png");
+        break;
+    }
+    ImageIcon img = new ImageIcon(imageLoc);
+    labelPanelForGameWindow.setIcon(img);
+    panelForGameWindow.add(labelPanelForGameWindow);
   }
 
 

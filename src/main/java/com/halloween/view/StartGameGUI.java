@@ -66,7 +66,7 @@ public class StartGameGUI {
 
     // add Image to redPanel
 //    URL iconLocation = StartGameGUI.class.getClassLoader().getResource("redImage.png");
-    URL imageLocation = StartGameGUI.class.getClassLoader().getResource("halloween-village-image.png");
+    URL imageLocation = StartGameGUI.class.getClassLoader().getResource("halloween-village.png");
     ImageIcon img = new ImageIcon(imageLocation);
     labelForRedPanel = new JLabel();
     labelForRedPanel.setIcon(img);
