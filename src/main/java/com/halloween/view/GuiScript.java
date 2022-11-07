@@ -4,24 +4,26 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class GuiScript {
+
   JScrollPane scrollPane;
 
 
   JPanel panelForScript = new JPanel() {
-    protected void paintComponent(Graphics g)
-    {
-      g.setColor( getBackground() );
+    protected void paintComponent(Graphics g) {
+      g.setColor(getBackground());
       g.fillRect(0, 0, getWidth(), getHeight());
       super.paintComponent(g);
     }
   };
   JTextArea textAreaForScript = new JTextArea();
+
   public GuiScript() {
     panelForScript.setBounds(20, 125, 675, 310);
     panelForScript.setLayout(new BorderLayout());
@@ -32,6 +34,7 @@ public class GuiScript {
     textAreaForScript.setLineWrap(true);
     textAreaForScript.setWrapStyleWord(true);
     textAreaForScript.setFont(new Font("Bold", Font.BOLD, 16));
+    textAreaForScript.setMargin(new Insets(20, 20, 20, 20));
     textAreaForScript.setForeground(Color.white);
     textAreaForScript.setOpaque(false);
 
@@ -43,6 +46,7 @@ public class GuiScript {
 
     panelForScript.add(scrollPane);
   }
+
   public JPanel getPanelForScript() {
     return panelForScript;
   }
