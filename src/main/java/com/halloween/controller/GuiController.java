@@ -204,11 +204,10 @@ public class GuiController {
 
     if (game.getState().equals(State.WIN)) {
       playGameGUI.getScript().displayDialogue(game.showWin());
-
-
+      playGameGUI.gameWinBackgroundImage();
     } else {
       playGameGUI.getScript().displayDialogue(game.showLose());
-
+      playGameGUI.gameLoseBackgroundImage();
     }
   }
 
