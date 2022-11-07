@@ -41,20 +41,7 @@ public class Game {
     return player.getPosition();
   }
 
-  // Greeting user by displaying welcome message and ask name. user can quit the game by typing "quit"
-//  public void greetPlayer() throws IOException {
-//    if (player.getName() != null) {
-//      System.out.println(display.getNpcResponse("welcome_back") + "\n" + player.getName());
-//    } else {
-//      BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-//      System.out.println(display.getNpcResponse("ask_name"));
-//      player.setName(buffer.readLine().trim());
-//      if (player.getName().equals("quit")) {
-//        quitGame();
-//      }
-//      System.out.println(display.getNpcResponse("welcome"));
-//    }
-//  }
+
 
   // Display user status including user's current location, inventory items, and item in house.
   public String showStatus(String location) {
@@ -192,7 +179,7 @@ public class Game {
   // LOSE CONDITION 1
   private String knockOnSawHouse(ArrayList<String> playerItems) {
     // check for "thing" in not in our items then we lose the game
-    if (!playerItems.contains("thing")) {
+    if (!playerItems.contains("THING")) {
 //      System.out.println(display.noItem(player.getPosition()));
       setState(State.LOSE);
       return display.noItem(player.getPosition());
@@ -201,7 +188,7 @@ public class Game {
     else {
       // System.out.println("Suddenly, thing jumps from your candy bag, and frees you! RUN WHILE YOU CAN!");
 //      System.out.println(display.greet(player.getPosition()));
-      player.removeItem("thing");
+      player.removeItem("THING");
       return display.greet(player.getPosition());
 
     }
@@ -212,8 +199,8 @@ public class Game {
   // if not, the user lose the game.
   private String knockOnKarenHouse(ArrayList<String> playerItems) {
     // if we have a badge, potion, or ruby, then do nothing
-    if (playerItems.contains("badge") || playerItems.contains("potion") || playerItems.contains(
-        "ruby")) {
+    if (playerItems.contains("BADGE") || playerItems.contains("POTION") || playerItems.contains(
+        "RUBY")) {
 //      System.out.println(display.getNpcResponse("karen_calling_cops"));
       return display.getNpcResponse("karen_calling_cops");
     }
@@ -292,12 +279,12 @@ public class Game {
     // if we use the badge at karen's house then we win the game
     if (house.getHouseName().equals("karen's house")) {
       inventory = karenUseItem(item, inventory);
-    } else if (house.getHouseName().equals("dracula's mansion") && item.equals("tooth")) {
+    } else if (house.getHouseName().equals("dracula's mansion") && item.equals("TOOTH")) {
       System.out.println(display.getNpcResponse("draculas_tooth"));
       // added dracula's ruby to our inventory
       // NOTE: dracula's tooth is a hidden item, so we don't store it in the house
       inventory.remove(item);
-      inventory.add("ruby");
+      inventory.add("RUBY");
       return inventory;
     } else if (house.getHouseName().equals("witch's den")) {
       String exchangedItem = witchUseItem(item, house);
@@ -310,7 +297,7 @@ public class Game {
   // the witch will take the items to make a potion.
   // if all the items are collected by the witch, user will get the potion.
   private String witchUseItem(String item, House house) {
-    if (item.equals("cat-hair") || item.equals("beer") || item.equals("dentures")) {
+    if (item.equals("CAT-HAIR") || item.equals("BEER") || item.equals("DENTURES")) {
       System.out.printf(display.getNpcResponse("give_witch_ingredient"), item);
       playSound("/bubbles.wav");
       house.addItem(item);
@@ -318,11 +305,11 @@ public class Game {
       System.out.printf(display.getNpcResponse("incorrect_witch_ingredient"), item);
     }
     ArrayList<String> witchHouseItems = house.getHouseItems();
-    if (witchHouseItems.contains("cat-hair") && witchHouseItems.contains("beer")
-        && witchHouseItems.contains("dentures")) {
+    if (witchHouseItems.contains("CAT-HAIR") && witchHouseItems.contains("BEER")
+        && witchHouseItems.contains("DENTURES")) {
       System.out.println(display.getNpcResponse("complete_witch_potion"));
       // NOTE: potion is a hidden item, so we don't store it in the house
-      String exchangedItem = "potion";
+      String exchangedItem = "POTION";
       playSound("/witch.wav");
       return exchangedItem;
     }
@@ -332,14 +319,14 @@ public class Game {
   // WIN condition
 // if user use one of the items(badge, potion, ruby) to Karen, user wins the game.
   public ArrayList<String> karenUseItem(String item, ArrayList<String> inventory) {
-    if (item.equals("badge")) {
+    if (item.equals("BADGE")) {
       System.out.println(display.getNpcResponse("karen_defeated_badge"));
       playSound("/girl_scream.wav");
       inventory.remove(item);
-    } else if (item.equals("potion")) {
+    } else if (item.equals("POTION")) {
       System.out.println(display.getNpcResponse("karen_defeated_potion"));
       inventory.remove(item);
-    } else if (item.equals("ruby")) {
+    } else if (item.equals("RUBY")) {
       System.out.println(display.getNpcResponse("karen_defeated_ruby"));
       inventory.remove(item);
     } else{

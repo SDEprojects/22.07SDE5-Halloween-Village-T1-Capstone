@@ -118,7 +118,7 @@ public class GuiUserLocationInventoryMove {
     panelForInventory.repaint();
     panelForInventory.add(titleForInventory);
     for (int i = 0; i < inventory.size(); i++) {
-      itemBtn = new JButton(inventory.get(i).toUpperCase());
+      itemBtn = new JButton(inventory.get(i));
 //      itemBtn.setBounds(30, (i+1)*35, 160, 30);
       itemBtn.setFont(new Font("serif", Font.BOLD, 16));
       itemBtn.setForeground(Color.white);
