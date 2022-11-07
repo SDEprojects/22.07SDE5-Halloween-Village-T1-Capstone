@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,6 +34,7 @@ public class GuiScript {
     textAreaForScript.setWrapStyleWord(true);
     textAreaForScript.setFont(new Font("Bold", Font.BOLD, 16));
     textAreaForScript.setForeground(Color.white);
+    textAreaForScript.setMargin(new Insets(20,20,20,20));
     textAreaForScript.setOpaque(false);
 
     scrollPane = new JScrollPane(textAreaForScript);

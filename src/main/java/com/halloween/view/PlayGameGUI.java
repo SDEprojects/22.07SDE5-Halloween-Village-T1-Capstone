@@ -71,7 +71,7 @@ public class PlayGameGUI implements ActionListener {
     URL imageLoc = StartGameGUI.class.getClassLoader().getResource("houses/your-house.png");
     ImageIcon img = new ImageIcon(imageLoc);
     labelPanelForGameWindow = new JLabel();
-    labelPanelForGameWindow.setIcon(imageIcon);
+    labelPanelForGameWindow.setIcon(img);
     panelForGameWindow.add(labelPanelForGameWindow);
 
     // set window icon

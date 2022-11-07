@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.BorderFactory;
@@ -34,6 +35,7 @@ public class GuiUserLocationInventoryMove {
 //    textAreaForLocation.setBorder(BorderFactory.createLineBorder(Color.green));
 //    textAreaForLocation.setSize(215, 245);
     textAreaForLocation.setEditable(false);
+    textAreaForLocation.setMargin(new Insets(10,10,0,0));
     textAreaForLocation.setFont(new Font("Bold", Font.BOLD, 16));
     textAreaForLocation.setLineWrap(true);
     textAreaForLocation.setWrapStyleWord(true);
@@ -45,6 +47,7 @@ public class GuiUserLocationInventoryMove {
 //    textAreaForPossibleMoves.setBorder(BorderFactory.createLineBorder(Color.red));
 //    textAreaForPossibleMoves.setSize(215, 245);
     textAreaForPossibleMoves.setEditable(false);
+    textAreaForPossibleMoves.setMargin(new Insets(10,10,0,0));
     textAreaForPossibleMoves.setFont(new Font("Bold", Font.BOLD, 16));
     textAreaForPossibleMoves.setLineWrap(true);
     textAreaForPossibleMoves.setWrapStyleWord(true);
@@ -70,6 +73,7 @@ public class GuiUserLocationInventoryMove {
 //    panelForInventory.setBorder(titleForInventory);
 
     titleForInventory = new JTextArea("Inventory:");
+    titleForInventory.setMargin(new Insets(8,10,0,0));
     titleForInventory.setEditable(false);
 //    titleForInventory.setBackground(Color.white);
     titleForInventory.setFont(new Font("Bold", Font.BOLD, 16));
@@ -90,7 +94,7 @@ public class GuiUserLocationInventoryMove {
       }
     };
 
-    panelForLocationInventoryMove.setBounds(20, 435, 675, 255);
+    panelForLocationInventoryMove.setBounds(20, 445, 675, 255);
     panelForLocationInventoryMove.setLayout(new GridLayout(1, 3));
 
     panelForLocationInventoryMove.add(textAreaForLocation);
@@ -116,14 +120,14 @@ public class GuiUserLocationInventoryMove {
     for (int i = 0; i < inventory.size(); i++) {
       itemBtn = new JButton(inventory.get(i).toUpperCase());
 //      itemBtn.setBounds(30, (i+1)*35, 160, 30);
-      itemBtn.setFont(new Font("serif", Font.BOLD, 16));
-      itemBtn.setForeground(Color.white);
-//      itemBtn.setForeground(Color.YELLOW);
-      itemBtn.setBackground(new Color(0, 0, 0, 120));
-      Border emptyBorder = BorderFactory.createEmptyBorder();
-      itemBtn.setBorder(emptyBorder);
-      itemBtn.setOpaque(false);
-      itemBtn.setFocusPainted(false);
+//      itemBtn.setFont(new Font("serif", Font.BOLD, 16));
+//      itemBtn.setForeground(Color.white);
+////      itemBtn.setForeground(Color.YELLOW);
+//      itemBtn.setBackground(new Color(0, 0, 0, 120));
+//      Border emptyBorder = BorderFactory.createEmptyBorder();
+//      itemBtn.setBorder(emptyBorder);
+//      itemBtn.setOpaque(false);
+//      itemBtn.setFocusPainted(false);
       itemBtn.setFocusable(false);
       itemBtn.setActionCommand(inventory.get(i));
       panelForInventory.add(itemBtn);
